@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Analyst • SGM Computer Education</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-900:#071a2b; --brand-700:#0b3d91; --accent:#00b4d8; --muted:#6b7280;
+    }
+    html,body{height:100%;}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:#f6f9fb; color:#0f1724; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Header */
+    .hero{
+      background:linear-gradient(135deg,var(--brand-900),var(--brand-700));
+      color:#fff; padding:4.5rem 0 3.5rem; border-bottom:6px solid var(--accent);
+    }
+    .hero .small{opacity:.9}
+
+    /* Card styles */
+    .course-card{border-radius:12px; box-shadow:0 8px 24px rgba(8,15,30,0.06); border:0; overflow:hidden}
+    .module-card{border-left:6px solid var(--accent); border-radius:8px; background:#fff; padding:1.25rem}
+
+    /* Accent headings */
+    .section-title{font-weight:700; color:var(--brand-700); border-left:6px solid var(--accent); padding-left:.9rem}
+    .section-sub{font-weight:600; color:var(--brand-700)}
+
+    /* Bullet list */
+    .bullet-list li{margin-bottom:.6rem}
+    .bullet-list li::marker{color:var(--brand-700)}
+
+    /* Footer */
+    footer{background:var(--brand-900); color:#e6eef8; padding:1.6rem 0}
+
+    /* Small utilities */
+    .muted{color:var(--muted)}
+
+    /* Animation */
+    .fade-up{opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.2,.9,.2,1)}
+    .fade-up.show{opacity:1; transform:none}
+
+    /* Accordion arrow animation */
+    .accordion-button::after {
+      transition: transform .3s ease;
+    }
+    .accordion-button:not(.collapsed)::after {
+      transform: rotate(180deg);
+    }
+
+    /* Responsive tweaks */
+    @media(min-width:992px){ .hero{padding:5.5rem 0 4rem} }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Hero -->
+  <header class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 text-center text-lg-start">
+          <h1 class="display-6 fw-bold">Data Analyst • Professional Course</h1>
+          <p class="lead small">Become a skilled data analyst — master Excel, Power BI, Tableau, MySQL, and Python for data-driven decision-making.</p>
+          <div class="mt-3">
+            <a href="#enroll" class="btn btn-primary btn-lg me-2">Enroll Now</a>
+            <a href="#modules" class="btn btn-outline-light btn-lg">View Modules</a>
+          </div>
+        </div>
+        <div class="col-lg-4 mt-4 mt-lg-0 text-center">
+          <div class="card course-card p-3">
+            <div class="card-body">
+              <h5 class="card-title">Course Snapshot</h5>
+              <p class="card-text mb-1"><strong>Duration:</strong> 50–60 hours (Instructor-led + Practicals)</p>
+              <p class="card-text mb-1"><strong>Level:</strong> Beginner → Advanced</p>
+              <p class="card-text mb-0"><strong>Mode:</strong> Classroom / Online</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- Left: Modules -->
+        <div class="col-lg-8">
+          <h2 class="section-title mb-4">Course Modules</h2>
+
+          <div id="modules">
+            <div class="accordion" id="modulesAccordion">
+
+              <!-- Advanced Excel -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="headingExcel">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExcel" aria-expanded="false" aria-controls="collapseExcel">
+                    Advanced Excel
+                  </button>
+                </h2>
+                <div id="collapseExcel" class="accordion-collapse collapse" aria-labelledby="headingExcel" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Overview of Advanced Excel Features and Functions</li>
+                      <li>Using Formulas and Functions for Complex Calculations</li>
+                      <li>Data Analysis Techniques: PivotTables, PivotCharts, and What-If Analysis</li>
+                      <li>Creating Dynamic Dashboards and Visualizations</li>
+                      <li>Automating Tasks with Macros and VBA</li>
+                      <li>Best Practices for Data Management and Reporting</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Power BI -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="headingPowerBI">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePowerBI" aria-expanded="false" aria-controls="collapsePowerBI">
+                    Power BI
+                  </button>
+                </h2>
+                <div id="collapsePowerBI" class="accordion-collapse collapse" aria-labelledby="headingPowerBI" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Introduction to Power BI: Overview and Key Features</li>
+                      <li>Connecting to Data Sources: Excel, SQL Server, and Web Data</li>
+                      <li>Data Transformation and Cleaning using Power Query</li>
+                      <li>Creating Interactive Reports and Dashboards</li>
+                      <li>Utilizing DAX (Data Analysis Expressions) for Advanced Calculations</li>
+                      <li>Sharing and Collaborating on Power BI Reports</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tableau -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="headingTableau">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTableau" aria-expanded="false" aria-controls="collapseTableau">
+                    Tableau
+                  </button>
+                </h2>
+                <div id="collapseTableau" class="accordion-collapse collapse" aria-labelledby="headingTableau" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Introduction to Tableau: Overview and Interface</li>
+                      <li>Connecting Tableau to Various Data Sources</li>
+                      <li>Building Interactive Visualizations: Charts, Maps, and Dashboards</li>
+                      <li>Customizing Visualizations for Effective Data Presentation</li>
+                      <li>Using Tableau for Advanced Data Analysis and Reporting</li>
+                      <li>Best Practices for Dashboard Design and User Experience</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- MySQL -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="headingMySQL">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMySQL" aria-expanded="false" aria-controls="collapseMySQL">
+                    MySQL
+                  </button>
+                </h2>
+                <div id="collapseMySQL" class="accordion-collapse collapse" aria-labelledby="headingMySQL" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Introduction to MySQL: Overview and Installation</li>
+                      <li>Understanding Database Concepts: Tables, Records, and Relationships</li>
+                      <li>Writing SQL Queries: SELECT, INSERT, UPDATE, and DELETE Statements</li>
+                      <li>Data Manipulation and Retrieval Techniques</li>
+                      <li>Creating and Managing Databases and Tables</li>
+                      <li>Using MySQL for Data Analysis and Reporting</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Python -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="headingPython">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePython" aria-expanded="false" aria-controls="collapsePython">
+                    Python for Data Analysis
+                  </button>
+                </h2>
+                <div id="collapsePython" class="accordion-collapse collapse" aria-labelledby="headingPython" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Introduction to Python: Overview and Setup</li>
+                      <li>Understanding Python Libraries for Data Analysis: Pandas, NumPy, and Matplotlib</li>
+                      <li>Data Manipulation and Analysis with Pandas</li>
+                      <li>Data Visualization Techniques using Matplotlib and Seaborn</li>
+                      <li>Implementing Basic Machine Learning Algorithms with Scikit-learn</li>
+                      <li>Best Practices for Writing Clean and Efficient Python Code</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Benefits Block -->
+          <section class="mt-4 fade-up">
+            <h3 class="section-sub" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px; display:inline-block;">Is This For You?</h3>
+            <ul class="bullet-list">
+              <li>Advance your skills in data analysis and visualization</li>
+              <li>Learn to use industry-standard tools effectively</li>
+              <li>Gain practical experience in Excel, Power BI, Tableau, MySQL, and Python</li>
+            </ul>
+
+            <h3 class="section-sub mt-3" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px; display:inline-block;">Why Learn Data Analysis?</h3>
+            <ul class="bullet-list">
+              <li><strong>Build In-Demand Skills:</strong> Highly sought after in today’s job market</li>
+              <li><strong>Make Informed Decisions:</strong> Analyze data to support strategic decisions</li>
+              <li><strong>Enhance Your Career Opportunities:</strong> Open doors to various career paths</li>
+              <li><strong>Stay Competitive:</strong> Master data analysis techniques</li>
+            </ul>
+
+          </section>
+
+        </div>
+
+        <!-- Right: Enroll / Info -->
+        <aside class="col-lg-4">
+          <div class="card p-3 mb-3 fade-up">
+            <div class="d-flex align-items-start">
+              <div class="me-3">
+                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#0b3d91"/><path d="M7 11h10M7 7h10M7 15h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <h5 class="mb-1" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px; display:inline-block;">Who Should Enroll</h5>
+                <p class="mb-0 muted">Beginners, business professionals, students, and anyone aiming to become a skilled data analyst.</p>
+              </div>
+            </div>
+            <hr>
+            <p class="mb-1"><strong>Requirements</strong></p>
+            <ul class="bullet-list mb-2">
+              <li>Basic knowledge of Excel and statistics (helpful but not required)</li>
+              <li>Computer with internet access for practical exercises and tools</li>
+            </ul>
+            
+          </div>
+
+          <div class="card p-3 fade-up">
+            <div class="card-body">
+              <h6 class="mb-2" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px; display:inline-block; border-left:6px solid var(--brand-900);">Course Outcomes</h6>
+              <ul class="bullet-list small">
+                <li>Analyze and visualize complex datasets</li>
+                <li>Use industry-standard tools for data analysis</li>
+                <li>Create interactive dashboards and reports</li>
+              </ul>
+              <div class="mt-3 text-center">
+                <a href="#contact" class="text-decoration-none">Contact us for corporate training</a>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- Enrollment / Contact -->
+      <div class="row mt-5">
+        <div class="col-lg-8">
+          <div id="enroll" class="card p-4 fade-up">
+            <h4 class="mb-3" style="background: var(--accent); color:#fff; padding:10px 14px; border-radius:6px; display:inline-block;">Enroll / Request Batch</h4>
+            <p class="mb-3">To request a new batch or enroll in the course, please contact us directly using the details provided on this page. Our team will get back to you with schedule and batch availability.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div id="contact" class="card p-3 fade-up">
+            <h5 style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px; display:inline-block;">Contact Details</h5>
+            <p class="mb-1 muted">SGM Computer Education</p>
+            <p class="mb-1"><strong>Email:</strong> info@sgmcomputereducation.com</p>
+            <p class="mb-0"><strong>Phone:</strong> +91 9742266359</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <div class="row align-items-center">
+        <div class="col-12 text-center mb-2 mb-md-0">
+          <small>© 2025 SGM COMPUTER EDUCATION • All rights reserved</small>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+    },{threshold:.15});
+    document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>
