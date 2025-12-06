@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SAP SD (Sales and Distribution) • SGM Computer Education</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-900:#071a2b; --brand-700:#0b3d91; --accent:#00b4d8; --muted:#6b7280;
+    }
+    html,body{height:100%;}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:#f6f9fb; color:#0f1724; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,var(--brand-900),var(--brand-700));
+      color:#fff; padding:4.5rem 0 3.5rem; border-bottom:6px solid var(--accent);
+    }
+    .hero .small{opacity:.9}
+
+    .course-card{border-radius:12px; box-shadow:0 8px 24px rgba(8,15,30,0.06); border:0; overflow:hidden}
+    .module-card{border-left:6px solid var(--accent); border-radius:8px; background:#fff; padding:1.25rem; transition: transform .3s, box-shadow .3s;}
+    .module-card:hover{transform: translateY(-5px); box-shadow:0 12px 28px rgba(8,15,30,0.12);}
+
+    .section-title{font-weight:700; color:var(--brand-700); border-left:6px solid var(--accent); padding-left:.9rem}
+    .section-sub{font-weight:600; color:var(--brand-700)}
+
+    .bullet-list li{margin-bottom:.6rem}
+    .bullet-list li::marker{color:var(--brand-700)}
+
+    footer{background:var(--brand-900); color:#e6eef8; padding:1.6rem 0}
+    .muted{color:var(--muted)}
+
+    .fade-up{opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.2,.9,.2,1)}
+    .fade-up.show{opacity:1; transform:none}
+
+    .info-card{transition: transform .3s, box-shadow .3s;}
+    .info-card:hover{transform: translateY(-5px); box-shadow:0 12px 28px rgba(8,15,30,0.12);}
+
+    @media(min-width:992px){ .hero{padding:5.5rem 0 4rem} }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 text-center text-lg-start">
+          <h1 class="display-6 fw-bold">SAP SD (Sales and Distribution) • Professional Course</h1>
+          <p class="lead small">
+            Enhance your sales and distribution management skills with SAP SD — the essential module for order-to-cash, customer management, and sales operations optimization.
+          </p>
+          <div class="mt-3">
+            <a href="#enroll" class="btn btn-primary btn-lg me-2">Enroll Now</a>
+            <a href="#modules" class="btn btn-outline-light btn-lg">View Modules</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mt-4 mt-lg-0 text-center">
+          <div class="card course-card p-3">
+            <div class="card-body">
+              <h5 class="card-title">Course Snapshot</h5>
+              <p class="card-text mb-1"><strong>Duration:</strong> 40–60 hours</p>
+              <p class="card-text mb-1"><strong>Level:</strong> Beginner → Advanced</p>
+              <p class="card-text mb-0"><strong>Mode:</strong> Classroom / Online</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- Modules -->
+        <div class="col-lg-8">
+          <h2 class="section-title mb-4">Course Modules</h2>
+
+          <div id="modules">
+            <div class="accordion" id="modulesAccordion">
+
+              <!-- Module 1 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m1">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+                    Introduction to SAP SD
+                  </button>
+                </h2>
+                <div id="c1" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Overview of SAP and its Role in Enterprise Resource Planning (ERP)</li>
+                      <li>Understanding the SAP SD Module: Key Features and Benefits</li>
+                      <li>Navigating the SAP Interface: User Navigation and Customization</li>
+                      <li>Introduction to Sales and Distribution Concepts and Terminology</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 2 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+                    Master Data Management
+                  </button>
+                </h2>
+                <div id="c2" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Understanding Master Data in SAP SD: Customer Master, Material Master, and Pricing Conditions</li>
+                      <li>Creating and Managing Master Data in SAP SD</li>
+                      <li>Importance of Accurate Master Data for Sales and Distribution Processes</li>
+                      <li>Best Practices for Master Data Maintenance</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 3 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3">
+                    Sales Order Management
+                  </button>
+                </h2>
+                <div id="c3" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Overview of the Sales Order Process: Steps and Key Activities</li>
+                      <li>Creating Sales Orders: Different Order Types and Processes</li>
+                      <li>Managing Customer Inquiries and Quotations</li>
+                      <li>Understanding Availability Check and Delivery Schedules</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 4 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c4">
+                    Delivery and Shipping
+                  </button>
+                </h2>
+                <div id="c4" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Managing Deliveries: Creating and Processing Delivery Documents</li>
+                      <li>Understanding Picking, Packing, and Post Goods Issue</li>
+                      <li>Managing Shipping Activities: Transportation and Freight</li>
+                      <li>Generating Delivery and Shipping Reports</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 5 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c5">
+                    Billing and Invoicing
+                  </button>
+                </h2>
+                <div id="c5" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Overview of Billing Processes in SAP SD</li>
+                      <li>Creating and Managing Billing Documents: Invoices and Credit Memos</li>
+                      <li>Understanding Pricing Procedures and Conditions</li>
+                      <li>Handling Billing Adjustments and Discrepancies</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 6 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c6">
+                    Integration with Other SAP Modules
+                  </button>
+                </h2>
+                <div id="c6" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Understanding Integration Points with SAP MM (Materials Management) and SAP FI (Financial Accounting)</li>
+                      <li>Overview of Integration with SAP CRM (Customer Relationship Management)</li>
+                      <li>Managing Cross-Module Transactions for Comprehensive Sales Management</li>
+                      <li>Best Practices for Ensuring Data Consistency Across Modules</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 7 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m7">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c7">
+                    Special Topics in SAP SD
+                  </button>
+                </h2>
+                <div id="c7" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Understanding Sales and Distribution Reporting: Key Reports and Analytics</li>
+                      <li>Configuring SAP SD for Special Sales Processes: Consignment, Third-Party Sales, and Returns</li>
+                      <li>Implementing Best Practices for Sales Management in SAP</li>
+                      <li>Handling Sales Promotions and Discounts in SAP SD</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 8 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m8">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c8">
+                    Practical Applications & Case Studies
+                  </button>
+                </h2>
+                <div id="c8" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Real-World Scenarios: Applying SAP SD Skills in Business Environments</li>
+                      <li>Case Studies: Successful Implementations of SAP SD in Various Industries</li>
+                      <li>Best Practices for Efficient Use of SAP SD in Sales and Distribution</li>
+                      <li>Preparing for Professional Certification in SAP SD</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Benefits -->
+          <section class="mt-4 fade-up">
+            <h3 class="section-sub" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Is This For You?</h3>
+            <ul class="bullet-list">
+              <li>Advance your career in sales and distribution management with SAP SD skills.</li>
+              <li>Learn to manage the sales process effectively using SAP SD.</li>
+              <li>Gain practical experience in optimizing the order-to-cash process.</li>
+            </ul>
+
+            <h3 class="section-sub mt-3" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Why Learn SAP SD?</h3>
+            <ul class="bullet-list">
+              <li><strong>Enhance Your Career Opportunities:</strong> Proficiency in SAP SD is highly sought after in sales roles.</li>
+              <li><strong>Streamline Sales Processes:</strong> Learn to manage sales operations efficiently.</li>
+              <li><strong>Gain In-Demand Skills:</strong> SAP SD expertise improves employability.</li>
+              <li><strong>Stay Competitive:</strong> Mastering SAP SD sets you apart in the sales field.</li>
+            </ul>
+          </section>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="col-lg-4">
+          <div class="card p-3 mb-3 fade-up info-card">
+            <h5 class="mb-1" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Who Should Enroll</h5>
+            <p class="mb-0 muted">Individuals new to SAP, sales professionals, distribution managers, business users wanting SAP sales management skills.</p>
+
+            <hr>
+            <p class="mb-1"><strong>Requirements</strong></p>
+            <ul class="bullet-list mb-2">
+              <li>Basic knowledge of sales and distribution concepts is helpful but not required.</li>
+              <li>Computer with access to SAP software for practical exercises.</li>
+            </ul>
+          </div>
+
+          <div class="card p-3 fade-up info-card">
+            <h6 class="mb-2" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Course Outcomes</h6>
+            <ul class="bullet-list small">
+              <li>Manage sales and distribution operations using SAP SD.</li>
+              <li>Generate professional sales and order-to-cash reports.</li>
+              <li>Gain practical experience in SAP SD configuration, transactions, and best practices.</li>
+            </ul>
+            <div class="mt-3 text-center">
+              <a href="#contact" class="text-decoration-none">Contact us for corporate training</a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- Enroll -->
+      <div class="row mt-5">
+        <div class="col-lg-8">
+          <div id="enroll" class="card p-4 fade-up">
+            <h4 class="mb-3" style="background: var(--accent); color:#fff; padding:10px 14px; border-radius:6px;">Enroll / Request Batch</h4>
+            <p>To join the course or request a new batch, please contact us. Our team will share schedule and availability.</p>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-lg-4">
+          <div id="contact" class="card p-3 fade-up info-card">
+            <h5 style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Contact Details</h5>
+            <p class="mb-1 muted">SGM Computer Education</p>
+            <p class="mb-1"><strong>Email:</strong> info@sgmcomputereducation.com</p>
+            <p class="mb-0"><strong>Phone:</strong> +91 9742266359</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <small>© 2025 SGM COMPUTER EDUCATION • All rights reserved</small>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+    },{threshold:.15});
+    document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+  </script>
+
+</body>
+</html>
