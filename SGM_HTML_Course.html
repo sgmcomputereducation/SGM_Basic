@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTML • SGM Computer Education</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-900:#071a2b; --brand-700:#0b3d91; --accent:#00b4d8; --muted:#6b7280;
+    }
+    html,body{height:100%;}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:#f6f9fb; color:#0f1724; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,var(--brand-900),var(--brand-700));
+      color:#fff; padding:4.5rem 0 3.5rem; border-bottom:6px solid var(--accent);
+    }
+    .hero .small{opacity:.9}
+
+    .course-card{border-radius:12px; box-shadow:0 8px 24px rgba(8,15,30,0.06); border:0; overflow:hidden}
+    .module-card{border-left:6px solid var(--accent); border-radius:8px; background:#fff; padding:1.25rem; transition: transform .3s, box-shadow .3s;}
+    .module-card:hover{transform: translateY(-5px); box-shadow:0 12px 28px rgba(8,15,30,0.12);}
+
+    .section-title{font-weight:700; color:var(--brand-700); border-left:6px solid var(--accent); padding-left:.9rem}
+    .section-sub{font-weight:600; color:var(--brand-700)}
+
+    .bullet-list li{margin-bottom:.6rem}
+    .bullet-list li::marker{color:var(--brand-700)}
+
+    footer{background:var(--brand-900); color:#e6eef8; padding:1.6rem 0}
+    .muted{color:var(--muted)}
+
+    .fade-up{opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.2,.9,.2,1)}
+    .fade-up.show{opacity:1; transform:none}
+
+    .info-card{transition: transform .3s, box-shadow .3s;}
+    .info-card:hover{transform: translateY(-5px); box-shadow:0 12px 28px rgba(8,15,30,0.12);}
+
+    @media(min-width:992px){ .hero{padding:5.5rem 0 4rem} }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 text-center text-lg-start">
+          <h1 class="display-6 fw-bold">HTML • Professional Course</h1>
+          <p class="lead small">
+            Learn the fundamentals of HTML to build structured, well-formatted, and responsive web pages. Master HTML tags, elements, attributes, forms, multimedia, semantic HTML, and real-world projects.
+          </p>
+          <div class="mt-3">
+            <a href="#enroll" class="btn btn-primary btn-lg me-2">Enroll Now</a>
+            <a href="#modules" class="btn btn-outline-light btn-lg">View Modules</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mt-4 mt-lg-0 text-center">
+          <div class="card course-card p-3">
+            <div class="card-body">
+              <h5 class="card-title">Course Snapshot</h5>
+              <p class="card-text mb-1"><strong>Duration:</strong> 25–40 hours</p>
+              <p class="card-text mb-1"><strong>Level:</strong> Beginner → Advanced</p>
+              <p class="card-text mb-0"><strong>Mode:</strong> Classroom / Online</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- Modules -->
+        <div class="col-lg-8">
+          <h2 class="section-title mb-4">Course Modules</h2>
+
+          <div id="modules">
+            <div class="accordion" id="modulesAccordion">
+
+              <!-- Module 1 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m1">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+                    Introduction to HTML
+                  </button>
+                </h2>
+                <div id="c1" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Overview of Web Development: Importance of HTML</li>
+                      <li>Understanding HTML: What It Is and How It Works</li>
+                      <li>Setting Up the Development Environment: Text Editors and Browsers</li>
+                      <li>Structure of an HTML Document: Tags, Elements, and Attributes</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 2 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+                    Basic HTML Elements
+                  </button>
+                </h2>
+                <div id="c2" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Creating Your First Web Page: HTML Document Structure</li>
+                      <li>Understanding Headings, Paragraphs, and Text Formatting</li>
+                      <li>Using Lists: Ordered and Unordered Lists</li>
+                      <li>Inserting Links: Creating Hyperlinks with &lt;a&gt; Tags</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 3 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3">
+                    Working with Multimedia
+                  </button>
+                </h2>
+                <div id="c3" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Inserting Images: Using the &lt;img&gt; Tag and Attributes</li>
+                      <li>Embedding Videos and Audio: Using &lt;video&gt; and &lt;audio&gt; Tags</li>
+                      <li>Understanding the Use of Iframes: Embedding Other Web Pages</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 4 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c4">
+                    HTML Forms and Input Elements
+                  </button>
+                </h2>
+                <div id="c4" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Creating Forms: Understanding the &lt;form&gt; Tag</li>
+                      <li>Using Input Elements: Text Fields, Radio Buttons, Checkboxes, and Drop-down Lists</li>
+                      <li>Adding Labels and Placeholders for User Inputs</li>
+                      <li>Understanding Form Attributes: Action, Method, and Enctype</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 5 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c5">
+                    Semantic HTML
+                  </button>
+                </h2>
+                <div id="c5" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Introduction to Semantic HTML: Importance for Accessibility and SEO</li>
+                      <li>Using Semantic Elements: &lt;header&gt;, &lt;footer&gt;, &lt;article&gt;, &lt;section&gt;, and &lt;nav&gt;</li>
+                      <li>Understanding the Role of HTML5 in Modern Web Development</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 6 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c6">
+                    Advanced HTML Techniques
+                  </button>
+                </h2>
+                <div id="c6" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Creating Tables: Using &lt;table&gt;, &lt;tr&gt;, &lt;th&gt;, and &lt;td&gt; Tags</li>
+                      <li>Understanding HTML Entities and Special Characters</li>
+                      <li>Using Comments in HTML: Best Practices for Code Documentation</li>
+                      <li>Introduction to HTML5 APIs: Geolocation, Web Storage, and Canvas</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 7 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m7">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c7">
+                    Best Practices and Standards
+                  </button>
+                </h2>
+                <div id="c7" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Understanding HTML Standards: W3C and Accessibility Guidelines</li>
+                      <li>Best Practices for Writing Clean and Efficient HTML Code</li>
+                      <li>Introduction to Responsive Web Design: Using Meta Tags for Viewport</li>
+                      <li>Testing and Validating HTML Code: Tools and Techniques</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 8 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m8">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c8">
+                    Real-World Applications and Projects
+                  </button>
+                </h2>
+                <div id="c8" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Real-World Scenarios: Applying HTML Skills in Web Development</li>
+                      <li>Building a Personal Website: Step-by-Step Project</li>
+                      <li>Case Studies: Successful Websites Built with HTML</li>
+                      <li>Preparing for Advanced Web Development Concepts</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Benefits -->
+          <section class="mt-4 fade-up">
+            <h3 class="section-sub" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Is This For You?</h3>
+            <ul class="bullet-list">
+              <li>Start a career in web development and enhance coding skills.</li>
+              <li>Learn fundamentals of HTML for building web pages.</li>
+              <li>Gain practical experience creating structured and well-designed websites.</li>
+            </ul>
+
+            <h3 class="section-sub mt-3" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Why Learn HTML?</h3>
+            <ul class="bullet-list">
+              <li><strong>Build a Strong Foundation:</strong> HTML is the cornerstone of web development.</li>
+              <li><strong>Enhance Web Skills:</strong> Create structured and accessible web content.</li>
+              <li><strong>Develop Practical Applications:</strong> Build personal websites and web applications.</li>
+              <li><strong>Stay Competitive:</strong> Mastering HTML opens career opportunities.</li>
+            </ul>
+          </section>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="col-lg-4">
+          <div class="card p-3 mb-3 fade-up info-card">
+            <h5 class="mb-1" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Who Should Enroll</h5>
+            <p class="mb-0 muted">Beginners in programming, aspiring web developers, students, and anyone wanting to learn HTML for personal or professional use.</p>
+
+            <hr>
+            <p class="mb-1"><strong>Requirements</strong></p>
+            <ul class="bullet-list mb-2">
+              <li>Basic knowledge of computer operations is helpful but not required.</li>
+              <li>A computer with a web browser and text editor for practical exercises.</li>
+            </ul>
+          </div>
+
+          <div class="card p-3 fade-up info-card">
+            <h6 class="mb-2" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Course Outcomes</h6>
+            <ul class="bullet-list small">
+              <li>Create structured, responsive, and accessible web pages using HTML.</li>
+              <li>Understand multimedia, forms, semantic HTML, and advanced techniques.</li>
+              <li>Apply HTML skills in real-world web development projects.</li>
+            </ul>
+            <div class="mt-3 text-center">
+              <a href="#contact" class="text-decoration-none">Contact us for corporate training</a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- Enroll -->
+      <div class="row mt-5">
+        <div class="col-lg-8">
+          <div id="enroll" class="card p-4 fade-up">
+            <h4 class="mb-3" style="background: var(--accent); color:#fff; padding:10px 14px; border-radius:6px;">Enroll / Request Batch</h4>
+            <p>To join the course or request a new batch, please contact us. Our team will share schedule and availability.</p>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-lg-4">
+          <div id="contact" class="card p-3 fade-up info-card">
+            <h5 style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Contact Details</h5>
+            <p class="mb-1 muted">SGM Computer Education</p>
+            <p class="mb-1"><strong>Email:</strong> info@sgmcomputereducation.com</p>
+            <p class="mb-0"><strong>Phone:</strong> +91 9742266359</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <small>© 2025 SGM COMPUTER EDUCATION • All rights reserved</small>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+    },{threshold:.15});
+    document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+  </script>
+
+</body>
+</html>
