@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SQL Server • SGM Computer Education</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-900:#071a2b; --brand-700:#0b3d91; --accent:#00b4d8; --muted:#6b7280;
+    }
+    html,body{height:100%;}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:#f6f9fb; color:#0f1724; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,var(--brand-900),var(--brand-700));
+      color:#fff; padding:4.5rem 0 3.5rem; border-bottom:6px solid var(--accent);
+    }
+    .hero .small{opacity:.9}
+
+    .course-card{border-radius:12px; box-shadow:0 8px 24px rgba(8,15,30,0.06); border:0; overflow:hidden}
+    .module-card{border-left:6px solid var(--accent); border-radius:8px; background:#fff; padding:1.25rem; transition: transform .3s, box-shadow .3s;}
+    .module-card:hover{transform: translateY(-5px); box-shadow:0 12px 28px rgba(8,15,30,0.12);}
+
+    .section-title{font-weight:700; color:var(--brand-700); border-left:6px solid var(--accent); padding-left:.9rem}
+    .section-sub{font-weight:600; color:var(--brand-700)}
+
+    .bullet-list li{margin-bottom:.6rem}
+    .bullet-list li::marker{color:var(--brand-700)}
+
+    footer{background:var(--brand-900); color:#e6eef8; padding:1.6rem 0}
+    .muted{color:var(--muted)}
+
+    .fade-up{opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.2,.9,.2,1)}
+    .fade-up.show{opacity:1; transform:none}
+
+    .info-card{transition: transform .3s, box-shadow .3s;}
+    .info-card:hover{transform: translateY(-5px); box-shadow:0 12px 28px rgba(8,15,30,0.12);}
+
+    @media(min-width:992px){ .hero{padding:5.5rem 0 4rem} }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 text-center text-lg-start">
+          <h1 class="display-6 fw-bold">SQL Server • Professional Course</h1>
+          <p class="lead small">
+            Master the art of database management with SQL Server — learn database design, queries, stored procedures, optimization, and real-world applications.
+          </p>
+          <div class="mt-3">
+            <a href="#enroll" class="btn btn-primary btn-lg me-2">Enroll Now</a>
+            <a href="#modules" class="btn btn-outline-light btn-lg">View Modules</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mt-4 mt-lg-0 text-center">
+          <div class="card course-card p-3">
+            <div class="card-body">
+              <h5 class="card-title">Course Snapshot</h5>
+              <p class="card-text mb-1"><strong>Duration:</strong> 40–60 hours</p>
+              <p class="card-text mb-1"><strong>Level:</strong> Beginner → Advanced</p>
+              <p class="card-text mb-0"><strong>Mode:</strong> Classroom / Online</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- Modules -->
+        <div class="col-lg-8">
+          <h2 class="section-title mb-4">Course Modules</h2>
+
+          <div id="modules">
+            <div class="accordion" id="modulesAccordion">
+
+              <!-- Module 1 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m1">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+                    Introduction to SQL Server
+                  </button>
+                </h2>
+                <div id="c1" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Overview of Database Management Systems (DBMS): Importance and Types</li>
+                      <li>Introduction to Microsoft SQL Server: Features and Benefits</li>
+                      <li>Setting Up the SQL Server Environment: Installation and Configuration</li>
+                      <li>Understanding SQL Server Architecture: Components and Terminology</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 2 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+                    Database Design and Creation
+                  </button>
+                </h2>
+                <div id="c2" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Understanding Database Concepts: Tables, Records, and Relationships</li>
+                      <li>Designing a Database Schema: Normalization and Denormalization</li>
+                      <li>Creating Databases and Tables in SQL Server</li>
+                      <li>Defining Data Types and Constraints for Tables</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 3 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3">
+                    Basic SQL Queries
+                  </button>
+                </h2>
+                <div id="c3" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Introduction to SQL: Understanding the SQL Language</li>
+                      <li>Writing Basic Queries: SELECT, INSERT, UPDATE, and DELETE Statements</li>
+                      <li>Using WHERE Clause for Filtering Data</li>
+                      <li>Sorting and Limiting Results with ORDER BY and TOP</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 4 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c4">
+                    Advanced SQL Queries
+                  </button>
+                </h2>
+                <div id="c4" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Joining Tables: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN</li>
+                      <li>Using Aggregate Functions: COUNT, SUM, AVG, MIN, MAX</li>
+                      <li>Grouping Data with GROUP BY and Filtering Groups with HAVING</li>
+                      <li>Subqueries: Writing Nested Queries for Complex Data Retrieval</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 5 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c5">
+                    Data Manipulation and Management
+                  </button>
+                </h2>
+                <div id="c5" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Understanding Transactions: COMMIT and ROLLBACK</li>
+                      <li>Implementing Data Integrity: Primary Keys, Foreign Keys, and Indexes</li>
+                      <li>Managing User Access and Permissions in SQL Server</li>
+                      <li>Backing Up and Restoring Databases: Best Practices</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 6 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c6">
+                    Stored Procedures and Functions
+                  </button>
+                </h2>
+                <div id="c6" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Introduction to Stored Procedures: Definition and Benefits</li>
+                      <li>Creating and Managing Stored Procedures in SQL Server</li>
+                      <li>Understanding User-Defined Functions (UDFs)</li>
+                      <li>Implementing Triggers for Automated Actions</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 7 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m7">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c7">
+                    Performance Tuning and Optimization
+                  </button>
+                </h2>
+                <div id="c7" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Understanding Query Performance: Analyzing and Optimizing Queries</li>
+                      <li>Using SQL Server Profiler to Monitor and Tune Performance</li>
+                      <li>Indexing Strategies for Improved Query Performance</li>
+                      <li>Best Practices for Database Design and Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Module 8 -->
+              <div class="accordion-item module-card mb-3 fade-up">
+                <h2 class="accordion-header" id="m8">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c8">
+                    Real-World Applications and Case Studies
+                  </button>
+                </h2>
+                <div id="c8" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Real-World Scenarios: Applying SQL Server Skills in Business Environments</li>
+                      <li>Case Studies: Successful Implementations of SQL Server in Various Industries</li>
+                      <li>Best Practices for Efficient Use of SQL Server in Data Management</li>
+                      <li>Preparing for Professional Certification in SQL Server</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Benefits -->
+          <section class="mt-4 fade-up">
+            <h3 class="section-sub" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Is This For You?</h3>
+            <ul class="bullet-list">
+              <li>Looking to advance your database management skills with SQL Server.</li>
+              <li>Want to learn to manage databases effectively and perform complex queries.</li>
+              <li>Wish to gain practical experience in using SQL Server for data-driven applications.</li>
+            </ul>
+
+            <h3 class="section-sub mt-3" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Why Learn SQL Server?</h3>
+            <ul class="bullet-list">
+              <li><strong>Enhance Your Career Opportunities:</strong> SQL Server proficiency is highly sought after.</li>
+              <li><strong>Streamline Data Management:</strong> Efficiently manage databases and support applications.</li>
+              <li><strong>Gain In-Demand Skills:</strong> Valuable for database administrators and data analysts.</li>
+              <li><strong>Stay Competitive:</strong> Mastering SQL Server sets you apart in the tech industry.</li>
+            </ul>
+          </section>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="col-lg-4">
+          <div class="card p-3 mb-3 fade-up info-card">
+            <h5 class="mb-1" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Who Should Enroll</h5>
+            <p class="mb-0 muted">Individuals new to database management, aspiring database administrators, data analysts, business users, and anyone wanting to learn SQL Server.</p>
+
+            <hr>
+            <p class="mb-1"><strong>Requirements</strong></p>
+            <ul class="bullet-list mb-2">
+              <li>Basic computer knowledge is helpful but not required.</li>
+              <li>A computer with SQL Server installed for practical exercises.</li>
+            </ul>
+          </div>
+
+          <div class="card p-3 fade-up info-card">
+            <h6 class="mb-2" style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Course Outcomes</h6>
+            <ul class="bullet-list small">
+              <li>Understand and use SQL Server for database management.</li>
+              <li>Design, build, and manage databases effectively.</li>
+              <li>Master advanced queries, stored procedures, and optimization techniques.</li>
+              <li>Apply SQL Server skills in real-world applications.</li>
+            </ul>
+            <div class="mt-3 text-center">
+              <a href="#contact" class="text-decoration-none">Contact us for corporate training</a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- Enroll -->
+      <div class="row mt-5">
+        <div class="col-lg-8">
+          <div id="enroll" class="card p-4 fade-up">
+            <h4 class="mb-3" style="background: var(--accent); color:#fff; padding:10px 14px; border-radius:6px;">Enroll / Request Batch</h4>
+            <p>To join the course or request a new batch, please contact us. Our team will share schedule and availability.</p>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-lg-4">
+          <div id="contact" class="card p-3 fade-up info-card">
+            <h5 style="background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px;">Contact Details</h5>
+            <p class="mb-1 muted">SGM Computer Education</p>
+            <p class="mb-1"><strong>Email:</strong> info@sgmcomputereducation.com</p>
+            <p class="mb-0"><strong>Phone:</strong> +91 9742266359</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <small>© 2025 SGM COMPUTER EDUCATION • All rights reserved</small>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+    },{threshold:.15});
+    document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+  </script>
+
+</body>
+</html>
