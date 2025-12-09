@@ -1,0 +1,983 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SGM Computer Education • Courses</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --nav-height:68px;
+      --glass:#ffffffcc;
+      --muted:#6b7280;
+      --bg:#f4f6f9;
+      --accent-office:#004AAD;     /* Office - Blue */
+      --accent-data:#1ABF5B;       /* Data Analytics - Green */
+      --accent-diploma:#FF7A00;    /* Diploma - Orange */
+      --accent-fin:#7A3FF0;        /* Financial - Purple */
+      --accent-prog:#E53935;       /* Programming - Red */
+      --accent-hw:#003F88;         /* Hardware - Deep Blue */
+      --accent-multi:#E91E63;      /* Multimedia - Pink */
+      --accent-dm:#F5B800;         /* Digital Marketing - Yellow */
+      --text:#0f1724;
+    }
+
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding-top: var(--nav-height);
+    }
+
+    /* -----------------------
+       NAVBAR (sticky modern)
+       ----------------------- */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:1200;
+      transition: all .28s ease;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(15,23,36,0.04);
+    }
+    .nav.scrolled { box-shadow: 0 10px 30px rgba(8,15,30,0.08); background: #fff; }
+
+    .nav-inner {
+      width: 100%;
+      max-width:1200px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:10px 18px;
+    }
+    .brand {
+      display:flex; gap:10px; align-items:center; text-decoration:none; color:var(--text);
+      font-weight:700;
+    }
+    .brand .logo {
+      width:44px; height:44px; border-radius:8px; background:var(--accent-office);
+      display:grid; place-items:center; color:#fff; font-weight:800; font-size:18px;
+      box-shadow: 0 6px 18px rgba(0,68,173,0.12);
+    }
+
+    nav ul { display:flex; gap:14px; align-items:center; margin-left:18px; list-style:none; }
+    nav a { text-decoration:none; color:var(--text); font-weight:600; padding:8px 10px; border-radius:6px; }
+    nav a:hover { color:var(--accent-office); transform:translateY(-2px); transition:.18s ease; }
+
+    .cta {
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .btn {
+      border:0; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700; text-decoration:none;
+      background: linear-gradient(90deg,var(--accent-office), #003f86); color:#fff;
+      box-shadow: 0 8px 26px rgba(0,68,173,0.12);
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .btn:hover{ transform: translateY(-3px); box-shadow:0 14px 40px rgba(0,68,173,0.14); }
+
+    /* Hamburger (mobile) */
+    .hamburger { display:none; cursor:pointer; padding:8px; border-radius:8px; }
+    .hamburger div{ width:22px; height:2px; background:#0f1724; margin:4px 0; transition: .18s; }
+
+    /* Top hero counters row */
+    .hero-strip {
+      max-width:1200px; margin:18px auto; display:flex; gap:16px; align-items:center; padding:8px 18px;
+      background: linear-gradient(90deg, #ffffff, #fbfdff); border-radius:12px; box-shadow: 0 10px 30px rgba(8,15,30,0.04);
+    }
+    .hero-left { display:flex; gap:16px; align-items:center; }
+    .hero-title { font-size:20px; font-weight:800; }
+    .search-wrap { margin-left: auto; display:flex; gap:8px; align-items:center; }
+    .search { padding:10px 12px; border-radius:8px; border:1px solid rgba(15,23,36,0.06); min-width:280px; background:#fff; }
+    .search:focus{ outline:none; box-shadow: 0 6px 20px rgba(4,120,255,0.06); }
+
+    .counters { display:flex; gap:12px; align-items:center; }
+    .counter { font-weight:800; font-size:18px; }
+    .counter small { display:block; font-weight:600; color:var(--muted); font-size:12px; margin-top:4px; }
+
+    /* -----------------------
+       LAYOUT: Section header
+       ----------------------- */
+    .section { padding:36px 18px; max-width:1200px; margin:20px auto; }
+    .section .section-header { text-align:left; margin-bottom:18px; }
+    .section .section-title { font-size:20px; font-weight:800; display:inline-block; padding:8px 12px; border-radius:8px; color:#fff; }
+    .section .section-lead { margin-top:8px; color:var(--muted); max-width:900px; }
+
+    /* divider */
+    .category-divider { height:1px; margin:20px 0 26px; background: linear-gradient(90deg, rgba(0,0,0,0.06), rgba(0,0,0,0)); border-radius:2px; }
+
+    /* -----------------------
+       COURSE GRID & CARDS
+       ----------------------- */
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:18px; }
+    .card {
+      background:#fff; border-radius:12px; overflow:hidden; display:flex; flex-direction:column; align-items:stretch;
+      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;
+      box-shadow: 0 8px 22px rgba(15,23,36,0.06);
+      border: 1px solid rgba(15,23,36,0.02);
+    }
+    .card:hover { transform: translateY(-10px); box-shadow: 0 26px 60px rgba(8,15,30,0.12); }
+    .card-thumb { height:150px; width:100%; object-fit:cover; display:block; }
+    .card-body { padding:14px; display:flex; flex-direction:column; gap:10px; flex:1; }
+    .card-title { font-weight:700; font-size:15px; color:var(--text); }
+    .card-meta { color:var(--muted); font-size:13px; }
+    .card-footer { padding:12px; display:flex; justify-content:center; }
+    .card .link { text-decoration:none; padding:9px 14px; border-radius:8px; background:linear-gradient(90deg,var(--accent-office),#003f86); color:#fff; font-weight:700; }
+
+    /* subtle tag */
+    .tag { display:inline-block; padding:6px 8px; border-radius:999px; font-size:12px; font-weight:700; color:#fff; }
+
+    /* ripple on button */
+    .link:active { transform: translateY(1px); }
+
+    /* small */
+    @media(max-width:900px){
+      .hero-strip{ flex-direction:column; align-items:flex-start; gap:12px; }
+      nav ul { display:none; }
+      .hamburger { display:block; margin-left:auto; }
+      .cta { margin-left:0; }
+    }
+
+    /* mobile nav drawer */
+    .mobile-menu { display:none; position:fixed; top:var(--nav-height); left:0; right:0; background:#fff; z-index:1201; box-shadow:0 12px 30px rgba(8,15,30,0.08); padding:12px 18px; }
+    .mobile-menu.show { display:block; }
+
+    /* fade animations */
+    .fade-up { opacity:0; transform:translateY(14px); transition: all .7s cubic-bezier(.2,.9,.2,1); }
+    .fade-up.show { opacity:1; transform:none; }
+
+    /* back to top */
+    .back-top {
+      position:fixed; right:18px; bottom:18px; z-index:1300;
+      width:48px; height:48px; border-radius:12px; display:grid; place-items:center; background:#fff;
+      box-shadow: 0 10px 30px rgba(8,15,30,0.12); cursor:pointer; border:1px solid rgba(15,23,36,0.04);
+      transition: transform .18s ease;
+    }
+    .back-top:hover { transform: translateY(-6px); }
+
+    /* category colors (applied inline for heading backgrounds) */
+    .divider-label { display:inline-block; padding:8px 12px; border-radius:999px; color:#fff; font-weight:700; }
+
+    /* small utility */
+    .muted { color:var(--muted); font-weight:600; }
+    .center { text-align:center; }
+    footer { margin-top:36px; padding:24px 18px; text-align:center; color:var(--muted); font-weight:600; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="brand" href="#home">
+        <div class="logo">SGM</div>
+        <div>
+          <div style="font-size:14px;">SGM Computer Education</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:2px;">Skill • Grow • Master</div>
+        </div>
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#verify">Verify Certificate</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="cta">
+        <a class="btn" href="#enroll">Enroll Now</a>
+        <div class="hamburger" id="hamburger" aria-hidden="true" title="Menu">
+          <div></div><div></div><div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <a href="#home" style="display:block;padding:10px 6px;">Home</a>
+      <a href="#courses" style="display:block;padding:10px 6px;">Courses</a>
+      <a href="#about" style="display:block;padding:10px 6px;">About Us</a>
+      <a href="#verify" style="display:block;padding:10px 6px;">Verify Certificate</a>
+      <a href="#contact" style="display:block;padding:10px 6px;">Contact</a>
+      <div style="padding:10px 6px;"><a class="btn" href="#enroll">Enroll Now</a></div>
+    </div>
+  </header>
+
+  <!-- HOME / HERO STRIP -->
+  <main id="home">
+    <div class="hero-strip fade-up" style="margin-top:8px;">
+      <div class="hero-left">
+        <div class="hero-title">Professional Courses — MNC-style syllabus & hands-on labs</div>
+        <div class="counters" style="margin-left:12px;">
+          <div class="counter" data-target="2500">0
+            <small>Students Trained</small>
+          </div>
+          <div class="counter" data-target="120">0
+            <small>Course Modules</small>
+          </div>
+          <div class="counter" data-target="20">0
+            <small>Years Experience</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-wrap">
+        <input id="searchInput" class="search" type="search" placeholder="Search courses (title or category)...">
+      </div>
+    </div>
+
+    <!-- COURSES anchor -->
+    <section id="courses" class="section">
+      <!-- Office Essentials -->
+      <div class="section-header">
+        <span class="section-title" style="background:var(--accent-office);">Office Essential Courses</span>
+        <div class="section-lead">Become workplace-ready — master tools that make you faster, accurate and indispensable.</div>
+      </div>
+
+      <div class="grid" id="office" data-category="Office Essential">
+        <div class="card fade-up" data-title="Computer Basics" data-cat="Office Essential">
+          <img class="card-thumb" src="https://i.imgur.com/BExPRq5.jpeg" alt="Computer Basics">
+          <div class="card-body">
+            <div class="card-title">Computer Basics</div>
+            <div class="card-meta muted">Fundamentals for beginners</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="MS Office" data-cat="Office Essential">
+          <img class="card-thumb" src="https://i.imgur.com/mTCbCz9.jpeg" alt="MS Office">
+          <div class="card-body">
+            <div class="card-title">MS Office</div>
+            <div class="card-meta muted">Word, Excel, PowerPoint</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/sgm_MsOffice.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Advanced Excel" data-cat="Office Essential">
+          <img class="card-thumb" src="https://i.imgur.com/jNHgsZV.jpeg" alt="Advanced Excel">
+          <div class="card-body">
+            <div class="card-title">Advanced Excel</div>
+            <div class="card-meta muted">PivotTables, Dashboards</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Advance%20Excel.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Excel with VBA" data-cat="Office Essential">
+          <img class="card-thumb" src="https://i.imgur.com/dKKaawN.jpeg" alt="Excel with VBA">
+          <div class="card-body">
+            <div class="card-title">Excel with VBA</div>
+            <div class="card-meta muted">Macros & Automation</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/ExcelWithVBA.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Excel with ChatGPT" data-cat="Office Essential">
+          <img class="card-thumb" src="https://i.imgur.com/SoctP9n.jpeg" alt="Excel with ChatGPT">
+          <div class="card-body">
+            <div class="card-title">Excel with ChatGPT</div>
+            <div class="card-meta muted">AI-assisted analysis</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Excel_With_ChatGPT.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="ChatGPT Data Analysis" data-cat="Office Essential">
+          <img class="card-thumb" src="https://i.imgur.com/wCeymER.jpeg" alt="ChatGPT Data Analysis">
+          <div class="card-body">
+            <div class="card-title">ChatGPT Data Analysis</div>
+            <div class="card-meta muted">Automated insights & prompts</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_ChatGPT_Data_Analysis.html">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-divider"></div>
+
+      <!-- Data Analytics -->
+      <div class="section-header">
+        <span class="section-title" style="background:var(--accent-data);">Data Analytics Courses</span>
+        <div class="section-lead">Turn raw data into strategic decisions — become the analytics expert companies rely on.</div>
+      </div>
+
+      <div class="grid" id="data" data-category="Data Analytics">
+        <div class="card fade-up" data-title="Power BI" data-cat="Data Analytics">
+          <img class="card-thumb" src="https://i.imgur.com/7bPaYJl.png" alt="Power BI">
+          <div class="card-body">
+            <div class="card-title">Power BI</div>
+            <div class="card-meta muted">Dashboards & Reports</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_PowerBi.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Tableau" data-cat="Data Analytics">
+          <img class="card-thumb" src="https://i.imgur.com/59mfMk8.png" alt="Tableau">
+          <div class="card-body">
+            <div class="card-title">Tableau</div>
+            <div class="card-meta muted">Visual analytics</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Tableau.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Data Analyst" data-cat="Data Analytics">
+          <img class="card-thumb" src="https://i.imgur.com/crwNg2h.jpeg" alt="Data Analyst">
+          <div class="card-body">
+            <div class="card-title">Data Analyst</div>
+            <div class="card-meta muted">Skills for analysts</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_DataAnalyst.html">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-divider"></div>
+
+      <!-- Diploma -->
+      <div class="section-header">
+        <span class="section-title" style="background:var(--accent-diploma);">Diploma Courses</span>
+        <div class="section-lead">Accelerate your career with industry-recognized diplomas designed for workplace success.</div>
+      </div>
+
+      <div class="grid" id="diploma" data-category="Diploma">
+        <div class="card fade-up" data-title="DOM: Diploma Office Management" data-cat="Diploma">
+          <img class="card-thumb" src="https://i.imgur.com/hXmrGmu.jpeg" alt="DOM">
+          <div class="card-body">
+            <div class="card-title">DOM: Diploma Office Management</div>
+            <div class="card-meta muted">Office administration skills</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_DOM_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="DAA: Diploma Advanced Accountancy" data-cat="Diploma">
+          <img class="card-thumb" src="https://i.imgur.com/MOgaxwe.jpeg" alt="DAA">
+          <div class="card-body">
+            <div class="card-title">DAA: Diploma Advanced Accountancy</div>
+            <div class="card-meta muted">Accounting & GST</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_DAA_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="DTP: DeskTop Publishing" data-cat="Diploma">
+          <img class="card-thumb" src="https://i.imgur.com/7sm14SN.jpeg" alt="DTP">
+          <div class="card-body">
+            <div class="card-title">DTP: DeskTop Publishing</div>
+            <div class="card-meta muted">DTP & publishing tools</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_DTP_Course.html">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-divider"></div>
+
+      <!-- Financial Accounting -->
+      <div class="section-header">
+        <span class="section-title" style="background:var(--accent-fin);">Financial Accounting Courses</span>
+        <div class="section-lead">Build reliable accounting foundations and practical skills trusted by finance teams.</div>
+      </div>
+
+      <div class="grid" id="financial" data-category="Financial Accounting">
+        <div class="card fade-up" data-title="TallyPrime Level 1" data-cat="Financial Accounting">
+          <img class="card-thumb" src="https://i.imgur.com/c2zbhU1.png" alt="Tally L1">
+          <div class="card-body">
+            <div class="card-title">TallyPrime Level 1</div>
+            <div class="card-meta muted">Bookkeeping basics</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Tally_Level1_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="TallyPrime Level 2" data-cat="Financial Accounting">
+          <img class="card-thumb" src="https://i.imgur.com/BTCQuAS.jpeg" alt="Tally L2">
+          <div class="card-body">
+            <div class="card-title">TallyPrime Level 2</div>
+            <div class="card-meta muted">Advanced Tally</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Tally_Level2_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="TallyPrime Level 3" data-cat="Financial Accounting">
+          <img class="card-thumb" src="https://i.imgur.com/YOpbyzG.jpeg" alt="Tally L3">
+          <div class="card-body">
+            <div class="card-title">TallyPrime Level 3</div>
+            <div class="card-meta muted">GST & compliance</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Tally_Level3_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="SAP FI: Financial Accounting" data-cat="Financial Accounting">
+          <img class="card-thumb" src="https://i.imgur.com/HX54zjl.jpeg" alt="SAP FI">
+          <div class="card-body">
+            <div class="card-title">SAP FI: Financial Accounting</div>
+            <div class="card-meta muted">ERP finance fundamentals</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_SAP_FI_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="SAP MM: Material Management" data-cat="Financial Accounting">
+          <img class="card-thumb" src="https://i.imgur.com/mKyAetg.jpeg" alt="SAP MM">
+          <div class="card-body">
+            <div class="card-title">SAP MM: Material Management</div>
+            <div class="card-meta muted">Inventory & procurement</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_SAPMM_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="SAP SD: Sale & Distribution" data-cat="Financial Accounting">
+          <img class="card-thumb" src="https://i.imgur.com/vOnZKDa.png" alt="SAP SD">
+          <div class="card-body">
+            <div class="card-title">SAP SD: Sale & Distribution</div>
+            <div class="card-meta muted">Order & billing</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_SAPSD_Course.html">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-divider"></div>
+
+      <!-- Programming & Web Dev -->
+      <div class="section-header">
+        <span class="section-title" style="background:var(--accent-prog);">Programming & Web Development Courses</span>
+        <div class="section-lead">Code, build and launch — practical programming courses for product-focused careers.</div>
+      </div>
+
+      <div class="grid" id="programming" data-category="Programming & Web Development">
+        <div class="card fade-up" data-title="C Language" data-cat="Programming">
+          <img class="card-thumb" src="https://i.imgur.com/6kpJEnm.jpeg" alt="C Language">
+          <div class="card-body">
+            <div class="card-title">C Language</div>
+            <div class="card-meta muted">Systems fundamentals</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_CLANGUAGE_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="C++" data-cat="Programming">
+          <img class="card-thumb" src="https://i.imgur.com/aNMw8Pm.png" alt="C++">
+          <div class="card-body">
+            <div class="card-title">C++</div>
+            <div class="card-meta muted">OOP & applications</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_CPP_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Java" data-cat="Programming">
+          <img class="card-thumb" src="https://i.imgur.com/uIKb82U.png" alt="Java">
+          <div class="card-body">
+            <div class="card-title">Java</div>
+            <div class="card-meta muted">Enterprise & core Java</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_JAVA_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="MySQL" data-cat="Programming">
+          <img class="card-thumb" src="https://i.imgur.com/zlZWFQU.jpeg" alt="MySQL">
+          <div class="card-body">
+            <div class="card-title">MySQL</div>
+            <div class="card-meta muted">Databases & queries</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_MySQL_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="SQL Server" data-cat="Programming">
+          <img class="card-thumb" src="https://i.imgur.com/CQqW8dU.jpeg" alt="SQL Server">
+          <div class="card-body">
+            <div class="card-title">SQL Server</div>
+            <div class="card-meta muted">MS SQL Server</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_SQLServer_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Oracle" data-cat="Programming">
+          <img class="card-thumb" src="https://i.imgur.com/3AtRMDX.png" alt="Oracle">
+          <div class="card-body">
+            <div class="card-title">Oracle</div>
+            <div class="card-meta muted">Enterprise DB</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Oracle_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Python" data-cat="Programming">
+          <img class="card-thumb" src="https://i.imgur.com/HaER4Yb.jpeg" alt="Python">
+          <div class="card-body">
+            <div class="card-title">Python</div>
+            <div class="card-meta muted">Scripting & frameworks</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Python_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="VB Script" data-cat="Programming">
+          <img class="card-thumb" src="https://i.imgur.com/4H8x42s.jpeg" alt="VB Script">
+          <div class="card-body">
+            <div class="card-title">VB Script</div>
+            <div class="card-meta muted">Automation scripting</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_VBScript_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Java Script" data-cat="Programming">
+          <img class="card-thumb" src="https://i.imgur.com/Ou2cstf.jpeg" alt="JavaScript">
+          <div class="card-body">
+            <div class="card-title">Java Script</div>
+            <div class="card-meta muted">Frontend & basics</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_JavaScript_Course.html">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-divider"></div>
+
+      <!-- Digital Marketing -->
+      <div class="section-header">
+        <span class="section-title" style="background:var(--accent-dm);">Digital Marketing Courses</span>
+        <div class="section-lead">Grow brands, traffic and revenue — modern digital skills for today's marketers.</div>
+      </div>
+
+      <div class="grid" id="digital" data-category="Digital Marketing">
+        <div class="card fade-up" data-title="Masters In Digital Marketing" data-cat="Digital Marketing">
+          <img class="card-thumb" src="https://i.imgur.com/4CDhsCt.jpeg" alt="Masters In Digital Marketing">
+          <div class="card-body">
+            <div class="card-title">Masters In Digital Marketing</div>
+            <div class="card-meta muted">Full-stack marketing</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Master in digital marketing_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Social Media Marketing" data-cat="Digital Marketing">
+          <img class="card-thumb" src="https://i.imgur.com/t5lSstS.jpeg" alt="SMM">
+          <div class="card-body">
+            <div class="card-title">Social Media Marketing</div>
+            <div class="card-meta muted">Campaign planning</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Social Media Marketing_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="SEO: Search Engine Optimization" data-cat="Digital Marketing">
+          <img class="card-thumb" src="https://i.imgur.com/Akvjcd0.jpeg" alt="SEO">
+          <div class="card-body">
+            <div class="card-title">SEO: Search Engine Optimization</div>
+            <div class="card-meta muted">Organic growth</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_SEO_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="SEM: Search Engine Marketing" data-cat="Digital Marketing">
+          <img class="card-thumb" src="https://i.imgur.com/TPeksm7.jpeg" alt="SEM">
+          <div class="card-body">
+            <div class="card-title">SEM: Search Engine Marketing</div>
+            <div class="card-meta muted">Paid ads & strategy</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_SEM_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Mobile Marketing" data-cat="Digital Marketing">
+          <img class="card-thumb" src="https://i.imgur.com/EKVWEpQ.jpeg" alt="Mobile Marketing">
+          <div class="card-body">
+            <div class="card-title">Mobile Marketing</div>
+            <div class="card-meta muted">App & mobile strategies</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Mobile Marketing_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Affiliate Marketing" data-cat="Digital Marketing">
+          <img class="card-thumb" src="https://i.imgur.com/U8jGyfs.jpeg" alt="Affiliate Marketing">
+          <div class="card-body">
+            <div class="card-title">Affiliate Marketing</div>
+            <div class="card-meta muted">Performance & networks</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Affiliate Marketing_Course.html">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-divider"></div>
+
+      <!-- Multimedia -->
+      <div class="section-header">
+        <span class="section-title" style="background:var(--accent-multi);">Multimedia & Animation Courses</span>
+        <div class="section-lead">Create stunning visuals, motion graphics and multimedia content that captivates audiences.</div>
+      </div>
+
+      <div class="grid" id="multimedia" data-category="Multimedia & Animation">
+        <div class="card fade-up" data-title="Photoshop" data-cat="Multimedia">
+          <img class="card-thumb" src="https://i.imgur.com/1UVWy4Q.jpeg" alt="Photoshop">
+          <div class="card-body">
+            <div class="card-title">Photoshop</div>
+            <div class="card-meta muted">Image editing & design</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Photoshop_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="CorelDraw" data-cat="Multimedia">
+          <img class="card-thumb" src="https://i.imgur.com/nQNHPUE.jpeg" alt="CorelDraw">
+          <div class="card-body">
+            <div class="card-title">CorelDraw</div>
+            <div class="card-meta muted">Vector design</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Coreldraw_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Indesign" data-cat="Multimedia">
+          <img class="card-thumb" src="https://i.imgur.com/BMIbGb0.jpeg" alt="Indesign">
+          <div class="card-body">
+            <div class="card-title">Indesign</div>
+            <div class="card-meta muted">Publishing & layout</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Indesign_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Illustrator" data-cat="Multimedia">
+          <img class="card-thumb" src="https://i.imgur.com/kUNUpdU.jpeg" alt="Illustrator">
+          <div class="card-body">
+            <div class="card-title">Illustrator</div>
+            <div class="card-meta muted">Vector art</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Illustrator_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Adobe Premiere" data-cat="Multimedia">
+          <img class="card-thumb" src="https://i.imgur.com/vA4R2jI.jpeg" alt="Adobe Premiere">
+          <div class="card-body">
+            <div class="card-title">Adobe Premiere</div>
+            <div class="card-meta muted">Video editing</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Premiere_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="After Effects" data-cat="Multimedia">
+          <img class="card-thumb" src="https://i.imgur.com/gHC8Q6N.jpeg" alt="After Effects">
+          <div class="card-body">
+            <div class="card-title">After Effects</div>
+            <div class="card-meta muted">Motion graphics</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_AfterEffects_Course.html">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-divider"></div>
+
+      <!-- Hardware & Networking -->
+      <div class="section-header">
+        <span class="section-title" style="background:var(--accent-hw);">Hardware & Networking Courses</span>
+        <div class="section-lead">Build, secure and optimize networks — essential skills for IT infrastructure careers.</div>
+      </div>
+
+      <div class="grid" id="hardware" data-category="Hardware & Networking">
+        <div class="card fade-up" data-title="CompTIA A+" data-cat="Hardware & Networking">
+          <img class="card-thumb" src="https://i.imgur.com/EpTJUSo.jpeg" alt="CompTIA A+">
+          <div class="card-body">
+            <div class="card-title">CompTIA A+</div>
+            <div class="card-meta muted">Hardware fundamentals</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_CompTIA A+_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="CompTIA N+" data-cat="Hardware & Networking">
+          <img class="card-thumb" src="https://i.imgur.com/w9uEfjm.jpeg" alt="CompTIA N+">
+          <div class="card-body">
+            <div class="card-title">CompTIA N+</div>
+            <div class="card-meta muted">Networking essentials</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_CompTIA N+_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="CCNA" data-cat="Hardware & Networking">
+          <img class="card-thumb" src="https://i.imgur.com/bhKqOV5.jpeg" alt="CCNA">
+          <div class="card-body">
+            <div class="card-title">CCNA</div>
+            <div class="card-meta muted">Cisco routing & switching</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_CCNA_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="MCSA" data-cat="Hardware & Networking">
+          <img class="card-thumb" src="https://i.imgur.com/TAhGub4.jpeg" alt="MCSA">
+          <div class="card-body">
+            <div class="card-title">MCSA</div>
+            <div class="card-meta muted">Microsoft server</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_MCSA_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="RHCSA" data-cat="Hardware & Networking">
+          <img class="card-thumb" src="https://i.imgur.com/ZKeZR0B.jpeg" alt="RHCSA">
+          <div class="card-body">
+            <div class="card-title">RHCSA</div>
+            <div class="card-meta muted">Red Hat Linux admin</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_RHCSA_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Ethical Hacking" data-cat="Hardware & Networking">
+          <img class="card-thumb" src="https://i.imgur.com/LBkznOP.jpeg" alt="Ethical Hacking">
+          <div class="card-body">
+            <div class="card-title">Ethical Hacking</div>
+            <div class="card-meta muted">Pentesting basics</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_Ethical Hacking_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Cyber Security" data-cat="Hardware & Networking">
+          <img class="card-thumb" src="https://i.imgur.com/hBtPZkc.jpeg" alt="Cyber Security">
+          <div class="card-body">
+            <div class="card-title">Cyber Security</div>
+            <div class="card-meta muted">Security fundamentals</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM CyberSecurity_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Cloud Computing" data-cat="Hardware & Networking">
+          <img class="card-thumb" src="https://i.imgur.com/dFJqqiB.jpeg" alt="Cloud Computing">
+          <div class="card-body">
+            <div class="card-title">Cloud Computing</div>
+            <div class="card-meta muted">AWS / Azure basics</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_CloudComputing_Course.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="card fade-up" data-title="Data Science" data-cat="Hardware & Networking">
+          <img class="card-thumb" src="https://i.imgur.com/BXomKmp.jpeg" alt="Data Science">
+          <div class="card-body">
+            <div class="card-title">Data Science</div>
+            <div class="card-meta muted">ML & analytics</div>
+          </div>
+          <div class="card-footer">
+            <a class="link" href="https://sgmcomputereducation.github.io/SGM_Basic/SGM_DataScience.html">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- enroll / contact blocks -->
+      <div id="enroll" class="section" style="margin-top:32px;">
+        <div style="display:flex; gap:18px; flex-wrap:wrap;">
+          <div style="flex:1; min-width:280px; background:#fff; padding:18px; border-radius:12px; box-shadow:0 12px 28px rgba(8,15,30,0.04);">
+            <h3 style="margin-bottom:8px;">Enroll / Request Batch</h3>
+            <p class="muted" style="margin-bottom:12px;">To join the course or request a new batch, please contact us. Our team will share schedule and availability.</p>
+            <a class="btn" href="#contact">Request Info</a>
+          </div>
+
+          <div id="contact" style="flex:0 0 320px; min-width:260px; background:#fff; padding:18px; border-radius:12px; box-shadow:0 12px 28px rgba(8,15,30,0.04);">
+            <h4 style="margin-bottom:6px;">Contact Details</h4>
+            <div class="muted">SGM Computer Education</div>
+            <div style="margin-top:10px;"><strong>Email:</strong> info@sgmcomputereducation.com</div>
+            <div><strong>Phone:</strong> +91 9742266359</div>
+            <div style="margin-top:10px;"><a href="#verify" style="text-decoration:none;font-weight:700;color:var(--accent-office);">Verify Certificate</a></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="about">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+        <div style="min-width:220px;">
+          <div style="font-weight:800;">SGM COMPUTER EDUCATION</div>
+          <div class="muted" style="margin-top:6px;">Training • Placement • Corporate Upskilling</div>
+        </div>
+        <div class="muted">© <strong>2025</strong> SGM COMPUTER EDUCATION • All rights reserved</div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="verify" style="display:none;"></div>
+
+  <!-- Back to top -->
+  <div id="backTop" class="back-top" title="Back to top" aria-hidden="false" style="display:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0f1724" viewBox="0 0 24 24"><path d="M12 4l-8 8h6v8h4v-8h6z"/></svg>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    // Sticky nav shadow
+    const nav = document.getElementById('siteNav');
+    window.addEventListener('scroll', ()=> {
+      if(window.scrollY > 12) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+      // back-to-top visibility
+      const bt = document.getElementById('backTop');
+      if(window.scrollY > 400) bt.style.display = 'grid'; else bt.style.display = 'none';
+    });
+
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', ()=> { mobileMenu.classList.toggle('show'); });
+
+    // Back to top behavior
+    document.getElementById('backTop').addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Fade-up on scroll (IntersectionObserver)
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      });
+    }, {threshold: 0.12});
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    // Counters
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(c=>{
+      const target = +c.dataset.target;
+      let fired = false;
+      const inObs = new IntersectionObserver((entries)=>{
+        entries.forEach(ent=>{
+          if(ent.isIntersecting && !fired){
+            fired = true;
+            let start = 0;
+            const dur = 1400;
+            const step = Math.ceil(target / (dur / 16));
+            const iv = setInterval(()=>{
+              start += step;
+              if(start >= target){ start = target; clearInterval(iv); }
+              c.childNodes[0].nodeValue = start;
+            },16);
+          }
+        });
+      }, {threshold:0.3});
+      inObs.observe(c);
+    });
+
+    // SEARCH FILTER across all cards
+    const search = document.getElementById('searchInput');
+    search.addEventListener('input', (e)=>{
+      const q = e.target.value.trim().toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card=>{
+        const title = (card.dataset.title || '').toLowerCase();
+        const cat = (card.dataset.cat || '').toLowerCase();
+        const match = !q || title.includes(q) || cat.includes(q);
+        card.style.display = match ? 'flex' : 'none';
+      });
+    });
+
+    // Smooth scroll for nav links (close mobile menu)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        const href = a.getAttribute('href');
+        if(href === '#' || href === '') return;
+        if(mobileMenu.classList.contains('show')) mobileMenu.classList.remove('show');
+      });
+    });
+
+    // Ensure all section title background colors (keeps original swatch feel)
+    // (Already set inline in markup via style attributes)
+
+    // Accessibility: close mobile menu on escape
+    document.addEventListener('keydown', (e)=> {
+      if(e.key === 'Escape' && mobileMenu.classList.contains('show')) mobileMenu.classList.remove('show');
+    });
+
+    // Performance: lazy load images (modern browsers)
+    document.querySelectorAll('img.card-thumb').forEach(img=>{
+      img.loading = 'lazy';
+    });
+  </script>
+</body>
+</html>
