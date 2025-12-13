@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SGM Computer Education • About Us & Contact</title>
+
+  <!-- =========================
+       SEO META (Production)
+       ========================= -->
+  <meta name="description" content="SGM Institute of Computer Education & Technology — MSME registered, affordable and high-quality IT education in Bengaluru. Read our mission, vision, values, director message, and contact details." />
+  <meta name="keywords" content="SGM Computer Education, About SGM, computer institute Bengaluru, Banashankari, MSME registered institute, IT courses, affordable computer education, director message, contact SGM" />
+  <meta name="author" content="SGM Computer Education" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.sgmcomputereducation.com/about-us" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SGM Computer Education • About Us & Contact" />
+  <meta property="og:description" content="Mission • Vision • Values • Director Message • Contact details — SGM Institute of Computer Education & Technology." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.sgmcomputereducation.com/about-us" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/sgmcomputereducation/SGM_Basic/refs/heads/main/sgm_logo.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SGM Computer Education • About Us & Contact" />
+  <meta name="twitter:description" content="Learn about SGM’s mission, vision, values, director message, and contact information." />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/sgmcomputereducation/SGM_Basic/refs/heads/main/sgm_logo.jpg" />
+
+  <!-- Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- =========================
+       Schema.org JSON-LD
+       ========================= -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"EducationalOrganization",
+        "@id":"https://www.sgmcomputereducation.com/#org",
+        "name":"SGM Computer Education",
+        "alternateName":"SGM Institute of Computer Education & Technology",
+        "url":"https://www.sgmcomputereducation.com",
+        "logo":"https://raw.githubusercontent.com/sgmcomputereducation/SGM_Basic/refs/heads/main/sgm_logo.jpg",
+        "telephone":["+91 9742266359","+91 8123581892"],
+        "address":{
+          "@type":"PostalAddress",
+          "streetAddress":"No. 3, 1st main road, Veerabhadranagar, BSK 3rd Stage",
+          "addressLocality":"Bengaluru",
+          "addressRegion":"Karnataka",
+          "postalCode":"560085",
+          "addressCountry":"IN"
+        }
+      },
+      {
+        "@type":"WebSite",
+        "@id":"https://www.sgmcomputereducation.com/#website",
+        "url":"https://www.sgmcomputereducation.com",
+        "name":"SGM Computer Education",
+        "publisher":{"@id":"https://www.sgmcomputereducation.com/#org"}
+      },
+      {
+        "@type":"WebPage",
+        "@id":"https://www.sgmcomputereducation.com/about-us#page",
+        "url":"https://www.sgmcomputereducation.com/about-us",
+        "name":"SGM Computer Education • About Us & Contact",
+        "isPartOf":{"@id":"https://www.sgmcomputereducation.com/#website"},
+        "about":{"@id":"https://www.sgmcomputereducation.com/#org"}
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      /* Brand / corporate palette */
+      --royal:#0b3d91;
+      --royal-2:#083274;
+      --gold:#ffb400;
+
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --text:#0f1724;
+      --muted:#6b7280;
+      --border:rgba(15,23,36,0.07);
+
+      --shadow-sm:0 10px 26px rgba(15,23,36,0.06);
+      --shadow-md:0 18px 45px rgba(15,23,36,0.10);
+
+      --radius:14px;
+      --radius-sm:12px;
+      --focus:0 0 0 4px rgba(11,61,145,0.18);
+    }
+
+    html { scroll-behavior:smooth; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body{
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      padding-top:0; /* NAV removed */
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Skip link */
+    .skip-link{
+      position:absolute;
+      top:-44px; left:14px;
+      background:#fff;
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:10px;
+      box-shadow:var(--shadow-sm);
+      border:1px solid var(--border);
+      z-index:99999;
+      transition:top .18s ease;
+      text-decoration:none;
+      font-weight:800;
+    }
+    .skip-link:focus{ top:14px; outline:none; box-shadow:var(--focus), var(--shadow-sm); }
+
+    /* =========================
+       HERO (UPDATED: removed top empty space)
+       ========================= */
+    .hero{
+      /* UPDATED: was 96px, now responsive smaller */
+      padding: clamp(18px, 4vw, 42px) 0 22px;
+      background:
+        radial-gradient(900px 420px at 20% 10%, rgba(255,180,0,0.18), transparent 60%),
+        radial-gradient(900px 420px at 85% 20%, rgba(11,61,145,0.18), transparent 60%),
+        linear-gradient(180deg, #ffffff, #f5f7fb);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* ============= HERO ANIMATION ADD-ON ============= */
+    .hero-anim-layer{ position:absolute; inset:0; pointer-events:none; z-index:0; }
+    .hero-grid{
+      position:absolute;
+      inset:-40px;
+      background-image:
+        linear-gradient(rgba(11,61,145,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11,61,145,0.08) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: radial-gradient(closest-side, rgba(0,0,0,0.55), transparent 78%);
+      opacity: .25;
+      transform: translate3d(0,0,0);
+      animation: heroGridFloat 14s ease-in-out infinite;
+    }
+    @keyframes heroGridFloat{
+      0%,100%{ transform: translateY(0) scale(1); opacity:.22; }
+      50%{ transform: translateY(10px) scale(1.02); opacity:.30; }
+    }
+
+    .hero-blob{
+      position:absolute;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: .30;
+      transform: translate3d(0,0,0);
+      animation: blobDrift 10s ease-in-out infinite;
+    }
+    .hero-blob.blob-1{
+      left:-160px; top:-140px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,180,0,0.85), rgba(255,180,0,0.05) 60%, transparent 70%);
+      animation-duration: 12s;
+    }
+    .hero-blob.blob-2{
+      right:-180px; top: -90px;
+      background: radial-gradient(circle at 40% 40%, rgba(11,61,145,0.85), rgba(11,61,145,0.08) 60%, transparent 70%);
+      animation-duration: 14s;
+    }
+    .hero-blob.blob-3{
+      right: 12%;
+      bottom: -240px;
+      width: 620px; height: 620px;
+      background: radial-gradient(circle at 40% 40%, rgba(37,211,102,0.60), rgba(37,211,102,0.06) 60%, transparent 70%);
+      animation-duration: 16s;
+    }
+    @keyframes blobDrift{
+      0%,100%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(18px, -10px) scale(1.04); }
+    }
+
+    .hero-sheen{
+      position:absolute;
+      inset:-120px -200px;
+      background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.70) 50%, transparent 65%);
+      opacity: .20;
+      transform: translateX(-40%);
+      animation: heroSheen 6.5s ease-in-out infinite;
+    }
+    @keyframes heroSheen{
+      0%{ transform: translateX(-45%) rotate(8deg); opacity:.10; }
+      45%{ opacity:.24; }
+      100%{ transform: translateX(45%) rotate(8deg); opacity:.10; }
+    }
+
+    .hero .hero-left, .hero .hero-right{ opacity:0; transform: translateY(14px); }
+    .hero.hero-in .hero-left{ animation: heroEnter .85s cubic-bezier(.2,.9,.2,1) .05s forwards; }
+    .hero.hero-in .hero-right{ animation: heroEnter .85s cubic-bezier(.2,.9,.2,1) .16s forwards; }
+    @keyframes heroEnter{ to{ opacity:1; transform: translateY(0); } }
+
+    .hero.hero-in .media-card{
+      opacity: 0;
+      transform: translateY(12px) scale(.985);
+      animation: cardIn .75s cubic-bezier(.2,.9,.2,1) forwards;
+    }
+    .hero.hero-in .media-card:nth-child(1){ animation-delay: .22s; }
+    .hero.hero-in .media-card:nth-child(2){ animation-delay: .30s; }
+    .hero.hero-in .media-card:nth-child(3){ animation-delay: .38s; }
+    @keyframes cardIn{ to{ opacity:1; transform: translateY(0) scale(1); } }
+
+    .hero-pill > span[aria-hidden="true"]{ animation: dotPulse 1.6s ease-in-out infinite; }
+    @keyframes dotPulse{
+      0%,100%{ transform: scale(1); filter: brightness(1); }
+      50%{ transform: scale(1.12); filter: brightness(1.08); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .hero-grid, .hero-blob, .hero-sheen, .hero-pill > span[aria-hidden="true"]{ animation: none !important; }
+      .hero .hero-left, .hero .hero-right, .hero .media-card{
+        opacity: 1 !important; transform: none !important; animation: none !important;
+      }
+    }
+    /* ============= END HERO ANIMATION ADD-ON ============= */
+
+    .hero-wrap{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 18px;
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      align-items: stretch;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-left{
+      background: #fff;
+      border: 1px solid rgba(15,23,36,0.07);
+      border-radius: 22px;
+      box-shadow: var(--shadow-md);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-left-inner{ padding: 22px 22px 18px; }
+    .hero-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(11,61,145,0.06);
+      border: 1px solid rgba(11,61,145,0.12);
+      color: var(--royal);
+      font-weight:950;
+      font-size: 12px;
+    }
+    .hero-h1{
+      margin-top: 14px;
+      font-size: 44px;
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      font-weight: 950;
+      color:#0f1724;
+      text-wrap: balance;
+    }
+    .hero-p{
+      margin-top: 12px;
+      font-size: 16px;
+      font-weight: 750;
+      color: var(--muted);
+      max-width: 680px;
+      text-wrap: pretty;
+    }
+    .hero-actions{
+      margin-top: 16px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn{
+      border:0;
+      padding:11px 14px;
+      border-radius:12px;
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
+      white-space:nowrap;
+    }
+    .btn:focus{ outline:none; box-shadow:var(--focus); }
+
+    .btn-primary{
+      background:linear-gradient(90deg, var(--royal), var(--royal-2));
+      color:#fff;
+      box-shadow:0 12px 30px rgba(11,61,145,0.16);
+    }
+    .btn-primary:hover{ transform: translateY(-2px); box-shadow:0 18px 46px rgba(11,61,145,0.20); }
+    .btn-ghost{
+      background:#fff;
+      color:var(--royal);
+      border:1px solid rgba(11,61,145,0.18);
+      box-shadow: 0 10px 24px rgba(15,23,36,0.05);
+    }
+    .btn-ghost:hover{ transform: translateY(-2px); border-color:rgba(11,61,145,0.26); }
+    .btn-wa{
+      background:linear-gradient(90deg, #25D366, #16b053);
+      color:#fff;
+      box-shadow:0 12px 30px rgba(22,176,83,0.16);
+    }
+    .btn-wa:hover{ transform: translateY(-2px); box-shadow:0 18px 46px rgba(22,176,83,0.22); }
+    .btn-wa-small{
+      padding: 9px 12px;
+      font-size: 12px;
+      border-radius: 11px;
+      gap: 8px;
+      box-shadow: 0 10px 24px rgba(22,176,83,0.14);
+    }
+
+    .hero-media{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    .media-card{
+      background:#fff;
+      border-radius: 18px;
+      border: 1px solid rgba(15,23,36,0.08);
+      box-shadow: 0 14px 36px rgba(15,23,36,0.08);
+      overflow:hidden;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .media-card:hover{ transform: translateY(-6px); box-shadow: 0 18px 44px rgba(15,23,36,0.12); }
+    .media-img{ height: 120px; width:100%; object-fit: cover; display:block; background:#eef2ff; }
+    .media-body{ padding: 10px 12px 12px; }
+    .media-title{ font-weight:950; font-size: 13px; color:#13213a; letter-spacing: -0.01em; }
+    .media-sub{ margin-top: 4px; font-weight:800; font-size: 12px; color: var(--muted); }
+
+    .hero-right{ display:flex; flex-direction:column; gap: 14px; }
+    .hero-side{
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(15,23,36,0.07);
+      border-radius: 22px;
+      box-shadow: var(--shadow-sm);
+      padding: 16px 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-side:before{
+      content:"";
+      position:absolute;
+      inset:-60px -80px auto auto;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(255,180,0,0.30), transparent 60%);
+      transform: rotate(10deg);
+      pointer-events:none;
+    }
+    .side-kicker{ font-weight:950; color:#13213a; font-size: 14px; }
+    .side-muted{ margin-top: 6px; color: var(--muted); font-weight: 750; font-size: 13px; line-height: 1.6; }
+    .side-pills{ margin-top: 10px; display:flex; flex-wrap:wrap; gap:8px; }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(11,61,145,0.05);
+      border: 1px solid rgba(11,61,145,0.12);
+      font-weight:900;
+      color: var(--royal);
+      font-size: 12px;
+    }
+
+    .hero-contact{
+      background: linear-gradient(180deg, rgba(11,61,145,0.06), rgba(11,61,145,0.02));
+      border: 1px solid rgba(11,61,145,0.12);
+    }
+    .hero-contact .side-muted a{ color: inherit; text-decoration: underline; font-weight: 950; }
+
+    .container{ width:100%; max-width:1200px; margin:0 auto; padding:0 18px; }
+    .section{ padding: 26px 0 36px; }
+    .section-head{
+      margin-top: 8px;
+      margin-bottom: 14px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .section-title{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      color:#fff;
+      font-weight:950;
+      letter-spacing:.01em;
+      font-size: 14px;
+      box-shadow: 0 14px 40px rgba(15,23,36,0.08);
+      background: linear-gradient(90deg, var(--royal), var(--royal-2));
+    }
+    .section-lead{ margin-top:10px; color: var(--muted); font-weight:700; max-width: 950px; }
+
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card{
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid rgba(15,23,36,0.06);
+      box-shadow: var(--shadow-sm);
+      transition: transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .22s;
+    }
+    .card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-md); }
+    .card:focus-within{ box-shadow: var(--focus), var(--shadow-md); }
+    .card-pad{ padding: 16px 16px 16px; }
+
+    .kicker{ font-weight:950; color:#13213a; font-size: 14px; letter-spacing: -0.01em; }
+    .muted{ color: var(--muted); font-weight:700; margin-top:6px; font-size: 14px; }
+
+    .list{ margin-top: 12px; display:flex; flex-direction:column; gap:10px; }
+    .list-item{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: 14px;
+      background: rgba(15,23,36,0.03);
+      border: 1px solid rgba(15,23,36,0.06);
+    }
+    .list-icon{
+      width:38px; height:38px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(11,61,145,0.14), rgba(255,180,0,0.12));
+      border: 1px solid rgba(11,61,145,0.10);
+      flex: 0 0 auto;
+    }
+    .list-text b{ display:block; font-weight:950; }
+    .list-text span{ display:block; margin-top:3px; color: var(--muted); font-weight:700; font-size: 13px; }
+
+    .quote{
+      margin-top: 10px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(11,61,145,0.06), rgba(11,61,145,0.02));
+      border: 1px solid rgba(11,61,145,0.10);
+      color:#12203a;
+      font-weight:800;
+      line-height:1.65;
+    }
+    .quote small{ display:block; margin-top:10px; color: var(--muted); font-weight:900; }
+
+    .actions{ margin-top: 14px; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn-link{ flex: 1 1 160px; justify-content:center; min-width: 160px; }
+
+    .form{ margin-top: 12px; display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field{ display:flex; flex-direction:column; gap:6px; }
+    .field.full{ grid-column: 1 / -1; }
+    label{ font-weight:900; color:#13213a; font-size: 13px; }
+    input, textarea{
+      width:100%;
+      border-radius: 14px;
+      border:1px solid rgba(15,23,36,0.12);
+      background:#fff;
+      padding:12px 12px;
+      font-weight:700;
+      font-family:inherit;
+      font-size: 14px;
+      outline:none;
+      transition: box-shadow .16s ease, border-color .16s ease;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    input:focus, textarea:focus{
+      box-shadow: var(--focus);
+      border-color: rgba(11,61,145,0.26);
+    }
+    .form-hint{ margin-top: 10px; color: var(--muted); font-weight:700; font-size: 13px; }
+
+    .fade-up{ opacity:0; transform: translateY(14px); transition: all .7s cubic-bezier(.2,.9,.2,1); }
+    .fade-up.show{ opacity:1; transform:none; }
+
+    .back-top{
+      position:fixed; right:18px; bottom:18px;
+      width:52px; height:52px;
+      border-radius:16px;
+      display:grid; place-items:center;
+      background:#fff;
+      border:1px solid rgba(15,23,36,0.08);
+      box-shadow:0 16px 40px rgba(15,23,36,0.14);
+      cursor:pointer;
+      transition: transform .18s ease;
+      z-index:1300;
+    }
+    .back-top:hover{ transform: translateY(-6px); }
+    .back-top:focus{ outline:none; box-shadow: var(--focus), 0 16px 40px rgba(15,23,36,0.14); }
+
+    .whatsapp-float{
+      position: fixed;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 9999;
+    }
+    .whatsapp-float a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:58px; height:58px;
+      border-radius:50%;
+      background:#25D366;
+      color:#fff;
+      box-shadow:0 14px 38px rgba(0,0,0,0.22);
+      border:1px solid rgba(255,255,255,0.16);
+      transition: transform .18s ease;
+      text-decoration:none;
+    }
+    .whatsapp-float a:hover{ transform: translateY(-3px); }
+    .whatsapp-float a:focus{ outline:none; box-shadow: var(--focus), 0 14px 38px rgba(0,0,0,0.22); }
+
+    footer{
+      margin-top: 24px;
+      background: linear-gradient(180deg, var(--royal), var(--royal-2));
+      color:#fff;
+      padding: 34px 0;
+    }
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .footer-title{ font-weight:950; letter-spacing:.01em; }
+    .footer-muted{ opacity:.86; font-weight:700; margin-top:8px; }
+    .footer-links a{
+      color: rgba(255,255,255,0.92);
+      text-decoration:none;
+      font-weight:900;
+      display:inline-block;
+      margin: 6px 0;
+    }
+    .footer-links a:hover{ text-decoration:underline; }
+    .copyright{ margin-top: 18px; opacity:.86; font-weight:800; }
+
+    .col-7{ grid-column: span 7; }
+    .col-5{ grid-column: span 5; }
+    .col-6{ grid-column: span 6; }
+    .col-12{ grid-column: span 12; }
+
+    @media (max-width: 980px){
+      .hero-wrap{ grid-template-columns: 1fr; }
+      .hero-h1{ font-size: 36px; }
+      .hero-media{ grid-template-columns: 1fr; }
+      .media-img{ height: 160px; }
+    }
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+      .col-7,.col-5,.col-6,.col-12{ grid-column: span 12; }
+      .form{ grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .fade-up{ transition:none !important; transform:none !important; }
+      html{ scroll-behavior:auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- HERO -->
+  <section class="hero" id="home" aria-label="About page hero">
+    <div class="hero-anim-layer" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-blob blob-1"></div>
+      <div class="hero-blob blob-2"></div>
+      <div class="hero-blob blob-3"></div>
+      <div class="hero-sheen"></div>
+    </div>
+
+    <div class="hero-wrap">
+      <div class="hero-left fade-up">
+        <div class="hero-left-inner">
+          <span class="hero-pill">
+            <span style="width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 6px rgba(255,180,0,0.16);" aria-hidden="true"></span>
+            MSME Registered (Udyam-KR-03-0183701) • ISO 9001:2015
+          </span>
+
+          <h1 class="hero-h1">Building Skills. Creating Careers. Empowering India’s Digital Future.</h1>
+          <p class="hero-p">
+            At SGM Institute of Computer Education &amp; Technology, we empower every individual with accessible, high-quality technical education.
+            Affordable learning, practical training, and real projects — so students can confidently succeed in today’s IT job market.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#about">About SGM</a>
+            <a class="btn btn-ghost" href="#contact">Contact</a>
+            <a class="btn btn-wa"
+               href="https://wa.me/919742266359?text=Hi%20SGM%2C%20I%20need%20details%20about%20your%20institute%2C%20courses%2C%20fees%20and%20batch%20timings."
+               target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+
+          <div class="hero-media" aria-label="Modern highlights">
+            <div class="media-card" role="article" aria-label="Hands-on labs">
+              <img class="media-img" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80" alt="Hands-on technical lab learning" loading="lazy" decoding="async">
+              <div class="media-body">
+                <div class="media-title">Hands-on Labs</div>
+                <div class="media-sub">Practice-based learning</div>
+              </div>
+            </div>
+
+            <div class="media-card" role="article" aria-label="Real projects">
+              <img class="media-img" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="Real-world project work on computers" loading="lazy" decoding="async">
+              <div class="media-body">
+                <div class="media-title">Real Projects</div>
+                <div class="media-sub">Portfolio-ready work</div>
+              </div>
+            </div>
+
+            <div class="media-card" role="article" aria-label="Career guidance">
+              <img class="media-img" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Career guidance and mentoring session" loading="lazy" decoding="async">
+              <div class="media-body">
+                <div class="media-title">Career Guidance</div>
+                <div class="media-sub">Interview & growth support</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-right" aria-label="Quick info">
+        <div class="hero-side fade-up" aria-label="Mission snapshot">
+          <div class="side-kicker">Our Mission</div>
+          <div class="side-muted">
+            Empower individuals with affordable, high-quality IT education — bridging the gap between industry demand and supply.
+          </div>
+          <div class="side-pills" aria-label="Mission tags">
+            <span class="pill">Affordable</span>
+            <span class="pill">Quality</span>
+            <span class="pill">Industry-ready</span>
+          </div>
+        </div>
+
+        <div class="hero-side fade-up" aria-label="Vision snapshot">
+          <div class="side-kicker">Our Vision</div>
+          <div class="side-muted">
+            Make IT skills accessible to all and foster innovation and excellence — contributing to India’s digital transformation.
+          </div>
+          <div class="side-pills" aria-label="Vision tags">
+            <span class="pill">Access for all</span>
+            <span class="pill">Innovation</span>
+            <span class="pill">Excellence</span>
+          </div>
+        </div>
+
+        <div class="hero-side hero-contact fade-up" aria-label="Contact snapshot">
+          <div class="side-kicker">Reach Us</div>
+          <div class="side-muted">
+            <b>Phone:</b> <a href="tel:+919742266359">9742266359</a> | <a href="tel:+918123581892">8123581892</a><br>
+            <b>Email:</b> <a href="mailto:info@sgmcomputereducation.com">info@sgmcomputereducation.com</a><br>
+            <b>Address:</b> BSK 3rd Stage, Bengaluru - 560085
+          </div>
+          <div class="side-pills" aria-label="Trust tags">
+            <span class="pill">MSME</span>
+            <span class="pill">GSTIN</span>
+            <span class="pill">Trusted</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main id="main" class="container">
+    <!-- ABOUT -->
+    <section id="about" class="section" aria-label="About SGM">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Who We Are</div>
+          <div class="section-lead">
+            SGM is a premier institute committed to delivering top-quality computer education. Founded with the vision to empower individuals
+            with the skills needed to thrive in Information Technology, SGM stands as a leader in the education sector.
+            We offer cutting-edge programs that prepare students for the challenges of the digital age.
+          </div>
+        </div>
+        <div class="actions" aria-label="Quick actions">
+          <a class="btn btn-ghost btn-link" href="https://www.sgmcomputereducation.com/courses">Explore Courses</a>
+          <a class="btn btn-wa btn-link" target="_blank" rel="noopener"
+             href="https://wa.me/919742266359?text=Hi%20SGM%2C%20I%20want%20details%20about%20your%20courses%20and%20batch%20timings.">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- Mission -->
+        <article class="card fade-up col-6" aria-label="Our Mission">
+          <div class="card-pad">
+            <div class="kicker">Our Mission</div>
+            <p class="muted">
+              At SGM, our mission is to empower individuals with accessible, high-quality technical education, equipping them with the
+              skills and knowledge needed to excel in the ever-evolving world of Information Technology. We strive to make IT education
+              affordable, bridging the gap between industry demand and supply.
+            </p>
+            <div class="quote">
+              “Information & Technology for All.”
+              <small>— A mission built on accessibility, affordability, and excellence</small>
+            </div>
+          </div>
+        </article>
+
+        <!-- Vision -->
+        <article class="card fade-up col-6" aria-label="Our Vision">
+          <div class="card-pad">
+            <div class="kicker">Our Vision</div>
+            <p class="muted">
+              SGM envisions a future where every individual has access to quality technical education, empowering them to become leaders in the IT sector.
+              We aim to contribute to India's digital transformation by making IT skills accessible to all and fostering a culture of innovation and excellence.
+            </p>
+            <div style="margin-top:10px;">
+              <span class="pill">Digital Transformation</span>
+              <span class="pill">Innovation</span>
+              <span class="pill">Excellence</span>
+              <span class="pill">Opportunity for All</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Values -->
+        <article class="card fade-up col-7" aria-label="Our Values">
+          <div class="card-pad">
+            <div class="kicker">Our Values</div>
+            <div class="list" role="list">
+              <div class="list-item" role="listitem">
+                <div class="list-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2l7 4v6c0 5-3 9-7 10C8 21 5 17 5 12V6l7-4Z" stroke="#0b3d91" stroke-width="2"/>
+                    <path d="M9 12l2 2 4-4" stroke="#0b3d91" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="list-text">
+                  <b>Integrity</b>
+                  <span>Upholding transparency and honesty in all our operations.</span>
+                </div>
+              </div>
+
+              <div class="list-item" role="listitem">
+                <div class="list-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2l3 7h7l-5.6 4 2.1 7L12 16.8 5.5 20l2.1-7L2 9h7l3-7Z" stroke="#0b3d91" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="list-text">
+                  <b>Excellence</b>
+                  <span>Striving for the highest quality in education and service.</span>
+                </div>
+              </div>
+
+              <div class="list-item" role="listitem">
+                <div class="list-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2v8" stroke="#0b3d91" stroke-width="2"/>
+                    <path d="M8 6h8" stroke="#0b3d91" stroke-width="2"/>
+                    <path d="M6 22l6-4 6 4V12a6 6 0 1 0-12 0v10Z" stroke="#0b3d91" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="list-text">
+                  <b>Innovation</b>
+                  <span>Embracing change and fostering creativity in IT education.</span>
+                </div>
+              </div>
+
+              <div class="list-item" role="listitem">
+                <div class="list-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3v18" stroke="#0b3d91" stroke-width="2"/>
+                    <path d="M5 7h14" stroke="#0b3d91" stroke-width="2"/>
+                    <path d="M5 17h14" stroke="#0b3d91" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="list-text">
+                  <b>Accessibility</b>
+                  <span>Making education affordable and accessible to all.</span>
+                </div>
+              </div>
+
+              <div class="list-item" role="listitem">
+                <div class="list-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" stroke="#0b3d91" stroke-width="2"/>
+                    <path d="M4 22c1.5-4 4.7-6 8-6s6.5 2 8 6" stroke="#0b3d91" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="list-text">
+                  <b>Empowerment</b>
+                  <span>Equipping students with skills to succeed in the IT industry.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card fade-up col-5" aria-label="Empowering with Quality Technical Education">
+          <div class="card-pad">
+            <div class="kicker">Empowering with Quality Technical Education</div>
+            <p class="muted">
+              At SGM Institute of Computer Education & Technology, we believe in empowering every individual with accessible, high-quality technical education.
+              Registered under MSME (Udyam-KR-03-0183701) by the Government of India, our mission aligns with the vision of “Information & Technology for All.”
+              Dedicated to affordability and excellence, we offer skills and training to transform aspirations into achievements across urban and rural sectors.
+            </p>
+
+            <div class="quote" style="margin-top:12px;">
+              Expert faculty • Practical curriculum • State-of-the-art facilities
+              <small>— Build confidence for today’s competitive IT job market</small>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- DIRECTOR MESSAGE -->
+    <section id="director" class="section" aria-label="Director Message">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Director Message</div>
+          <div class="section-lead">
+            A message on the importance of Information Technology education, competence, infrastructure, and real-world training.
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card fade-up col-12">
+          <div class="card-pad">
+            <p class="muted" style="margin-top:0;">
+              Information technology today is recognized as frontier area of knowledge and also a critical enabling tool for assimilating,
+              processing and enhancing all other spheres of knowledge. India has achieved tremendous growth in this area and is now being
+              considered as a potential I.T. super power in the world. It is also recognized the world over, that information Technology is
+              going to change every facet of human existence and will usher in a knowledge based society in the 21st century.
+            </p>
+
+            <p class="muted">
+              Information Technology education requires high quality Competence &amp; good Infrastructure in order to make a competitive I.T. professional.
+              The main motive behind the establishment of this SGM was to provide high quality Computer Education to every corner of the Country.
+            </p>
+
+            <p class="muted">
+              Through this Computer literacy Program, we ensure that our student learn more &amp; more and become a dynamic human being.
+              Our strong infrastructure, efficient, energetic, dedicated and capable officers urge the student to move forward.
+              The academic rigor propels them to acquire greater professional competence. They have also been exposed to training and real world projects.
+            </p>
+
+            <p class="muted">
+              I am sure our students can meet any demand &amp; challenges that the employer may have on them.
+              I wish them great success in all their endeavors and quest for a better tomorrow, for themselves and for the mankind.
+            </p>
+
+            <div class="quote">
+              (Director)<br>
+              <b>SGM Institute of Computer Education &amp; Technology</b><br>
+              ***********************************************
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section" aria-label="Contact SGM">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Contact &amp; Address</div>
+          <div class="section-lead">
+            Reach out for course details, fees, batch timings and admissions support.
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-wa btn-link" target="_blank" rel="noopener"
+             href="https://wa.me/919742266359?text=Hi%20SGM%2C%20Please%20share%20course%20details%2C%20fees%20and%20batch%20timings.">WhatsApp Support</a>
+          <a class="btn btn-ghost btn-link" href="mailto:info@sgmcomputereducation.com">Email Us</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card fade-up col-6" aria-label="Contact details">
+          <div class="card-pad">
+            <div class="kicker">Registered Under MSME</div>
+            <p class="muted" style="margin-top:8px;">
+              MSME (Udyam-KR-03-0183701)<br>
+              <b>GSTIN:</b> 29EBJPS9553J1ZN
+            </p>
+
+            <div class="list" role="list" aria-label="Contact info">
+              <div class="list-item" role="listitem">
+                <div class="list-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 21s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Z" stroke="#0b3d91" stroke-width="2"/>
+                    <path d="M12 10.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="#0b3d91" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="list-text">
+                  <b>Address</b>
+                  <span>No. 3, 1st main road, Veerabhadranagar, BSK 3rd Stage, Bengaluru - 560085</span>
+                </div>
+              </div>
+
+              <div class="list-item" role="listitem">
+                <div class="list-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.9 19.9 0 0 1 3 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.6a2 2 0 0 1-.4 2.1L9.1 10.9a16 16 0 0 0 4 4l1.5-1.1a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9Z" stroke="#0b3d91" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="list-text">
+                  <b>Phone</b>
+                  <span>
+                    <a href="tel:+919742266359" style="color:inherit; text-decoration:underline; font-weight:900;">9742266359</a>
+                    &nbsp;|&nbsp;
+                    <a href="tel:+918123581892" style="color:inherit; text-decoration:underline; font-weight:900;">8123581892</a>
+                  </span>
+                </div>
+              </div>
+
+              <div class="list-item" role="listitem">
+                <div class="list-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 4h16v16H4V4Z" stroke="#0b3d91" stroke-width="2"/>
+                    <path d="m4 6 8 7 8-7" stroke="#0b3d91" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="list-text">
+                  <b>Email</b>
+                  <span><a href="mailto:info@sgmcomputereducation.com" style="color:inherit; text-decoration:underline; font-weight:900;">info@sgmcomputereducation.com</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-primary btn-link" href="https://www.sgmcomputereducation.com/courses">Browse Courses</a>
+              <a class="btn btn-wa btn-link" target="_blank" rel="noopener"
+                 href="https://wa.me/919742266359?text=Hi%20SGM%2C%20I%20want%20admission%20details%20and%20batch%20timings.">Admission on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card fade-up col-6" aria-label="Contact form">
+          <div class="card-pad">
+            <div class="kicker">Send a Quick Message</div>
+            <p class="muted">This form opens WhatsApp with your message (no server required).</p>
+
+            <form class="form" id="contactForm" aria-label="Send message form">
+              <div class="field">
+                <label for="name">Full Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" type="tel" placeholder="Your phone" autocomplete="tel" required>
+              </div>
+              <div class="field full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Example: I want course details, fees and batch timings." required></textarea>
+              </div>
+
+              <div class="field full">
+                <button class="btn btn-wa btn-wa-small" type="submit" aria-label="Send on WhatsApp">
+                  <svg width="16" height="16" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                    <path d="M27.2 4.8A15.6 15.6 0 0 0 4.2 26.7L3 31l4.4-1.1A15.6 15.6 0 0 0 27.2 4.8Z" fill="white" opacity=".18"/>
+                    <path d="M21.2 18.2c-.2.5-1.2 1-1.7 1.1-.4.1-.9.1-1.4 0-.3-.1-.7-.2-1.3-.4-2.2-1-3.6-3-3.7-3.1-.1-.1-.9-1.1-.9-2.2 0-1 .5-1.5.7-1.7.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .4.4.2.5.6 1.6.6 1.7 0 .1 0 .2-.1.3 0 .1-.1.2-.2.3l-.2.2c-.1.1-.2.2-.1.4.1.2.4.8.9 1.3.7.8 1.2 1 1.4 1.1.2.1.3.1.4 0 .1-.1.5-.5.6-.7.1-.2.3-.2.5-.1.2.1 1.4.6 1.6.7.2.1.3.2.3.3 0 .1 0 .5-.2 1Z" fill="white"/>
+                  </svg>
+                  Send on WhatsApp
+                </button>
+                <div class="form-hint">
+                  Tip: For faster response, include the course name (e.g., MS Office / Advanced Excel / Power BI / Python).
+                </div>
+              </div>
+            </form>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Closing statement">
+      <div class="grid">
+        <article class="card fade-up col-12">
+          <div class="card-pad">
+            <div class="kicker">Our Promise</div>
+            <p class="muted">
+              Empowering tomorrow's tech leaders with world-class, affordable computer education—recognized globally for excellence and designed to shape future software innovators.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer aria-label="Footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div style="min-width:240px;">
+          <div class="footer-title">SGM Computer Education</div>
+          <div class="footer-muted">Training • Placement • Corporate Upskilling</div>
+          <div class="footer-muted">Email: info@sgmcomputereducation.com</div>
+          <div class="footer-muted">Phone: +91 9742266359</div>
+        </div>
+
+        <div class="footer-links" aria-label="Quick links">
+          <div class="footer-title">Quick Links</div>
+          <a href="https://www.sgmcomputereducation.com/home">Home</a><br>
+          <a href="https://www.sgmcomputereducation.com/courses">Courses</a><br>
+          <a href="https://www.sgmcomputereducation.com/about-us">About Us</a><br>
+          <a href="https://www.sgmcomputereducation.com/contact">Contact</a><br>
+          <a href="https://www.sgmcomputereducation.com/verify-certificate">Verify Certificate</a>
+        </div>
+
+        <div style="min-width:240px;">
+          <div class="footer-title">Need Help?</div>
+          <div class="footer-muted">Chat with our team for batch timings, fees &amp; course details.</div>
+          <div style="margin-top:12px;">
+            <a class="btn btn-wa"
+               href="https://wa.me/919742266359?text=Hi%20SGM%2C%20Please%20share%20course%20details%2C%20fees%20and%20batch%20timings."
+               target="_blank" rel="noopener">WhatsApp Support</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">© <strong>2025</strong> SGM Computer Education • All rights reserved</div>
+    </div>
+  </footer>
+
+  <button id="backTop" class="back-top" title="Back to top" aria-label="Back to top" style="display:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0f1724" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+    </svg>
+  </button>
+
+  <div class="whatsapp-float" aria-label="WhatsApp quick chat">
+    <a href="https://wa.me/919742266359?text=Hi%20SGM%2C%20I%20need%20course%20details%20and%20batch%20timings." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M27.2 4.8A15.6 15.6 0 0 0 4.2 26.7L3 31l4.4-1.1A15.6 15.6 0 0 0 27.2 4.8Z" fill="white" opacity=".18"/>
+        <path d="M16 4.2c-6.5 0-11.8 5.1-11.8 11.4 0 2 .5 3.9 1.5 5.6l-1 3.7 3.8-1c1.7.9 3.7 1.4 5.8 1.4 6.5 0 11.8-5.1 11.8-11.4S22.5 4.2 16 4.2Z" fill="white" opacity=".18"/>
+        <path d="M21.2 18.2c-.2.5-1.2 1-1.7 1.1-.4.1-.9.1-1.4 0-.3-.1-.7-.2-1.3-.4-2.2-1-3.6-3-3.7-3.1-.1-.1-.9-1.1-.9-2.2 0-1 .5-1.5.7-1.7.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .4.4.2.5.6 1.6.6 1.7 0 .1 0 .2-.1.3 0 .1-.1.2-.2.3l-.2.2c-.1.1-.2.2-.1.4.1.2.4.8.9 1.3.7.8 1.2 1 1.4 1.1.2.1.3.1.4 0 .1-.1.5-.5.6-.7.1-.2.3-.2.5-.1.2.1 1.4.6 1.6.7.2.1.3.2.3.3 0 .1 0 .5-.2 1Z" fill="white"/>
+      </svg>
+    </a>
+  </div>
+
+  <script>
+    (function(){
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const hero = document.getElementById('home');
+      if (hero && !prefersReduced){
+        window.addEventListener('DOMContentLoaded', () => {
+          hero.classList.add('hero-in');
+        });
+      } else if (hero) {
+        hero.classList.add('hero-in');
+      }
+
+      const backTop = document.getElementById('backTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) backTop.style.display = 'grid';
+        else backTop.style.display = 'none';
+      }, { passive:true });
+
+      backTop.addEventListener('click', () => window.scrollTo({ top:0, behavior: prefersReduced ? 'auto' : 'smooth' }));
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting){
+            e.target.classList.add('show');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+      const form = document.getElementById('contactForm');
+      if (form){
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = (document.getElementById('name')?.value || '').trim();
+          const phone = (document.getElementById('phone')?.value || '').trim();
+          const msg = (document.getElementById('message')?.value || '').trim();
+
+          const message = `Hi SGM,\nName: ${name}\nPhone: ${phone}\nMessage: ${msg}`;
+          const url = `https://wa.me/919742266359?text=${encodeURIComponent(message)}`;
+          window.open(url, '_blank', 'noopener');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
