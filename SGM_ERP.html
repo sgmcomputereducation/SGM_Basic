@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SGM Computer Education ERP</title>
+  <meta name="description" content="SGM Computer Education ERP - Enquiry, Admission, Receipt, Batch, Attendance, Exam, Certificate, Verification" />
+  <link rel="icon" href="https://sgmcomputereducation.com/favicon.ico">
+
+  <style>
+    :root{
+      --bg:#f6f8fc; --card:#fff; --text:#0f172a; --muted:#64748b;
+      --primary:#0b3d91; --primary2:#083274;
+      --border:rgba(15,23,42,.10);
+      --ok:#16a34a; --warn:#f59e0b; --bad:#ef4444;
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px}
+    .topbar{
+      background:linear-gradient(135deg,var(--primary),var(--primary2));
+      color:#fff;border-radius:18px;padding:16px 18px;margin:12px 0 16px;
+      display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      box-shadow:0 12px 26px rgba(2,8,23,.16);
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-weight:900}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+    .tab{
+      border:1px solid var(--border);background:#fff;
+      padding:10px 14px;border-radius:999px;cursor:pointer;
+      font-weight:800;font-size:13px;color:var(--text);
+    }
+    .tab.active{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;border-color:transparent}
+    .section{display:none}
+    .section.active{display:block}
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+    @media(max-width:960px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:0 10px 22px rgba(2,8,23,.05)}
+    .card h2{margin:0 0 6px;font-size:16px}
+    .sub{margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.4}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:720px){.row{grid-template-columns:1fr}}
+    label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
+    input,select,textarea{width:100%;border:1px solid var(--border);border-radius:12px;padding:11px 12px;font-size:14px;outline:none;background:#fff}
+    textarea{min-height:86px;resize:vertical}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{border:none;border-radius:12px;padding:11px 14px;font-weight:900;cursor:pointer;font-size:14px}
+    .btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff}
+    .btn.ghost{background:#fff;border:1px solid var(--border);color:var(--text)}
+    .btn.whatsapp{background:#25D366;color:#fff}
+    .status{margin-top:12px;padding:10px 12px;border-radius:12px;border:1px solid var(--border);background:#fff;color:var(--muted);font-size:13px;line-height:1.45}
+    .status.ok{border-color:rgba(22,163,74,.35);background:rgba(22,163,74,.08);color:var(--ok)}
+    .status.warn{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08);color:var(--warn)}
+    .status.bad{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08);color:var(--bad)}
+    .hint{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.45}
+    .muted{color:var(--muted)}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#fff;font-size:12px;color:var(--muted)}
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">SGM</div>
+      <div>
+        <div style="font-weight:900">SGM Computer Education — ERP</div>
+        <div style="opacity:.9;font-size:13px">ISO 9001:2015 Certified Institute</div>
+      </div>
+    </div>
+    <div style="opacity:.95;font-size:13px">
+      📞 9742266359 &nbsp;|&nbsp; 💬 WhatsApp 9742266359 &nbsp;|&nbsp; ✉️ info@sgmcomputereducation.com
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-target="sec_enquiry">Enquiry</button>
+    <button class="tab" data-target="sec_admission">Admission</button>
+    <button class="tab" data-target="sec_receipt">Receipt</button>
+    <button class="tab" data-target="sec_batch">Batch</button>
+    <button class="tab" data-target="sec_attendance">Attendance</button>
+    <button class="tab" data-target="sec_completion">Completion</button>
+    <button class="tab" data-target="sec_exam">Exam</button>
+    <button class="tab" data-target="sec_certificate">Certificate</button>
+    <button class="tab" data-target="sec_verify">Verify</button>
+  </div>
+
+  <!-- ENQUIRY -->
+  <div class="section active" id="sec_enquiry">
+    <div class="grid">
+      <div class="card">
+        <h2>Student Enquiry</h2>
+        <p class="sub">Capture student details and submit an enquiry.</p>
+
+        <div class="row">
+          <div><label>Name *</label><input id="enq_name" placeholder="Full name" autocomplete="name"></div>
+          <div><label>Phone *</label><input id="enq_phone" placeholder="10-digit mobile" inputmode="numeric" autocomplete="tel"></div>
+          <div><label>Email</label><input id="enq_email" placeholder="name@email.com" autocomplete="email"></div>
+          <div><label>Course ID *</label><input id="enq_courseId" placeholder="CRS2002"></div>
+          <div>
+            <label>Preferred Mode</label>
+            <select id="enq_preferredMode">
+              <option value="">Select</option>
+              <option>Offline</option>
+              <option>Online</option>
+            </select>
+          </div>
+          <div>
+            <label>Preferred Timing</label>
+            <select id="enq_preferredTiming">
+              <option value="">Select</option>
+              <option>Morning</option>
+              <option>Afternoon</option>
+              <option>Evening</option>
+              <option>Weekend</option>
+            </select>
+          </div>
+        </div>
+
+        <label style="margin-top:10px">Notes</label>
+        <textarea id="enq_notes" placeholder="Enquiry notes"></textarea>
+
+        <div class="actions">
+          <button class="btn primary" onclick="saveEnquiry()">Submit Enquiry</button>
+          <button class="btn whatsapp" onclick="openWhatsappLead()">WhatsApp Lead</button>
+          <button class="btn ghost" onclick="resetEnquiry()">Reset</button>
+        </div>
+
+        <div id="enq_status" class="status">Status: Waiting</div>
+        <div class="hint">Tip: Use “Admission” to register a student using an Enquiry ID.</div>
+      </div>
+
+      <div class="card">
+        <h2>Quick Check</h2>
+        <p class="sub">Opens a diagnostic page in a new tab.</p>
+        <div class="actions">
+          <button class="btn primary" onclick="openGet({module:'health'})">Health</button>
+        </div>
+        <div class="hint">This opens in a new tab for compatibility.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMISSION -->
+  <div class="section" id="sec_admission">
+    <div class="grid">
+      <div class="card">
+        <h2>Admission</h2>
+        <p class="sub">Create student registration from an enquiry.</p>
+
+        <div class="row">
+          <div><label>Enquiry ID *</label><input id="adm_enquiryId" placeholder="ENQ3001"></div>
+          <div><label>Join Date</label><input id="adm_joinDate" type="date"></div>
+          <div><label>Course Fee *</label><input id="adm_courseFee" type="number" placeholder="15000" inputmode="numeric"></div>
+          <div><label>Discount</label><input id="adm_discount" type="number" placeholder="0" inputmode="numeric"></div>
+          <div><label>Final Fee (optional)</label><input id="adm_finalFee" type="number" placeholder="Auto = Fee - Discount" inputmode="numeric"></div>
+          <div>
+            <label>Payment Type</label>
+            <select id="adm_paymentType">
+              <option>Full</option>
+              <option>EMI</option>
+            </select>
+          </div>
+        </div>
+
+        <label style="margin-top:10px">Created By</label>
+        <input id="adm_createdBy" placeholder="ADMIN / Counselor">
+
+        <div class="actions">
+          <button class="btn primary" onclick="saveAdmission()">Create Admission</button>
+          <button class="btn ghost" onclick="resetAdmission()">Reset</button>
+          <button class="btn ghost" onclick="openGet({module:'enquiry',action:'get',id:val('adm_enquiryId')})">View Enquiry</button>
+        </div>
+
+        <div id="adm_status" class="status">Status: Waiting</div>
+        <div class="hint">After admission, student register number will be available in Student records.</div>
+      </div>
+
+      <div class="card">
+        <h2>View Student</h2>
+        <p class="sub">Opens student details in a new tab.</p>
+        <label>Student Register No</label>
+        <input id="adm_view_studentId" placeholder="REG4001">
+        <div class="actions">
+          <button class="btn primary" onclick="openGet({module:'student',action:'get',id:val('adm_view_studentId')})">View</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECEIPT -->
+  <div class="section" id="sec_receipt">
+    <div class="grid">
+      <div class="card">
+        <h2>Fee Receipt</h2>
+        <p class="sub">Record a payment using student registration number.</p>
+
+        <div class="row">
+          <div><label>Student Register No *</label><input id="rct_studentId" placeholder="REG4001"></div>
+          <div><label>Amount Paid *</label><input id="rct_amountPaid" type="number" placeholder="5000" inputmode="numeric"></div>
+          <div>
+            <label>Payment Mode</label>
+            <select id="rct_paymentMode">
+              <option>Cash</option>
+              <option>UPI</option>
+              <option>Card</option>
+              <option>Bank Transfer</option>
+            </select>
+          </div>
+          <div><label>Txn Ref</label><input id="rct_txnRef" placeholder="Optional"></div>
+        </div>
+
+        <label style="margin-top:10px">Received By</label>
+        <input id="rct_receivedBy" placeholder="ACCOUNTS / Staff">
+
+        <label style="margin-top:10px">Remarks</label>
+        <textarea id="rct_remarks" placeholder="Receipt remarks"></textarea>
+
+        <div class="actions">
+          <button class="btn primary" onclick="saveReceipt()">Save Receipt</button>
+          <button class="btn ghost" onclick="resetReceipt()">Reset</button>
+          <button class="btn ghost" onclick="openGet({module:'receipt',action:'list',studentId:val('rct_studentId')})">View Receipts</button>
+        </div>
+
+        <div id="rct_status" class="status">Status: Waiting</div>
+      </div>
+
+      <div class="card">
+        <h2>Note</h2>
+        <p class="sub">If saving fails, use “Health” check and verify backend deployment.</p>
+        <div class="hint">This page sends standard form-encoded data (compatible with Apps Script web apps).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BATCH -->
+  <div class="section" id="sec_batch">
+    <div class="grid">
+      <div class="card">
+        <h2>Batch</h2>
+        <p class="sub">Create batch and allocate students.</p>
+
+        <h3 style="margin:6px 0 10px;font-size:14px">Create Batch</h3>
+        <div class="row">
+          <div><label>Course ID *</label><input id="bat_courseId" placeholder="CRS2002"></div>
+          <div><label>Batch Name *</label><input id="bat_batchName" placeholder="Python Batch A"></div>
+          <div><label>Start Date</label><input id="bat_startDate" type="date"></div>
+          <div><label>End Date</label><input id="bat_endDate" type="date"></div>
+          <div><label>Timings</label><input id="bat_timings" placeholder="7:00 PM - 8:30 PM"></div>
+          <div><label>Trainer</label><input id="bat_trainer" placeholder="Trainer name"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" onclick="createBatch()">Create Batch</button>
+          <button class="btn ghost" onclick="openGet({module:'batch',action:'list',courseId:val('bat_courseId')})">View Batches</button>
+        </div>
+
+        <div id="bat_status" class="status">Status: Waiting</div>
+
+        <hr style="border:none;border-top:1px solid var(--border);margin:14px 0">
+
+        <h3 style="margin:6px 0 10px;font-size:14px">Allocate Student</h3>
+        <div class="row">
+          <div><label>Student Register No *</label><input id="alc_studentId" placeholder="REG4001"></div>
+          <div><label>Batch ID *</label><input id="alc_batchId" placeholder="BATCH8001"></div>
+          <div><label>Allocated By</label><input id="alc_allocatedBy" placeholder="ADMIN"></div>
+          <div><label>Remarks</label><input id="alc_remarks" placeholder="Optional"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" onclick="allocateBatch()">Allocate</button>
+          <button class="btn ghost" onclick="openGet({module:'batch',action:'allocations',studentId:val('alc_studentId')})">View Allocations</button>
+        </div>
+
+        <div id="alc_status" class="status">Status: Waiting</div>
+      </div>
+
+      <div class="card">
+        <h2>Tip</h2>
+        <p class="sub">Batch allocation is required before attendance tracking.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTENDANCE -->
+  <div class="section" id="sec_attendance">
+    <div class="grid">
+      <div class="card">
+        <h2>Attendance</h2>
+        <p class="sub">Mark attendance and view history.</p>
+
+        <div class="row">
+          <div><label>Student Register No *</label><input id="att_studentId" placeholder="REG4001"></div>
+          <div><label>Batch ID *</label><input id="att_batchId" placeholder="BATCH8001"></div>
+          <div><label>Session Date *</label><input id="att_sessionDate" type="date"></div>
+          <div>
+            <label>Status</label>
+            <select id="att_status">
+              <option>Present</option>
+              <option>Absent</option>
+            </select>
+          </div>
+          <div><label>Marked By</label><input id="att_markedBy" placeholder="TRAINER"></div>
+          <div><label>Remarks</label><input id="att_remarks" placeholder="Optional"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" onclick="markAttendance()">Mark Attendance</button>
+          <button class="btn ghost" onclick="openGet({module:'attendance',action:'list',studentId:val('att_studentId')})">View Attendance</button>
+        </div>
+
+        <div id="att_statusBox" class="status">Status: Waiting</div>
+      </div>
+
+      <div class="card">
+        <h2>Note</h2>
+        <p class="sub">Keep session dates consistent for clean reporting.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="section" id="sec_completion">
+    <div class="grid">
+      <div class="card">
+        <h2>Course Completion</h2>
+        <p class="sub">Mark course completion to enable exams & certificates.</p>
+
+        <div class="row">
+          <div><label>Student Register No *</label><input id="cmp_studentId" placeholder="REG4001"></div>
+          <div><label>Batch ID *</label><input id="cmp_batchId" placeholder="BATCH8001"></div>
+          <div><label>Course ID *</label><input id="cmp_courseId" placeholder="CRS2002"></div>
+          <div><label>Completed On</label><input id="cmp_completedOn" type="date"></div>
+          <div><label>Approved By</label><input id="cmp_approvedBy" placeholder="TRAINER"></div>
+          <div><label>Remarks</label><input id="cmp_remarks" placeholder="Optional"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" onclick="markCompletion()">Mark Completion</button>
+          <button class="btn ghost" onclick="openGet({module:'completion',action:'get',studentId:val('cmp_studentId')})">View Completion</button>
+        </div>
+
+        <div id="cmp_statusBox" class="status">Status: Waiting</div>
+      </div>
+
+      <div class="card">
+        <h2>Note</h2>
+        <p class="sub">Completion must be “Completed” before exam creation is allowed by backend rules.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM -->
+  <div class="section" id="sec_exam">
+    <div class="grid">
+      <div class="card">
+        <h2>Examination</h2>
+        <p class="sub">Create exam record and update result.</p>
+
+        <h3 style="margin:6px 0 10px;font-size:14px">Create Exam</h3>
+        <div class="row">
+          <div><label>Student Register No *</label><input id="ex_studentId" placeholder="REG4001"></div>
+          <div><label>Course ID *</label><input id="ex_courseId" placeholder="CRS2002"></div>
+          <div><label>Batch ID *</label><input id="ex_batchId" placeholder="BATCH8001"></div>
+          <div><label>Exam Date</label><input id="ex_examDate" type="date"></div>
+          <div><label>Marked By</label><input id="ex_markedBy" placeholder="EXAM"></div>
+          <div><label>Remarks</label><input id="ex_remarks" placeholder="Optional"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" onclick="createExam()">Create Exam</button>
+          <button class="btn ghost" onclick="openGet({module:'exam',action:'get',studentId:val('ex_studentId')})">View Exams</button>
+        </div>
+
+        <div id="ex_statusBox" class="status">Status: Waiting</div>
+
+        <hr style="border:none;border-top:1px solid var(--border);margin:14px 0">
+
+        <h3 style="margin:6px 0 10px;font-size:14px">Update Result</h3>
+        <div class="row">
+          <div><label>Exam ID *</label><input id="exu_examId" placeholder="EXXXXXXXXX"></div>
+          <div><label>Score</label><input id="exu_score" placeholder="82"></div>
+          <div>
+            <label>Result</label>
+            <select id="exu_result">
+              <option value="">Select</option>
+              <option>Pass</option>
+              <option>Fail</option>
+            </select>
+          </div>
+          <div><label>Marked By</label><input id="exu_markedBy" placeholder="EXAM"></div>
+          <div style="grid-column:1/-1"><label>Remarks</label><input id="exu_remarks" placeholder="Optional"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" onclick="updateExam()">Update</button>
+          <button class="btn ghost" onclick="resetExamUpdate()">Reset</button>
+        </div>
+
+        <div id="exu_statusBox" class="status">Status: Waiting</div>
+      </div>
+
+      <div class="card">
+        <h2>Note</h2>
+        <p class="sub">Certificate application requires exam result “Pass” for the selected course.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATE -->
+  <div class="section" id="sec_certificate">
+    <div class="grid">
+      <div class="card">
+        <h2>Certificate</h2>
+        <p class="sub">Apply and issue certificates.</p>
+
+        <h3 style="margin:6px 0 10px;font-size:14px">Apply</h3>
+        <div class="row">
+          <div><label>Student Register No *</label><input id="cap_studentId" placeholder="REG4001"></div>
+          <div><label>Course ID *</label><input id="cap_courseId" placeholder="CRS2002"></div>
+          <div><label>Applied On</label><input id="cap_appliedOn" type="date"></div>
+          <div><label>Remarks</label><input id="cap_remarks" placeholder="Optional"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" onclick="applyCertificate()">Apply</button>
+          <button class="btn ghost" onclick="openGet({module:'certificate',action:'get',studentId:val('cap_studentId')})">View Status</button>
+        </div>
+
+        <div id="cap_statusBox" class="status">Status: Waiting</div>
+
+        <hr style="border:none;border-top:1px solid var(--border);margin:14px 0">
+
+        <h3 style="margin:6px 0 10px;font-size:14px">Issue (Admin)</h3>
+        <div class="row">
+          <div><label>Application ID *</label><input id="cis_applicationId" placeholder="APPXXXXXXXX"></div>
+          <div><label>Reviewed By</label><input id="cis_reviewedBy" placeholder="ADMIN"></div>
+          <div><label>Issue Date</label><input id="cis_issueDate" type="date"></div>
+          <div><label>Certificate No (optional)</label><input id="cis_certificateNo" placeholder="SGM-2026-0001"></div>
+          <div style="grid-column:1/-1"><label>Remarks</label><input id="cis_remarks" placeholder="Optional"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" onclick="issueCertificate()">Issue</button>
+          <button class="btn ghost" onclick="resetIssue()">Reset</button>
+        </div>
+
+        <div id="cis_statusBox" class="status">Status: Waiting</div>
+      </div>
+
+      <div class="card">
+        <h2>Note</h2>
+        <p class="sub">Apply generates an Application ID. Issue generates Certificate No and enables verification.</p>
+        <div class="hint">
+          <span class="pill">Apply → Application ID</span>
+          <span class="pill">Issue → Certificate No</span>
+          <span class="pill">Verify → Public check</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERIFY -->
+  <div class="section" id="sec_verify">
+    <div class="grid">
+      <div class="card">
+        <h2>Certificate Verification</h2>
+        <p class="sub">Opens verification result in a new tab.</p>
+
+        <div class="row">
+          <div><label>Certificate No *</label><input id="ver_certificateNo" placeholder="SGM-2026-0001"></div>
+          <div><label>Security Code</label><input id="ver_token" placeholder="If provided"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" onclick="verifyCertificate()">Verify</button>
+          <button class="btn ghost" onclick="resetVerify()">Reset</button>
+        </div>
+
+        <div id="ver_statusBox" class="status">Status: Waiting</div>
+      </div>
+
+      <div class="card">
+        <h2>Tip</h2>
+        <p class="sub">Verification logs are stored securely in the system.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Hidden service URL (NOT displayed)
+  const API_BASE = "https://script.google.com/macros/s/AKfycbwAJJ8X8Wa3COmaPsZwLeUcL1Nwr0Mzv8SSKE4TXN2ssQztzh5KKIBLQzyNtyFrG4O_/exec";
+
+  function val(id){ return (document.getElementById(id)?.value || "").trim(); }
+
+  function setStatus(id, type, msg){
+    const el = document.getElementById(id);
+    el.className = "status" + (type ? (" " + type) : "");
+    el.textContent = msg;
+  }
+
+  // Most compatible with Apps Script: form-urlencoded
+  async function postForm(params, data){
+    const u = new URL(API_BASE);
+    Object.entries(params).forEach(([k,v]) => u.searchParams.set(k, v));
+    const body = new URLSearchParams();
+    Object.entries(data).forEach(([k,v]) => {
+      if (v !== undefined && v !== null) body.append(k, String(v));
+    });
+
+    await fetch(u.toString(), {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+      body: body.toString()
+    });
+    return true;
+  }
+
+  function openGet(params){
+    const u = new URL(API_BASE);
+    Object.entries(params).forEach(([k,v]) => {
+      if (v !== undefined && v !== null && String(v).length) u.searchParams.set(k, v);
+    });
+    window.open(u.toString(), "_blank");
+  }
+
+  // Tabs
+  document.getElementById("tabs").addEventListener("click", (e)=>{
+    const btn = e.target.closest(".tab");
+    if(!btn) return;
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+    document.getElementById(btn.dataset.target).classList.add("active");
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+
+  // Enquiry
+  async function saveEnquiry(){
+    const name = val("enq_name");
+    const phone = val("enq_phone");
+    const email = val("enq_email");
+    const courseId = val("enq_courseId");
+    const preferredMode = document.getElementById("enq_preferredMode").value;
+    const preferredTiming = document.getElementById("enq_preferredTiming").value;
+    const notes = val("enq_notes");
+
+    if(!name || !phone || !courseId){
+      return setStatus("enq_status","bad","Error: Name, Phone, Course ID are required.");
+    }
+
+    setStatus("enq_status","warn","Submitting...");
+    await postForm({module:"enquiry", action:"create"}, {
+      name, phone, email, courseId,
+      preferredMode, preferredTiming,
+      source: "Website",
+      counselor: "",
+      notes,
+      status: "New"
+    });
+    setStatus("enq_status","ok","Enquiry submitted ✅ We will contact you shortly.");
+  }
+
+  function openWhatsappLead(){
+    const msg =
+`Hello SGM Computer Education,
+New Student Enquiry:
+
+Name: ${val("enq_name") || "-"}
+Mobile: ${val("enq_phone") || "-"}
+Email: ${val("enq_email") || "-"}
+Course ID: ${val("enq_courseId") || "-"}
+
+Please guide the student with course details & fees.
+Thank you.`;
+    window.open("https://wa.me/919742266359?text=" + encodeURIComponent(msg), "_blank");
+  }
+
+  function resetEnquiry(){
+    ["enq_name","enq_phone","enq_email","enq_courseId","enq_notes"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("enq_preferredMode").value="";
+    document.getElementById("enq_preferredTiming").value="";
+    setStatus("enq_status","","Status: Waiting");
+  }
+
+  // Admission
+  async function saveAdmission(){
+    const enquiryId = val("adm_enquiryId");
+    const joinDate  = val("adm_joinDate");
+    const courseFee = val("adm_courseFee");
+    const discount  = val("adm_discount");
+    const finalFee  = val("adm_finalFee");
+    const paymentType = document.getElementById("adm_paymentType").value;
+    const createdBy = val("adm_createdBy") || "ADMIN";
+
+    if(!enquiryId || !courseFee){
+      return setStatus("adm_status","bad","Error: Enquiry ID and Course Fee are required.");
+    }
+
+    setStatus("adm_status","warn","Submitting...");
+    await postForm({module:"admission", action:"create"}, {
+      enquiryId,
+      joinDate,
+      courseFee,
+      discount,
+      finalFee,
+      paymentType,
+      createdBy,
+      status:"Active"
+    });
+    setStatus("adm_status","ok","Admission submitted ✅ Student registration will be created.");
+  }
+
+  function resetAdmission(){
+    ["adm_enquiryId","adm_enquiryId","adm_courseFee","adm_discount","adm_finalFee","adm_createdBy"].forEach(id=>{
+      const el = document.getElementById(id); if(el) el.value="";
+    });
+    document.getElementById("adm_joinDate").value="";
+    document.getElementById("adm_paymentType").value="Full";
+    setStatus("adm_status","","Status: Waiting");
+  }
+
+  // Receipt
+  async function saveReceipt(){
+    const studentId = val("rct_studentId");
+    const amountPaid = val("rct_amountPaid");
+    const paymentMode = document.getElementById("rct_paymentMode").value;
+    const txnRef = val("rct_txnRef");
+    const receivedBy = val("rct_receivedBy") || "ACCOUNTS";
+    const remarks = val("rct_remarks");
+
+    if(!studentId || !amountPaid){
+      return setStatus("rct_status","bad","Error: Student Register No and Amount Paid are required.");
+    }
+
+    setStatus("rct_status","warn","Submitting...");
+    await postForm({module:"receipt", action:"create"}, {
+      studentId,
+      amountPaid,
+      paymentMode,
+      txnRef,
+      receivedBy,
+      remarks
+    });
+    setStatus("rct_status","ok","Payment recorded ✅ Receipt saved.");
+  }
+
+  function resetReceipt(){
+    ["rct_studentId","rct_amountPaid","rct_txnRef","rct_receivedBy","rct_remarks"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("rct_paymentMode").value="Cash";
+    setStatus("rct_status","","Status: Waiting");
+  }
+
+  // Batch
+  async function createBatch(){
+    const courseId = val("bat_courseId");
+    const batchName = val("bat_batchName");
+    if(!courseId || !batchName) return setStatus("bat_status","bad","Error: Course ID and Batch Name required.");
+
+    setStatus("bat_status","warn","Submitting...");
+    await postForm({module:"batch", action:"create"}, {
+      courseId,
+      batchName,
+      startDate: val("bat_startDate"),
+      endDate: val("bat_endDate"),
+      timings: val("bat_timings"),
+      trainer: val("bat_trainer"),
+      status:"Active"
+    });
+    setStatus("bat_status","ok","Batch created ✅ You can now allocate students.");
+  }
+
+  async function allocateBatch(){
+    const studentId = val("alc_studentId");
+    const batchId = val("alc_batchId");
+    if(!studentId || !batchId) return setStatus("alc_status","bad","Error: Student Register No and Batch ID required.");
+
+    setStatus("alc_status","warn","Submitting...");
+    await postForm({module:"batch", action:"allocate"}, {
+      studentId,
+      batchId,
+      allocatedBy: val("alc_allocatedBy") || "ADMIN",
+      remarks: val("alc_remarks"),
+      status:"Active"
+    });
+    setStatus("alc_status","ok","Allocation saved ✅ Student assigned to batch.");
+  }
+
+  // Attendance
+  async function markAttendance(){
+    const studentId = val("att_studentId");
+    const batchId = val("att_batchId");
+    const sessionDate = val("att_sessionDate");
+    if(!studentId || !batchId || !sessionDate) return setStatus("att_statusBox","bad","Error: Student, Batch, Session Date required.");
+
+    setStatus("att_statusBox","warn","Submitting...");
+    await postForm({module:"attendance", action:"mark"}, {
+      studentId,
+      batchId,
+      sessionDate,
+      status: document.getElementById("att_status").value,
+      markedBy: val("att_markedBy") || "TRAINER",
+      remarks: val("att_remarks")
+    });
+    setStatus("att_statusBox","ok","Attendance saved ✅");
+  }
+
+  // Completion
+  async function markCompletion(){
+    const studentId = val("cmp_studentId");
+    const batchId = val("cmp_batchId");
+    const courseId = val("cmp_courseId");
+    if(!studentId || !batchId || !courseId) return setStatus("cmp_statusBox","bad","Error: Student, Batch, Course required.");
+
+    setStatus("cmp_statusBox","warn","Submitting...");
+    await postForm({module:"completion", action:"mark"}, {
+      studentId,
+      batchId,
+      courseId,
+      completedOn: val("cmp_completedOn"),
+      approvedBy: val("cmp_approvedBy") || "TRAINER",
+      remarks: val("cmp_remarks"),
+      status:"Completed"
+    });
+    setStatus("cmp_statusBox","ok","Completion updated ✅ Student is eligible for exam (subject to fee status).");
+  }
+
+  // Exam
+  async function createExam(){
+    const studentId = val("ex_studentId");
+    const courseId = val("ex_courseId");
+    const batchId = val("ex_batchId");
+    if(!studentId || !courseId || !batchId) return setStatus("ex_statusBox","bad","Error: Student, Course, Batch required.");
+
+    setStatus("ex_statusBox","warn","Submitting...");
+    await postForm({module:"exam", action:"create"}, {
+      studentId, courseId, batchId,
+      examDate: val("ex_examDate"),
+      markedBy: val("ex_markedBy") || "EXAM",
+      remarks: val("ex_remarks")
+    });
+    setStatus("ex_statusBox","ok","Exam created ✅ You can update the result after evaluation.");
+  }
+
+  async function updateExam(){
+    const examId = val("exu_examId");
+    if(!examId) return setStatus("exu_statusBox","bad","Error: Exam ID required.");
+
+    setStatus("exu_statusBox","warn","Submitting...");
+    await postForm({module:"exam", action:"update"}, {
+      examId,
+      score: val("exu_score"),
+      result: document.getElementById("exu_result").value,
+      markedBy: val("exu_markedBy") || "EXAM",
+      remarks: val("exu_remarks")
+    });
+    setStatus("exu_statusBox","ok","Result updated ✅");
+  }
+
+  function resetExamUpdate(){
+    ["exu_examId","exu_score","exu_markedBy","exu_remarks"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("exu_result").value="";
+    setStatus("exu_statusBox","","Status: Waiting");
+  }
+
+  // Certificate
+  async function applyCertificate(){
+    const studentId = val("cap_studentId");
+    const courseId = val("cap_courseId");
+    if(!studentId || !courseId) return setStatus("cap_statusBox","bad","Error: Student and Course required.");
+
+    setStatus("cap_statusBox","warn","Submitting...");
+    await postForm({module:"certificate", action:"apply"}, {
+      studentId,
+      courseId,
+      appliedOn: val("cap_appliedOn"),
+      remarks: val("cap_remarks"),
+      status:"Applied"
+    });
+
+    setStatus(
+      "cap_statusBox",
+      "ok",
+      "Application submitted ✅ Next step: Use “View Status” to confirm, then ISSUE the certificate using the Application ID (Admin only)."
+    );
+  }
+
+  async function issueCertificate(){
+    const applicationId = val("cis_applicationId");
+    if(!applicationId) return setStatus("cis_statusBox","bad","Error: Application ID required.");
+
+    setStatus("cis_statusBox","warn","Submitting...");
+    await postForm({module:"certificate", action:"issue"}, {
+      applicationId,
+      reviewedBy: val("cis_reviewedBy") || "ADMIN",
+      issueDate: val("cis_issueDate"),
+      certificateNo: val("cis_certificateNo"),
+      remarks: val("cis_remarks")
+    });
+    setStatus("cis_statusBox","ok","Certificate issued ✅ You can now verify using the Certificate No.");
+  }
+
+  function resetIssue(){
+    ["cis_applicationId","cis_reviewedBy","cis_issueDate","cis_certificateNo","cis_remarks"].forEach(id=>document.getElementById(id).value="");
+    setStatus("cis_statusBox","","Status: Waiting");
+  }
+
+  // Verify
+  function verifyCertificate(){
+    const certificateNo = val("ver_certificateNo");
+    if(!certificateNo) return setStatus("ver_statusBox","bad","Error: Certificate No required.");
+
+    setStatus("ver_statusBox","warn","Opening...");
+    openGet({
+      module:"verify",
+      action:"certificate",
+      certificateNo,
+      token: val("ver_token"),
+      source:"Website"
+    });
+    setStatus("ver_statusBox","ok","Opened ✅ Result displayed in a new tab.");
+  }
+
+  function resetVerify(){
+    ["ver_certificateNo","ver_token"].forEach(id=>document.getElementById(id).value="");
+    setStatus("ver_statusBox","","Status: Waiting");
+  }
+</script>
+</body>
+</html>
