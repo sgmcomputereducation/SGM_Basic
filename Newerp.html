@@ -2,369 +2,342 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>SGM ERP • Single File</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SGM ERP • Corporate</title>
+  <meta name="description" content="SGM Computer Education ERP"/>
+  <link rel="icon" href="https://www.sgmcomputereducation.com/favicon.ico">
   <style>
-    :root{--b:#0b3d91;--bg:#f6f8fc;--card:#fff;--mut:#64748b;--ok:#16a34a;--bad:#dc2626}
-    *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
-    body{margin:0;background:var(--bg);color:#0f172a}
-    header{background:linear-gradient(90deg,#0b3d91,#1d4ed8);color:#fff;padding:14px 18px;display:flex;gap:14px;align-items:center}
-    header .logo{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.15);display:grid;place-items:center;font-weight:900}
-    header .t{line-height:1.1}
-    header .t b{display:block;font-size:16px}
-    header .t small{opacity:.9}
-    .wrap{display:grid;grid-template-columns:280px 1fr;gap:14px;padding:14px;max-width:1400px;margin:0 auto}
-    aside,main{background:var(--card);border-radius:16px;box-shadow:0 10px 30px rgba(2,6,23,.08)}
-    aside{padding:12px}
-    .nav h4{margin:12px 10px 6px;font-size:12px;color:var(--mut);letter-spacing:.12em}
-    .btn{width:100%;padding:10px 12px;border:1px solid #e2e8f0;background:#f8fafc;border-radius:12px;cursor:pointer;text-align:left;margin:6px 0}
-    .btn.active{border-color:#93c5fd;background:#eff6ff}
-    main{padding:14px}
-    .topbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap}
-    .pill{padding:6px 10px;border-radius:999px;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;font-size:12px}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .card{background:var(--card);border:1px solid #e2e8f0;border-radius:16px;padding:12px}
-    .card h3{margin:0 0 6px;font-size:16px}
-    .mut{color:var(--mut);font-size:12px}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
-    label{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
-    input,select,textarea{width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:12px;background:#fff}
-    textarea{min-height:84px;resize:vertical}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .primary{background:#1d4ed8;color:#fff;border:0}
-    .danger{background:#dc2626;color:#fff;border:0}
-    .ghost{background:#fff;border:1px solid #e2e8f0}
-    table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
-    th,td{border-bottom:1px solid #e2e8f0;padding:8px;text-align:left;vertical-align:top}
-    tr:hover{background:#f8fafc;cursor:pointer}
-    .toast{position:fixed;right:16px;bottom:16px;background:#111827;color:#fff;padding:12px 14px;border-radius:12px;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.25);display:none}
-    .toast.show{display:block}
-    .err{background:#7f1d1d}
+    :root{
+      --bg:#0b1220; --card:#0f1b33; --muted:#94a3b8; --text:#e5e7eb;
+      --line:rgba(148,163,184,.18); --brand:#60a5fa; --ok:#22c55e; --bad:#ef4444;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius:16px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    body{margin:0;background:linear-gradient(120deg,#050914,#0b1220);color:var(--text);}
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+    .topinner{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:14px 18px;max-width:1200px;margin:0 auto;}
+    .brand{display:flex;gap:12px;align-items:center;}
+    .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#60a5fa,#a78bfa);box-shadow:var(--shadow);}
+    .brand h1{font-size:14px;margin:0;letter-spacing:.8px;}
+    .brand .sub{font-size:12px;color:var(--muted);margin-top:2px}
+    .right{display:flex;gap:10px;align-items:center;}
+    .pill{border:1px solid var(--line);background:rgba(255,255,255,.04);padding:8px 10px;border-radius:999px;font-size:12px;color:var(--muted);}
+    .wrap{max-width:1200px;margin:18px auto;padding:0 18px;display:grid;grid-template-columns:260px 1fr;gap:16px;}
+    .sidebar,.main{border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.03);box-shadow:var(--shadow);}
+    .sidebar{padding:12px;}
+    .navbtn{width:100%;text-align:left;border:1px solid transparent;background:transparent;color:var(--text);
+      padding:10px 10px;border-radius:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+    .navbtn:hover{background:rgba(255,255,255,.05);border-color:var(--line);}
+    .navbtn.active{background:rgba(96,165,250,.12);border-color:rgba(96,165,250,.35);}
+    .main{padding:14px;}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    .card{border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.03);padding:12px;}
+    .card .k{font-size:12px;color:var(--muted)}
+    .card .v{font-size:24px;margin-top:6px}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0;}
+    input,select,textarea{
+      background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--text);
+      padding:10px 10px;border-radius:12px;outline:none;min-width:220px;
+    }
+    textarea{min-height:90px;min-width:min(720px,100%);}
+    .btn{
+      border:1px solid rgba(96,165,250,.45);background:rgba(96,165,250,.18);color:var(--text);
+      padding:10px 12px;border-radius:12px;cursor:pointer;
+    }
+    .btn:hover{background:rgba(96,165,250,.25);}
+    .btn.danger{border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.16);}
+    .muted{color:var(--muted);font-size:12px;}
+    .hr{height:1px;background:var(--line);margin:12px 0;}
+    .tbl{width:100%;border-collapse:separate;border-spacing:0;margin-top:8px;overflow:hidden;border-radius:14px;border:1px solid var(--line);}
+    .tbl th,.tbl td{padding:10px;border-bottom:1px solid var(--line);font-size:13px;}
+    .tbl th{background:rgba(255,255,255,.04);text-align:left;color:var(--muted);font-weight:600;}
+    .tbl tr:last-child td{border-bottom:none;}
+    .status{padding:3px 8px;border-radius:999px;border:1px solid var(--line);font-size:12px;}
+    .ok{color:var(--ok);}
+    .bad{color:var(--bad);}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    @media (max-width:980px){.wrap{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-<header>
-  <div class="logo">🎓</div>
-  <div class="t">
-    <b>SGM COMPUTER EDUCATION</b>
-    <small>Registered Under MSME | ISO 9001-2015 Certified Center • 9742266359 • info@sgmcomputereducation.com</small>
+  <div class="topbar">
+    <div class="topinner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>SGM COMPUTER EDUCATION</h1>
+          <div class="sub">Registered Under MSME | ISO 9001-2015 Certified Center • 9742266359 • info@sgmcomputereducation.com • sgmcomputereducation.com</div>
+        </div>
+      </div>
+      <div class="right">
+        <span class="pill" id="apiStatus">API: checking…</span>
+        <span class="pill" id="roleBadge">Role: Admin</span>
+      </div>
+    </div>
   </div>
-</header>
 
-<div class="wrap">
-  <aside>
-    <div class="pill" id="apiPill">API: Connecting…</div>
-    <div class="nav">
-      <h4>CORE</h4>
-      <button class="btn active" data-mod="enquiry" data-sheet="Enquiries">Enquiry</button>
-      <button class="btn" data-mod="student" data-sheet="Students">Student</button>
-      <button class="btn" data-mod="admission" data-sheet="Admissions">Admission</button>
+  <div class="wrap">
+    <div class="sidebar" id="sidebar"></div>
 
-      <h4>FEES</h4>
-      <button class="btn" data-mod="receipt" data-sheet="Receipts">Receipt</button>
-      <button class="btn" data-mod="emi" data-sheet="EMI_Plan">EMI / Fee Balance</button>
+    <div class="main">
+      <div id="pageTitle" style="font-size:18px;font-weight:700;">Dashboard</div>
+      <div class="muted" id="pageHint">Corporate ERP • Schema-driven modules • Auto PDF</div>
 
-      <h4>TRAINING</h4>
-      <button class="btn" data-mod="completion" data-sheet="CourseCompletion">Course Completion</button>
-      <button class="btn" data-mod="exam" data-sheet="Exams">Exam</button>
+      <div class="hr"></div>
 
-      <h4>CERTIFICATE</h4>
-      <button class="btn" data-mod="certificate" data-sheet="Certificates_Issued">Certificate Issued</button>
-      <button class="btn" data-mod="verify" data-sheet="Certificates_Issued">Verify Certificate</button>
-
-      <h4>TOOLS</h4>
-      <button class="btn" id="btnGlobal">Global Search</button>
+      <div id="page"></div>
     </div>
-  </aside>
-
-  <main>
-    <div class="topbar">
-      <div>
-        <div style="font-size:18px;font-weight:800" id="title">Enquiry</div>
-        <div class="mut" id="subtitle">Auto-forms from Schema • JSONP compatible</div>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-        <input id="q" placeholder="Search in module (q)..." style="width:280px"/>
-        <button class="btn primary" style="width:auto" id="btnRefresh">Refresh</button>
-        <button class="btn ghost" style="width:auto" id="btnNew">New</button>
-        <button class="btn primary" style="width:auto" id="btnSave">Save</button>
-        <button class="btn ghost" style="width:auto" id="btnPdf">PDF</button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="card">
-        <h3 id="formTitle">Form</h3>
-        <div class="mut" id="formHint">Loads fields from schema (sheet headers)</div>
-        <div id="form" class="grid"></div>
-      </div>
-
-      <div class="card">
-        <h3>Results</h3>
-        <div class="mut">Click a row to load into form</div>
-        <div id="results"></div>
-      </div>
-    </div>
-  </main>
-</div>
-
-<div class="toast" id="toast"></div>
+  </div>
 
 <script>
-  // ✅ YOUR WEB APP URL
-  const BASE = "https://script.google.com/macros/s/AKfycbxy8Hsg63xBnyd1l43YPfRHaUiS-KwoMvocD3v33ALZh6un8im797QOqxh5CMvwNs4f/exec";
+/** =========================
+ * CONFIG (EDIT THIS)
+ * ========================= */
+// Your Apps Script Web App EXEC URL:
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxy8Hsg63xBnyd1l43YPfRHaUiS-KwoMvocD3v33ALZh6un8im797QOqxh5CMvwNs4f/exec";
 
-  // Module map (sheet drives schema)
-  const MODULES = {
-    enquiry:    {sheet:"Enquiries",            pk:"enquiryId", create:"create", update:"update", list:"list", get:"get", search:"search", pdf:"pdf"},
-    student:    {sheet:"Students",             pk:"studentId", create:"create", update:"update", list:"list", get:"get", search:"search", pdf:"pdf"},
-    admission:  {sheet:"Admissions",           pk:"admissionId", create:"create", update:"update", list:"list", get:"get", search:"search", pdf:"pdf"},
-    receipt:    {sheet:"Receipts",             pk:"receiptId", create:"create", update:"update", list:"list", get:"get", search:"search", pdf:"pdf"},
-    emi:        {sheet:"EMI_Plan",             pk:"installmentNo", create:"create", update:"update", list:"list", get:"get", search:"search"},
-    completion: {sheet:"CourseCompletion",     pk:"completionId", create:"mark", update:"update", list:"list", get:"get", search:"search", pdf:"pdf"},
-    exam:       {sheet:"Exams",                pk:"examId", create:"create", update:"update", list:"list", get:"get", search:"search", pdf:"pdf"},
-    certificate:{sheet:"Certificates_Issued",  pk:"certificateId", create:"issue", update:"updateIssued", list:"list", get:"get", search:"search", pdf:"pdf"},
-    verify:     {sheet:"Certificates_Issued",  pk:"verifyToken", create:null, update:null, list:null, get:"certificate", search:null, pdf:null}
+// If hosting on GitHub: set "jsonp" AND add the json_() backend change shown above.
+const API_MODE = "same-origin"; // "same-origin" | "jsonp"
+
+/** =========================
+ * API CLIENT
+ * ========================= */
+function qs(params){ return Object.keys(params).map(k=>encodeURIComponent(k)+"="+encodeURIComponent(params[k]??"")).join("&"); }
+
+function apiGet(params){
+  if(API_MODE === "jsonp") return apiJsonp(params);
+  // same-origin / normal JSON
+  const url = WEB_APP_URL + "?" + qs(params);
+  return fetch(url, { method:"GET", redirect:"follow" }).then(r => r.json());
+}
+
+function apiPost(params, bodyObj){
+  // Apps Script accepts POST; if you only implemented GET, keep using GET.
+  const url = WEB_APP_URL + "?" + qs(params);
+  return fetch(url, {
+    method:"POST",
+    headers: { "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8" },
+    body: qs(bodyObj || {})
+  }).then(r => r.json());
+}
+
+function apiJsonp(params){
+  return new Promise((resolve, reject)=>{
+    const cb = "cb_" + Math.random().toString(36).slice(2);
+    const timeout = setTimeout(()=>{ cleanup(); reject(new Error("JSONP timeout")); }, 15000);
+    function cleanup(){
+      clearTimeout(timeout);
+      delete window[cb];
+      script.remove();
+    }
+    window[cb] = (data)=>{ cleanup(); resolve(data); };
+    const script = document.createElement("script");
+    script.src = WEB_APP_URL + "?" + qs({...params, callback: cb});
+    script.onerror = ()=>{ cleanup(); reject(new Error("JSONP load error")); };
+    document.head.appendChild(script);
+  });
+}
+
+/** =========================
+ * UI (MODULES)
+ * ========================= */
+const state = {
+  schema: null,
+  active: "dashboard",
+  moduleList: [
+    {id:"dashboard", label:"Dashboard"},
+    {id:"enquiry", label:"Enquiry Form"},
+    {id:"admission", label:"Admission Form"},
+    {id:"receipt", label:"Receipt Form"},
+    {id:"batch", label:"Batch"},
+    {id:"attendance", label:"Attendance"},
+    {id:"exam", label:"Exam"},
+    {id:"certificate", label:"Certificate"},
+    {id:"verify", label:"Verify Certificate"}
+  ]
+};
+
+function el(html){ const d=document.createElement("div"); d.innerHTML=html.trim(); return d.firstChild; }
+function setActive(id){
+  state.active = id;
+  renderSidebar();
+  renderPage();
+}
+
+function renderSidebar(){
+  const sb = document.getElementById("sidebar");
+  sb.innerHTML = "";
+  state.moduleList.forEach(m=>{
+    const b = el(`<button class="navbtn ${m.id===state.active?"active":""}">
+      <span>${m.label}</span><span style="color:var(--muted)">›</span>
+    </button>`);
+    b.onclick=()=>setActive(m.id);
+    sb.appendChild(b);
+  });
+}
+
+function card(k,v){
+  return `<div class="card"><div class="k">${k}</div><div class="v">${v}</div></div>`;
+}
+
+async function renderPage(){
+  const page = document.getElementById("page");
+  const title = document.getElementById("pageTitle");
+  const hint = document.getElementById("pageHint");
+
+  if(state.active==="dashboard"){
+    title.textContent="Dashboard";
+    hint.textContent="Quick overview (live from backend)";
+    page.innerHTML = `<div class="grid" id="dashCards">${card("Total Enquiries","—")}${card("Admissions","—")}${card("Today Collection","—")}</div>
+      <div class="hr"></div>
+      <div class="muted">Tip: If this stays blank, your API is not reachable or CORS is blocking GitHub calls.</div>`;
+    try{
+      const r = await apiGet({module:"dashboard", action:"summary"});
+      // If you don’t have dashboard module, it’s OK — shows error
+      if(r && r.ok && r.data){
+        const c = document.getElementById("dashCards");
+        c.innerHTML =
+          card("Total Enquiries", r.data.totalEnquiries ?? 0) +
+          card("Admissions", r.data.totalAdmissions ?? 0) +
+          card("Today Collection", r.data.todayCollection ?? 0);
+      }
+    }catch(e){}
+    return;
+  }
+
+  if(state.active==="verify"){
+    title.textContent="Verify Certificate";
+    hint.textContent="Public verification by Certificate ID / Serial / Token";
+    page.innerHTML = `
+      <div class="row">
+        <input id="vInput" placeholder="CERT00001 or SGM-CERT-... or token">
+        <button class="btn" id="vBtn">Verify</button>
+      </div>
+      <div id="vOut" class="card muted">Enter a certificate value and click Verify.</div>`;
+    document.getElementById("vBtn").onclick = async ()=>{
+      const val = document.getElementById("vInput").value.trim();
+      if(!val) return;
+      const out = document.getElementById("vOut");
+      out.textContent="Checking…";
+      try{
+        const r = await apiGet({module:"verify", action:"certificate", certificateId: val});
+        out.innerHTML = `<div style="font-weight:700;margin-bottom:6px">${r.ok?"✅ Verified":"❌ Not Found"}</div>
+          <pre style="white-space:pre-wrap;margin:0;color:var(--muted)">${JSON.stringify(r,null,2)}</pre>`;
+      }catch(e){
+        out.innerHTML = `<div class="bad" style="font-weight:700">Error</div><div class="muted">${e.message}</div>`;
+      }
+    };
+    return;
+  }
+
+  // Generic module form (basic template)
+  title.textContent = state.moduleList.find(x=>x.id===state.active)?.label || "Module";
+  hint.textContent = "Schema-driven save + auto-PDF (requires backend support)";
+  page.innerHTML = `
+    <div class="two">
+      <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Create / Update</div>
+        <div class="muted">This template sends fields as key=value pairs. Your backend must map & save.</div>
+        <div class="hr"></div>
+        <div class="row">
+          <input id="f1" placeholder="Student / Enquiry Name">
+          <input id="f2" placeholder="Phone">
+        </div>
+        <div class="row">
+          <textarea id="f3" placeholder="Notes"></textarea>
+        </div>
+        <div class="row">
+          <button class="btn" id="saveBtn">Save</button>
+          <button class="btn danger" id="resetBtn">Reset</button>
+          <span class="muted" id="saveMsg"></span>
+        </div>
+        <div class="hr"></div>
+        <div class="muted">After save, if backend returns <b>pdfUrl</b>, it will open automatically.</div>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Recent Records</div>
+        <div class="muted">Loads list view if your backend supports action=list</div>
+        <table class="tbl">
+          <thead><tr><th>ID</th><th>Name</th><th>Status</th></tr></thead>
+          <tbody id="listBody"><tr><td colspan="3" class="muted">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>`;
+
+  document.getElementById("resetBtn").onclick=()=>{
+    ["f1","f2","f3"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("saveMsg").textContent="";
   };
 
-  let current = "enquiry";
-  let schemaCache = {};
-  let currentRow = null; // loaded row object
-
-  // ---------- JSONP ----------
-  function jsonp(url){
-    return new Promise((resolve, reject)=>{
-      const cb = "cb_" + Math.random().toString(36).slice(2);
-      const s = document.createElement("script");
-      window[cb] = (data)=>{ cleanup(); resolve(data); };
-      function cleanup(){
-        try{ delete window[cb]; }catch(e){ window[cb]=undefined; }
-        if (s && s.parentNode) s.parentNode.removeChild(s);
-      }
-      s.onerror = ()=>{ cleanup(); reject(new Error("JSONP network error")); };
-      s.src = url + (url.includes("?") ? "&" : "?") + "callback=" + cb;
-      document.body.appendChild(s);
-    });
-  }
-
-  function toast(msg, isErr=false){
-    const t=document.getElementById("toast");
-    t.textContent=msg;
-    t.className="toast show"+(isErr?" err":"");
-    setTimeout(()=>t.className="toast"+(isErr?" err":""), 3500);
-  }
-
-  function setApi(ok, msg){
-    const p=document.getElementById("apiPill");
-    p.textContent = msg;
-    p.style.background = ok ? "#ecfdf5" : "#fef2f2";
-    p.style.borderColor = ok ? "#bbf7d0" : "#fecaca";
-    p.style.color = ok ? "#166534" : "#991b1b";
-  }
-
-  // ---------- Schema ----------
-  async function loadSchema(sheet){
-    if (schemaCache[sheet]) return schemaCache[sheet];
-    const url = `${BASE}?module=schema&action=sheet&sheet=${encodeURIComponent(sheet)}`;
-    const res = await jsonp(url);
-    if (!res || !res.ok) throw new Error(res && res.error ? res.error : "Schema error");
-    schemaCache[sheet]=res;
-    return res;
-  }
-
-  // ---------- UI render ----------
-  function renderForm(headers){
-    const el=document.getElementById("form");
-    el.innerHTML="";
-    headers.forEach(h=>{
-      if (!h) return;
-      const wrap=document.createElement("div");
-      const lab=document.createElement("label");
-      lab.textContent=h;
-      const inp=document.createElement(h.toLowerCase().includes("remarks")||h.toLowerCase().includes("notes")||h.toLowerCase().includes("address") ? "textarea" : "input");
-      inp.id="f_"+h;
-      inp.placeholder=h;
-      wrap.appendChild(lab);
-      wrap.appendChild(inp);
-      el.appendChild(wrap);
-    });
-  }
-
-  function fillForm(row){
-    currentRow = row || null;
-    const headers = Object.keys(row||{});
-    headers.forEach(h=>{
-      const inp=document.getElementById("f_"+h);
-      if (inp) inp.value = row[h] == null ? "" : row[h];
-    });
-  }
-
-  function readForm(headers){
-    const obj={};
-    headers.forEach(h=>{
-      const inp=document.getElementById("f_"+h);
-      if (!inp) return;
-      obj[h] = inp.value;
-    });
-    return obj;
-  }
-
-  function renderTable(rows){
-    if (!rows || !rows.length) return `<div class="mut" style="margin-top:10px">No rows found.</div>`;
-    const cols = Object.keys(rows[0]).slice(0,8);
-    let html = `<table><thead><tr>${cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>`;
-    rows.forEach((r,idx)=>{
-      html += `<tr data-i="${idx}">${cols.map(c=>`<td>${(r[c]??"")}</td>`).join("")}</tr>`;
-    });
-    html += `</tbody></table>`;
-    return html;
-  }
-
-  // ---------- Module actions ----------
-  async function refresh(){
-    const m = MODULES[current];
-    const q = document.getElementById("q").value.trim();
-    let url;
-
-    if (current === "verify"){
-      document.getElementById("results").innerHTML = `<div class="mut">Enter verifyToken / certificateId / certificateSerial in the form and click Save (Verify).</div>`;
-      return;
-    }
-
-    if (q && m.search) url = `${BASE}?module=${current}&action=search&q=${encodeURIComponent(q)}`;
-    else url = `${BASE}?module=${current}&action=${m.list}`;
-
-    const res = await jsonp(url);
-    if (!res.ok) throw new Error(res.error || "List/Search failed");
-    const rows = res.data || [];
-    document.getElementById("results").innerHTML = renderTable(rows);
-
-    // click row load
-    document.querySelectorAll("#results tr[data-i]").forEach(tr=>{
-      tr.addEventListener("click", ()=>{
-        const idx = Number(tr.getAttribute("data-i"));
-        fillForm(rows[idx]);
-      });
-    });
-  }
-
-  async function save(){
-    const m = MODULES[current];
-    const sheet = m.sheet;
-    const schema = await loadSchema(sheet);
-    const headers = schema.headers || [];
-    const data = readForm(headers);
-
-    if (current === "verify"){
-      // Verify uses GET only
-      const token = (data.verifyToken || "").trim();
-      const cid = (data.certificateId || "").trim();
-      const serial = (data.certificateSerial || "").trim();
-      if (!token && !cid && !serial){ toast("Enter verifyToken OR certificateId OR certificateSerial", true); return; }
-      const url = `${BASE}?module=verify&action=certificate`
-        + (token?`&verifyToken=${encodeURIComponent(token)}`:"")
-        + (cid?`&certificateId=${encodeURIComponent(cid)}`:"")
-        + (serial?`&certificateSerial=${encodeURIComponent(serial)}`:"");
-      const res = await jsonp(url);
-      if (!res.ok) throw new Error(res.error || "Verify failed");
-      toast("Verification: " + res.resultStatus);
-      // show response in results box
-      document.getElementById("results").innerHTML = `<pre style="white-space:pre-wrap">${JSON.stringify(res,null,2)}</pre>`;
-      return;
-    }
-
-    // Decide create vs update by PK presence
-    const pk = m.pk;
-    const hasPk = String(data[pk]||"").trim().length > 0;
-
-    const action = hasPk ? (m.update || "update") : (m.create || "create");
-
-    // GitHub Pages JSONP: send as GET query
-    // NOTE: this requires backend to allow GET for the action OR you must use Apps Script UI (?ui=1).
-    const params = new URLSearchParams();
-    params.set("module", current);
-    params.set("action", action);
-    Object.keys(data).forEach(k=>{
-      if (data[k] != null && String(data[k]).trim() !== "") params.set(k, data[k]);
-    });
-
-    const res = await jsonp(`${BASE}?${params.toString()}`);
-    if (!res.ok) throw new Error(res.error || res.message || "Save failed");
-    toast("Saved OK");
-    await refresh();
-  }
-
-  async function pdf(){
-    const m = MODULES[current];
-    if (!m.pdf){ toast("PDF not available for this module", true); return; }
-    const schema = await loadSchema(m.sheet);
-    const headers = schema.headers || [];
-    const data = readForm(headers);
-    const pk = m.pk;
-    const id = (data[pk] || "").trim();
-    if (!id){ toast("Enter " + pk + " then click PDF", true); return; }
-
-    // Most modules support ?id= or specific key; use both
-    const url = `${BASE}?module=${current}&action=pdf&id=${encodeURIComponent(id)}&${encodeURIComponent(pk)}=${encodeURIComponent(id)}`;
-    const res = await jsonp(url);
-    if (!res.ok) throw new Error(res.error || "PDF failed");
-    const link = (res.pdf && (res.pdf.pdfUrl || res.pdf.url)) || "";
-    if (link) window.open(link, "_blank");
-    else toast("PDF generated but URL not returned", true);
-  }
-
-  async function switchModule(mod){
-    current = mod;
-    document.querySelectorAll(".btn[data-mod]").forEach(b=>b.classList.toggle("active", b.dataset.mod===mod));
-    document.getElementById("title").textContent = mod.toUpperCase();
-    document.getElementById("q").value = "";
-    currentRow=null;
-
-    const m = MODULES[current];
-    try{
-      const schema = await loadSchema(m.sheet);
-      renderForm(schema.headers || []);
-      fillForm({});
-      await refresh();
-    }catch(err){
-      toast("API Error: " + err.message, true);
-      setApi(false, "API: ERROR");
-    }
-  }
-
-  // ---------- init ----------
-  (async function init(){
-    try{
-      // quick backend check
-      const res = await jsonp(`${BASE}?module=schema&action=listSheets`);
-      if (!res.ok) throw new Error(res.error||"Schema not reachable");
-      setApi(true, "API: JSONP OK");
-    }catch(err){
-      setApi(false, "API: JSONP ERROR");
-      toast("Could not load schema. Check deployment + DB_SPREADSHEET_ID. Error: " + err.message, true);
-    }
-
-    document.querySelectorAll(".btn[data-mod]").forEach(b=>{
-      b.addEventListener("click", ()=>switchModule(b.dataset.mod));
-    });
-
-    document.getElementById("btnRefresh").onclick = ()=>refresh().catch(e=>toast("Refresh failed: "+e.message,true));
-    document.getElementById("btnNew").onclick = ()=>{ fillForm({}); toast("New form"); };
-    document.getElementById("btnSave").onclick = ()=>save().catch(e=>toast("Save failed: "+e.message,true));
-    document.getElementById("btnPdf").onclick = ()=>pdf().catch(e=>toast("PDF failed: "+e.message,true));
-
-    document.getElementById("btnGlobal").onclick = async ()=>{
-      const q = prompt("Global search query:");
-      if (!q) return;
-      try{
-        const res = await jsonp(`${BASE}?module=search&action=global&q=${encodeURIComponent(q)}&limit=50`);
-        document.getElementById("results").innerHTML = `<pre style="white-space:pre-wrap">${JSON.stringify(res,null,2)}</pre>`;
-      }catch(e){ toast("Global search failed: "+e.message,true); }
+  document.getElementById("saveBtn").onclick = async ()=>{
+    const saveMsg = document.getElementById("saveMsg");
+    saveMsg.textContent="Saving…";
+    const payload = {
+      name: document.getElementById("f1").value.trim(),
+      phone: document.getElementById("f2").value.trim(),
+      notes: document.getElementById("f3").value.trim()
     };
+    try{
+      // Adjust these params to match your backend router
+      const r = await apiPost({module: state.active, action:"save"}, payload);
+      if(!r || !r.ok) throw new Error(r?.error || "Save failed");
 
-    // load first module
-    switchModule("enquiry");
-  })();
+      saveMsg.textContent = "Saved ✅";
+
+      const pdfUrl = r.pdfUrl || r.data?.pdfUrl;
+      if(pdfUrl) window.open(pdfUrl, "_blank");
+
+      await loadListForActive();
+    }catch(e){
+      saveMsg.textContent = "Error: " + e.message;
+    }
+  };
+
+  await loadListForActive();
+}
+
+async function loadListForActive(){
+  const body = document.getElementById("listBody");
+  if(!body) return;
+  try{
+    const r = await apiGet({module: state.active, action:"list", limit: 10});
+    if(!r || !r.ok) { body.innerHTML = `<tr><td colspan="3" class="muted">${r?.error || "List not available"}</td></tr>`; return; }
+    const rows = r.data || r.rows || [];
+    if(!rows.length){ body.innerHTML = `<tr><td colspan="3" class="muted">No records</td></tr>`; return; }
+    body.innerHTML = rows.slice(0,10).map(x=>`
+      <tr>
+        <td>${escapeHtml(x.id || x.enquiryId || x.admissionId || x.receiptId || x.certificateId || "—")}</td>
+        <td>${escapeHtml(x.name || x.studentName || x.enquiryName || "—")}</td>
+        <td><span class="status ${String(x.status||"").toLowerCase().includes("paid")?"ok":"muted"}">${escapeHtml(x.status||"—")}</span></td>
+      </tr>`).join("");
+  }catch(e){
+    body.innerHTML = `<tr><td colspan="3" class="muted">List error: ${escapeHtml(e.message)}</td></tr>`;
+  }
+}
+
+function escapeHtml(s){
+  return String(s??"").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+/** =========================
+ * BOOT
+ * ========================= */
+(async function boot(){
+  renderSidebar();
+
+  // Health check
+  try{
+    const r = await apiGet({module:"health", action:"ping"});
+    document.getElementById("apiStatus").textContent = "API: online";
+  }catch(e){
+    document.getElementById("apiStatus").textContent = "API: error";
+    document.getElementById("apiStatus").style.borderColor = "rgba(239,68,68,.4)";
+  }
+
+  renderPage();
+})();
 </script>
 </body>
 </html>
