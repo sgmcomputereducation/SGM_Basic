@@ -1,0 +1,1780 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SGM Computer Education • ERP</title>
+  <meta name="description" content="SGM Computer Education ERP (Schema-driven) — Enquiry, Student, Admission, Receipt, EMI, Batch, Attendance, Exam, Completion, Certificate, Verify" />
+  <link rel="icon" href="https://sgmcomputereducation.com/favicon.ico">
+
+  <!-- Optional icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#eef3fb;
+      --panel:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --brand1:#0b3d91;
+      --brand2:#1d4ed8;
+      --good:#16a34a;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --shadow:0 10px 30px rgba(2,6,23,.10);
+      --shadow2:0 6px 18px rgba(2,6,23,.08);
+      --radius:18px;
+      --radius2:14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    [data-theme="dark"]{
+      --bg:#0b1220;
+      --panel:#0f172a;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --border:#1f2937;
+      --shadow:0 12px 32px rgba(0,0,0,.35);
+      --shadow2:0 8px 20px rgba(0,0,0,.30);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(29,78,216,.15), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(11,61,145,.12), transparent 60%),
+        var(--bg);
+      color:var(--text);
+    }
+
+    /* Top header */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background:linear-gradient(90deg, var(--brand1), var(--brand2));
+      color:#fff;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      box-shadow:var(--shadow2);
+    }
+    .brand-badge{
+      width:42px; height:42px; border-radius:14px;
+      background:rgba(255,255,255,.15);
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.20);
+      flex:0 0 auto;
+    }
+    .brand-title{
+      display:flex; flex-direction:column;
+      line-height:1.1;
+      gap:2px;
+    }
+    .brand-title .name{font-weight:800; letter-spacing:.2px}
+    .brand-title .sub{font-size:12px; opacity:.92}
+    .topbar .spacer{flex:1}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.20);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .pill a{color:#fff; text-decoration:none; opacity:.95}
+    .pill a:hover{opacity:1; text-decoration:underline}
+
+    /* Layout */
+    .wrap{
+      padding:16px;
+      display:grid;
+      grid-template-columns: 310px 1fr;
+      gap:16px;
+      min-height:calc(100vh - 72px);
+    }
+    @media (max-width: 1100px){
+      .wrap{grid-template-columns:1fr}
+      .sidebar{position:relative}
+    }
+
+    /* Sidebar */
+    .sidebar{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow2);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:640px;
+    }
+    .sidebar-head{
+      padding:14px 14px 12px;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(148,163,184,.10), transparent);
+    }
+    .sidebar-head h3{
+      margin:0; font-size:14px; letter-spacing:.2px;
+    }
+    .sidebar-head .tiny{
+      margin-top:6px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.35;
+    }
+    .roleline{
+      margin-top:10px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+    }
+    .roleBadge{
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      background:rgba(34,197,94,.12);
+      color:var(--good);
+      border:1px solid rgba(34,197,94,.25);
+    }
+    .nav{
+      padding:10px;
+      overflow:auto;
+      flex:1;
+    }
+    .nav h4{
+      margin:12px 10px 8px;
+      font-size:11px;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .navbtn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid transparent;
+      background:transparent;
+      color:var(--text);
+      cursor:pointer;
+      font-weight:600;
+      text-align:left;
+    }
+    .navbtn:hover{
+      background:rgba(148,163,184,.12);
+      border-color:rgba(148,163,184,.25);
+    }
+    .navbtn.active{
+      background:rgba(29,78,216,.10);
+      border-color:rgba(29,78,216,.25);
+      box-shadow:0 0 0 3px rgba(29,78,216,.12) inset;
+    }
+    .navbtn .ico{
+      width:34px; height:34px; border-radius:12px;
+      display:grid; place-items:center;
+      background:rgba(148,163,184,.12);
+      border:1px solid rgba(148,163,184,.20);
+      flex:0 0 auto;
+    }
+    .sidebar-foot{
+      padding:12px;
+      border-top:1px solid var(--border);
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .btn{
+      appearance:none;
+      border:1px solid var(--border);
+      background:var(--panel);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:700;
+      box-shadow:0 4px 12px rgba(2,6,23,.06);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(34,197,94,.20), rgba(34,197,94,.08));
+      border-color:rgba(34,197,94,.28);
+      color:var(--good);
+    }
+    .btn.blue{
+      background:linear-gradient(180deg, rgba(29,78,216,.18), rgba(29,78,216,.06));
+      border-color:rgba(29,78,216,.25);
+      color:#1d4ed8;
+    }
+    .btn.danger{
+      background:linear-gradient(180deg, rgba(239,68,68,.18), rgba(239,68,68,.06));
+      border-color:rgba(239,68,68,.25);
+      color:var(--bad);
+    }
+
+    /* Main */
+    .main{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow2);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:640px;
+    }
+    .main-head{
+      padding:14px 14px 12px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      background:linear-gradient(180deg, rgba(148,163,184,.10), transparent);
+    }
+    .pageTitle{
+      display:flex; flex-direction:column;
+      gap:4px;
+      min-width:220px;
+    }
+    .pageTitle .h{
+      font-size:18px; font-weight:800;
+    }
+    .pageTitle .s{
+      font-size:12px; color:var(--muted);
+    }
+    .searchbar{
+      flex:1;
+      min-width:260px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(148,163,184,.10);
+      border:1px solid rgba(148,163,184,.18);
+      border-radius:16px;
+      padding:8px 10px;
+    }
+    .searchbar input{
+      width:100%;
+      border:0;
+      outline:none;
+      background:transparent;
+      color:var(--text);
+      font-size:13px;
+    }
+    .toolbar{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .content{
+      padding:14px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      flex:1;
+      background:
+        radial-gradient(800px 400px at 20% 0%, rgba(29,78,216,.08), transparent 55%),
+        radial-gradient(600px 380px at 100% 20%, rgba(11,61,145,.06), transparent 60%),
+        transparent;
+    }
+    @media (max-width: 1200px){
+      .content{grid-template-columns:1fr}
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHead{
+      padding:12px 14px;
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .cardHead .t{
+      font-weight:800;
+    }
+    .cardHead .sub{
+      font-size:12px; color:var(--muted);
+      margin-top:2px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(148,163,184,.10);
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .badge.good{border-color:rgba(34,197,94,.25); background:rgba(34,197,94,.10); color:var(--good)}
+    .badge.warn{border-color:rgba(245,158,11,.30); background:rgba(245,158,11,.12); color:var(--warn)}
+    .badge.bad{border-color:rgba(239,68,68,.25); background:rgba(239,68,68,.10); color:var(--bad)}
+    .cardBody{padding:12px 14px}
+    .hint{
+      font-size:12px; color:var(--muted);
+      line-height:1.4;
+    }
+
+    /* Form */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .field label{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .field input, .field select, .field textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.25);
+      background:rgba(148,163,184,.08);
+      color:var(--text);
+      outline:none;
+      font-size:13px;
+    }
+    [data-theme="dark"] .field input,
+    [data-theme="dark"] .field select,
+    [data-theme="dark"] .field textarea{
+      background:rgba(2,6,23,.28);
+      border-color:rgba(148,163,184,.18);
+    }
+    .field textarea{min-height:84px; resize:vertical}
+    .field input[readonly]{
+      font-family:var(--mono);
+      opacity:.85;
+      cursor:not-allowed;
+    }
+    .field .mini{
+      font-size:11px; color:var(--muted);
+    }
+    .mono{font-family:var(--mono)}
+    .rowActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    /* Results table */
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid var(--border);
+      border-radius:14px;
+    }
+    th, td{
+      font-size:12px;
+      padding:10px 10px;
+      border-bottom:1px solid var(--border);
+      vertical-align:top;
+    }
+    th{
+      text-align:left;
+      background:rgba(148,163,184,.10);
+      color:var(--muted);
+      font-weight:800;
+      position:sticky; top:0;
+      z-index:1;
+    }
+    tr:hover td{
+      background:rgba(29,78,216,.06);
+      cursor:pointer;
+    }
+    .tableWrap{
+      max-height:420px;
+      overflow:auto;
+      border-radius:14px;
+    }
+
+    /* Toast */
+    .toast{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:99;
+      width:min(420px, calc(100vw - 32px));
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      padding:12px 12px 10px;
+      display:none;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .toast.show{display:flex}
+    .toast .ttl{font-weight:900}
+    .toast .msg{font-size:12px; color:var(--muted); margin-top:4px; line-height:1.35}
+    .toast .x{
+      margin-left:auto;
+      border:1px solid var(--border);
+      background:transparent;
+      color:var(--text);
+      border-radius:12px;
+      padding:6px 10px;
+      cursor:pointer;
+      font-weight:800;
+    }
+
+    /* Small inputs bar */
+    .miniBar{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .miniBar input{
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.25);
+      background:rgba(148,163,184,.08);
+      color:var(--text);
+      font-size:12px;
+      outline:none;
+      min-width:160px;
+    }
+    .muted{color:var(--muted)}
+    .sep{height:1px;background:var(--border);margin:10px 0}
+    .tinyCaps{font-size:11px; letter-spacing:1.1px; text-transform:uppercase; color:var(--muted); font-weight:800}
+    .statusLine{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-top:10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOP BAR (Mandatory SGM branding) -->
+  <div class="topbar">
+    <div class="brand-badge" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M3 7l9-4 9 4-9 4-9-4Z" stroke="white" stroke-width="2"/>
+        <path d="M7 10v6c0 1.7 2.2 3 5 3s5-1.3 5-3v-6" stroke="white" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="brand-title">
+      <div class="name">SGM COMPUTER EDUCATION</div>
+      <div class="sub">Registered Under MSME | ISO 9001-2015 Certified Center</div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="pill">📞 <a href="tel:9742266359">9742266359</a></div>
+    <div class="pill">💬 <a href="https://wa.me/919742266359" target="_blank" rel="noopener">WhatsApp</a></div>
+    <div class="pill">✉️ <a href="mailto:info@sgmcomputereducation.com">info@sgmcomputereducation.com</a></div>
+    <div class="pill">🌐 <a href="https://www.sgmcomputereducation.com" target="_blank" rel="noopener">sgmcomputereducation.com</a></div>
+  </div>
+
+  <div class="wrap">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <h3>ERP Menu</h3>
+        <div class="tiny">
+          Single-file SPA UI • Auto-forms from Sheet Schema<br>
+          Works from <span class="mono">file://</span> using JSONP • Auto-PDF after save
+        </div>
+        <div class="roleline">
+          <div class="muted" style="font-size:12px;font-weight:700;">ROLE</div>
+          <div class="roleBadge" id="roleBadge">ADMIN</div>
+        </div>
+      </div>
+
+      <div class="nav" id="nav">
+        <h4>Dashboard</h4>
+        <button class="navbtn" data-page="dashboard">
+          <span class="ico">📊</span><span>Dashboard</span>
+        </button>
+
+        <h4>Leads & Students</h4>
+        <button class="navbtn" data-page="enquiry"><span class="ico">📝</span><span>Enquiry</span></button>
+        <button class="navbtn" data-page="student"><span class="ico">🎓</span><span>Student</span></button>
+        <button class="navbtn" data-page="admission"><span class="ico">🏫</span><span>Admission</span></button>
+
+        <h4>Fees</h4>
+        <button class="navbtn" data-page="receipt"><span class="ico">🧾</span><span>Receipt</span></button>
+        <button class="navbtn" data-page="emi"><span class="ico">💳</span><span>EMI / Fee Balance</span></button>
+
+        <h4>Batch & Training</h4>
+        <button class="navbtn" data-page="batch"><span class="ico">👥</span><span>Batch</span></button>
+        <button class="navbtn" data-page="allocation"><span class="ico">🔗</span><span>Batch Allocation</span></button>
+        <button class="navbtn" data-page="attendance"><span class="ico">✅</span><span>Attendance</span></button>
+
+        <h4>Assessments</h4>
+        <button class="navbtn" data-page="exam"><span class="ico">🧪</span><span>Exam / Result</span></button>
+        <button class="navbtn" data-page="completion"><span class="ico">🏁</span><span>Course Completion</span></button>
+
+        <h4>Certificates</h4>
+        <button class="navbtn" data-page="cert_app"><span class="ico">📄</span><span>Certificate Application</span></button>
+        <button class="navbtn" data-page="cert_issued"><span class="ico">🏅</span><span>Certificate Issued</span></button>
+        <button class="navbtn" data-page="verify"><span class="ico">🔍</span><span>Verify Certificate</span></button>
+
+        <h4>Admin</h4>
+        <button class="navbtn" data-page="schema"><span class="ico">🧩</span><span>Schema Viewer</span></button>
+        <button class="navbtn" data-page="search"><span class="ico">🔎</span><span>Global Search</span></button>
+      </div>
+
+      <div class="sidebar-foot">
+        <button class="btn" id="themeBtn">🌙 Theme</button>
+        <button class="btn danger" id="logoutBtn">⎋ Logout</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="main-head">
+        <div class="pageTitle">
+          <div class="h" id="pageH">Loading…</div>
+          <div class="s" id="pageS">Connecting to backend & schema…</div>
+        </div>
+
+        <div class="searchbar" title="Global search (Search.gs)">
+          <span style="opacity:.8">🔎</span>
+          <input id="globalQ" placeholder="Global Search (Enquiry/Student/Admission/Receipt/Batch/Certificate…)" />
+        </div>
+
+        <div class="toolbar">
+          <button class="btn" id="refreshBtn">⟳ Refresh</button>
+          <button class="btn blue" id="newBtn">＋ New</button>
+          <button class="btn primary" id="saveBtn">💾 Save</button>
+          <button class="btn" id="pdfBtn">🖨️ PDF</button>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- LEFT: Form -->
+        <section class="card">
+          <div class="cardHead">
+            <div>
+              <div class="t" id="formTitle">Form</div>
+              <div class="sub" id="formSub">Create • Update • Lookup • Auto-PDF</div>
+            </div>
+            <div class="statusLine">
+              <span class="badge" id="apiBadge">API: JSONP</span>
+              <span class="badge" id="schemaBadge">Schema: …</span>
+              <span class="badge" id="feeBadge" style="display:none">Fee: -</span>
+            </div>
+          </div>
+          <div class="cardBody">
+            <div class="hint" id="formHint"></div>
+
+            <div class="miniBar" id="lookupBar" style="display:none">
+              <input id="lookup1" placeholder="Lookup ID 1" />
+              <input id="lookup2" placeholder="Lookup ID 2 (optional)" />
+              <button class="btn" id="lookupBtn">⚡ Lookup</button>
+            </div>
+
+            <div class="sep"></div>
+
+            <div class="grid" id="formGrid"></div>
+
+            <div class="rowActions">
+              <button class="btn" id="loadBtn">⬇ Load by ID</button>
+              <button class="btn" id="searchBtn">🔎 Search</button>
+              <button class="btn danger" id="deleteBtn">🗑 Delete</button>
+            </div>
+
+            <!-- POST helper iframe (for POST-only endpoints) -->
+            <iframe name="postFrame" id="postFrame" style="display:none"></iframe>
+            <form id="postForm" target="postFrame" method="POST" style="display:none"></form>
+
+            <div class="sep"></div>
+            <div class="tinyCaps">Notes</div>
+            <div class="hint" id="notesArea">
+              • If you opened this file as <span class="mono">file:///</span> (like your screenshot), JSONP is required (already used).<br>
+              • For POST-only actions, this UI submits a hidden HTML form and then refreshes list automatically.
+            </div>
+          </div>
+        </section>
+
+        <!-- RIGHT: Results -->
+        <section class="card">
+          <div class="cardHead">
+            <div>
+              <div class="t">Results</div>
+              <div class="sub">List view • Click any row to load into form</div>
+            </div>
+            <div class="statusLine">
+              <span class="badge" id="resultCount">0 rows</span>
+              <span class="badge" id="modeBadge">Mode: List</span>
+            </div>
+          </div>
+          <div class="cardBody">
+            <div class="miniBar" id="filterBar">
+              <input id="filterQ" placeholder="Search in this module (q=...)" />
+              <input id="filterA" placeholder="Filter A (studentId/admissionId/batchId…)" />
+              <input id="filterB" placeholder="Filter B (courseId/serial/token…)" />
+              <button class="btn" id="listBtn">📃 List</button>
+            </div>
+
+            <div class="sep"></div>
+
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr id="theadRow"></tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+              </table>
+            </div>
+
+            <div class="sep"></div>
+            <div class="hint" id="resultsHint"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <div>
+      <div class="ttl" id="toastT">Info</div>
+      <div class="msg" id="toastM">…</div>
+    </div>
+    <button class="x" onclick="hideToast()">✕</button>
+  </div>
+
+<script>
+/* ===========================
+   ✅ CONFIG — YOUR WEB APP URL
+   =========================== */
+const API_BASE = "https://script.google.com/macros/s/AKfycbxy8Hsg63xBnyd1l43YPfRHaUiS-KwoMvocD3v33ALZh6un8im797QOqxh5CMvwNs4f/exec";
+
+/* ===========================
+   JSONP helper (for file://)
+   =========================== */
+function jsonp(url){
+  return new Promise((resolve, reject) => {
+    const cb = "cb_" + Math.random().toString(36).slice(2);
+    const s = document.createElement("script");
+    window[cb] = (data) => {
+      try{ resolve(data); } finally{
+        delete window[cb];
+        s.remove();
+      }
+    };
+    s.onerror = () => {
+      delete window[cb];
+      s.remove();
+      reject(new Error("JSONP network error"));
+    };
+    s.src = url + (url.includes("?") ? "&" : "?") + "callback=" + cb;
+    document.body.appendChild(s);
+  });
+}
+
+/* ===========================
+   POST helper (hidden form)
+   (for POST-only endpoints)
+   =========================== */
+function postToApi(params){
+  return new Promise((resolve) => {
+    const form = document.getElementById("postForm");
+    form.innerHTML = "";
+    form.action = API_BASE;
+
+    Object.keys(params || {}).forEach(k=>{
+      const inp = document.createElement("input");
+      inp.type = "hidden";
+      inp.name = k;
+      inp.value = params[k] == null ? "" : String(params[k]);
+      form.appendChild(inp);
+    });
+
+    form.submit();
+    // We can't read response (cross-origin). We refresh list after a short delay.
+    setTimeout(()=>resolve({ok:true, submitted:true}), 900);
+  });
+}
+
+/* ===========================
+   Utilities
+   =========================== */
+const $ = (id)=>document.getElementById(id);
+function toast(title, msg){
+  $("toastT").textContent = title || "Info";
+  $("toastM").textContent = msg || "";
+  $("toast").classList.add("show");
+}
+function hideToast(){ $("toast").classList.remove("show"); }
+function qs(obj){
+  const p = new URLSearchParams();
+  Object.keys(obj||{}).forEach(k=>{
+    if (obj[k] === undefined || obj[k] === null) return;
+    const v = String(obj[k]).trim();
+    if (v === "") return;
+    p.set(k, v);
+  });
+  return p.toString();
+}
+function pick(obj, keys){
+  const out = {};
+  keys.forEach(k=> out[k] = (obj && obj[k] != null) ? obj[k] : "");
+  return out;
+}
+function safeArr(x){ return Array.isArray(x) ? x : []; }
+function toTitle(s){
+  s = String(s||"");
+  return s.replace(/_/g," ").replace(/\b\w/g,m=>m.toUpperCase());
+}
+function normalizeBool(v){
+  const s = String(v==null?"":v).toLowerCase().trim();
+  if (s==="true"||s==="yes"||s==="1") return true;
+  if (s==="false"||s==="no"||s==="0") return false;
+  return v;
+}
+
+/* ===========================
+   Module map (endpoints you already have)
+   =========================== */
+const MODULES = {
+  dashboard: { title:"Dashboard", kind:"dashboard" },
+  search:    { title:"Global Search", kind:"search" },
+  schema:    { title:"Schema Viewer", kind:"schema" },
+
+  enquiry:   { title:"Enquiry",  module:"enquiry", sheet:"Enquiries", pk:"enquiryId",
+               listAction:"list", getAction:"get", searchAction:"search", createAction:"create", updateAction:"update",
+               deleteAction:"delete", pdfAction:"pdf", lookupAction:"lookup",
+               supportsGetSave:true },
+  student:   { title:"Student", module:"student", sheet:"Students", pk:"studentId",
+               listAction:"list", getAction:"get", searchAction:"search", createAction:"create", updateAction:"update",
+               deleteAction:"delete", pdfAction:"pdf", lookupAction:"lookup",
+               supportsGetSave:true },
+  // Admission module is assumed to exist in your backend; if it doesn't, UI will show "Not available"
+  admission: { title:"Admission", module:"admission", sheet:"Admissions", pk:"admissionId",
+               listAction:"list", getAction:"get", searchAction:"search", createAction:"create", updateAction:"update",
+               deleteAction:"delete", pdfAction:"pdf", lookupAction:"lookup",
+               supportsGetSave:true },
+
+  receipt:   { title:"Receipt", module:"receipt", sheet:"Receipts", pk:"receiptId",
+               listAction:"list", getAction:"get", searchAction:"search", createAction:"create", updateAction:"update",
+               deleteAction:null, pdfAction:"pdf", lookupAction:"lookup",
+               supportsGetSave:false }, // POST-only for create/update
+  emi:       { title:"EMI / Fee Balance", module:"emi", sheet:"EMI_Plan", pk:null,
+               listAction:"list", getAction:"get", searchAction:"search", createAction:"create", updateAction:"update",
+               deleteAction:null, pdfAction:null, lookupAction:"lookup",
+               supportsGetSave:false }, // POST-only
+  batch:     { title:"Batch", module:"batch", sheet:"Batches", pk:"batchId",
+               listAction:"list", getAction:"get", searchAction:"search", createAction:"create", updateAction:"update",
+               deleteAction:"delete", pdfAction:"pdf", lookupAction:null,
+               supportsGetSave:true },
+  allocation:{ title:"Batch Allocation", module:"batch", sheet:"BatchAllocations", pk:"allocationId",
+               listAction:"allocations", getAction:null, searchAction:null, createAction:"allocate", updateAction:"deallocate",
+               deleteAction:null, pdfAction:"allocationPdf", lookupAction:null,
+               supportsGetSave:true }, // allocate/deallocate allow GET
+  attendance:{ title:"Attendance", module:"attendance", sheet:"Attendance", pk:"attendanceId",
+               listAction:"list", getAction:null, searchAction:null, createAction:"mark", updateAction:"mark",
+               deleteAction:null, pdfAction:null, lookupAction:null,
+               supportsGetSave:true }, // mark allows GET
+
+  exam:      { title:"Exam / Result", module:"exam", sheet:"Exams", pk:"examId",
+               listAction:"list", getAction:"get", searchAction:"search", createAction:"create", updateAction:"update",
+               deleteAction:null, pdfAction:"pdf", lookupAction:"lookup",
+               supportsGetSave:false }, // POST-only
+  completion:{ title:"Course Completion", module:"completion", sheet:"CourseCompletion", pk:"completionId",
+               listAction:"list", getAction:"get", searchAction:"search", createAction:"mark", updateAction:"update",
+               deleteAction:null, pdfAction:"pdf", lookupAction:"lookup",
+               supportsGetSave:false }, // POST-only
+
+  cert_app:  { title:"Certificate Application", module:"certificate", sheet:"Certificate_Applications", pk:"applicationId",
+               listAction:"list", getAction:"getApp", searchAction:"search", createAction:"apply", updateAction:"updateApp",
+               deleteAction:null, pdfAction:null, lookupAction:"lookup",
+               supportsGetSave:false }, // POST-only for apply/updateApp
+  cert_issued:{ title:"Certificate Issued", module:"certificate", sheet:"Certificates_Issued", pk:"certificateId",
+               listAction:"list", getAction:"get", searchAction:"search", createAction:"issue", updateAction:"updateIssued",
+               deleteAction:null, pdfAction:"pdf", lookupAction:"lookup",
+               supportsGetSave:false }, // POST-only for issue/updateIssued
+
+  verify:    { title:"Verify Certificate", module:"verify", sheet:null, pk:null,
+               listAction:null, getAction:"certificate", searchAction:null, createAction:null, updateAction:null,
+               deleteAction:null, pdfAction:null, lookupAction:null, supportsGetSave:true }
+};
+
+let schemaAll = null;
+let currentPage = "enquiry";
+let currentHeaders = [];
+let currentBlueprint = {};
+let currentRow = {}; // form state
+let currentMode = "create"; // create/update
+let lastResults = []; // for table click load
+
+/* ===========================
+   Schema boot
+   =========================== */
+async function loadSchemaAll(){
+  const url = API_BASE + "?" + qs({ module:"schema", action:"all" });
+  const res = await jsonp(url);
+  if (!res || !res.ok) throw new Error("Schema error");
+  schemaAll = res.sheets || {};
+  return schemaAll;
+}
+function sheetExists(name){
+  return !!(schemaAll && schemaAll[name]);
+}
+
+/* ===========================
+   UI: build form from schema
+   =========================== */
+function clearForm(){
+  currentRow = {};
+  currentMode = "create";
+  renderForm();
+}
+function setFeeBadge(fee){
+  const b = $("feeBadge");
+  if (!fee){
+    b.style.display = "none";
+    return;
+  }
+  const status = String(fee.feeStatus||"").toUpperCase();
+  const paid = fee.paid != null ? fee.paid : "";
+  const bal  = fee.balance != null ? fee.balance : "";
+
+  b.style.display = "inline-flex";
+  b.textContent = `Fee: ${status || "-"} | Paid: ${paid} | Balance: ${bal}`;
+
+  b.classList.remove("good","warn","bad");
+  if (status === "PAID" || status === "CLEARED") b.classList.add("good");
+  else if (status === "PARTIAL") b.classList.add("warn");
+  else b.classList.add("bad");
+}
+function renderForm(){
+  const mod = MODULES[currentPage];
+  $("formTitle").textContent = mod ? mod.title : "Form";
+  $("formHint").textContent = buildFormHint(mod);
+
+  // Lookup bar rules
+  configureLookupBar(mod);
+
+  const grid = $("formGrid");
+  grid.innerHTML = "";
+
+  if (!mod || mod.kind){
+    grid.innerHTML = `<div class="hint">Select a module from the left menu.</div>`;
+    return;
+  }
+
+  if (mod.sheet && !sheetExists(mod.sheet)){
+    grid.innerHTML = `<div class="hint">No headers found for <b>${mod.sheet}</b>. Ensure your sheet exists and has a header row.</div>`;
+    return;
+  }
+
+  currentHeaders = (mod.sheet && schemaAll[mod.sheet]) ? (schemaAll[mod.sheet].headers || []) : [];
+  currentBlueprint = (mod.sheet && schemaAll[mod.sheet]) ? (schemaAll[mod.sheet].blueprint || {}) : {};
+
+  $("schemaBadge").textContent = mod.sheet ? `Schema: ${mod.sheet}` : "Schema: -";
+
+  // If no headers (e.g. verify page), show custom layout
+  if (!currentHeaders.length){
+    if (currentPage === "verify"){
+      renderVerifyForm(grid);
+    } else if (mod.kind === "dashboard"){
+      renderDashboard(grid);
+    } else if (mod.kind === "search"){
+      renderGlobalSearch(grid);
+    } else if (mod.kind === "schema"){
+      renderSchemaViewer(grid);
+    } else {
+      grid.innerHTML = `<div class="hint">No schema headers available for this module.</div>`;
+    }
+    return;
+  }
+
+  currentHeaders.forEach((h)=>{
+    if (!h) return;
+    const meta = currentBlueprint[h] || {};
+    const type = meta.type || "text";
+    const readOnly = !!meta.readOnly || isReadOnlyField(h, mod);
+    const value = (currentRow && currentRow[h] != null) ? currentRow[h] : "";
+
+    const field = document.createElement("div");
+    field.className = "field";
+
+    const label = document.createElement("label");
+    label.textContent = h;
+    field.appendChild(label);
+
+    let input;
+    if (type === "textarea"){
+      input = document.createElement("textarea");
+    } else if (type === "select"){
+      input = document.createElement("select");
+      // Basic select options for common status fields
+      const opts = suggestOptionsForField(h);
+      if (opts.length){
+        const blank = document.createElement("option");
+        blank.value = ""; blank.textContent = "-- Select --";
+        input.appendChild(blank);
+        opts.forEach(o=>{
+          const op = document.createElement("option");
+          op.value = o; op.textContent = o;
+          input.appendChild(op);
+        });
+      } else {
+        // fallback: allow typing via editable select trick
+        const op = document.createElement("option");
+        op.value = value; op.textContent = value || "--";
+        input.appendChild(op);
+      }
+    } else {
+      input = document.createElement("input");
+      input.type = (type === "number") ? "number" : (type === "date" ? "date" : (type === "datetime" ? "datetime-local" : "text"));
+      if (type === "text_mono") input.classList.add("mono");
+    }
+
+    input.value = value;
+    if (readOnly) input.readOnly = true;
+
+    input.addEventListener("input", ()=>{
+      currentRow[h] = (type==="checkbox") ? normalizeBool(input.value) : input.value;
+    });
+
+    field.appendChild(input);
+
+    const mini = document.createElement("div");
+    mini.className = "mini";
+    mini.textContent = readOnly ? "read-only" : (type==="text_mono" ? "id/mono" : type);
+    field.appendChild(mini);
+
+    grid.appendChild(field);
+  });
+}
+function isReadOnlyField(h, mod){
+  const lk = String(h).toLowerCase();
+  if (lk === (mod.pk||"").toLowerCase()) return currentMode === "update"; // PK readonly after load
+  if (lk === "createdat" || lk === "updatedat" || lk === "timestamp" || lk === "verifylogid") return true;
+  // keep IDs editable on create (some allow custom)
+  return false;
+}
+function suggestOptionsForField(h){
+  const lk = String(h).toLowerCase();
+  if (lk.includes("status")){
+    return ["Active","Open","New","Pending","Submitted","Approved","Rejected","Completed","Marked","ISSUED","REVOKED","Deleted","Inactive","PAID","PARTIAL","DUE"];
+  }
+  if (lk.includes("gender")) return ["Male","Female","Other"];
+  if (lk.includes("paymentmode")) return ["Cash","UPI","Card","NetBanking","Cheque","Online"];
+  if (lk.includes("present") || lk.includes("attendance")) return ["Present","Absent","Late"];
+  return [];
+}
+function buildFormHint(mod){
+  if (!mod) return "";
+  if (mod.kind === "dashboard") return "Dashboard stats are read-only.";
+  if (mod.kind === "search") return "Global search across your sheets.";
+  if (mod.kind === "schema") return "Schema is read from your Spreadsheet headers (first row).";
+  if (currentPage === "verify") return "Public verification: certificateId OR verifyToken OR certificateSerial.";
+  return `Module: ${mod.module} • Sheet: ${mod.sheet || "-"} • Save: ${mod.supportsGetSave ? "GET/JSONP" : "POST(form submit)"}`;
+}
+function configureLookupBar(mod){
+  const bar = $("lookupBar");
+  const l1 = $("lookup1"), l2 = $("lookup2");
+
+  // default hide
+  bar.style.display = "none";
+  l1.value = ""; l2.value = "";
+  l1.placeholder = "Lookup ID 1"; l2.placeholder = "Lookup ID 2 (optional)";
+
+  if (!mod || mod.kind) return;
+
+  // Module-specific lookup assistance
+  if (currentPage === "enquiry"){
+    bar.style.display = "flex";
+    l1.placeholder = "enquiryId (ENQ...)";
+  } else if (currentPage === "student"){
+    bar.style.display = "flex";
+    l1.placeholder = "enquiryId (ENQ...) OR studentId (STU...)";
+  } else if (currentPage === "receipt"){
+    bar.style.display = "flex";
+    l1.placeholder = "admissionId (ADM...) OR studentId (STU...)";
+  } else if (currentPage === "emi"){
+    bar.style.display = "flex";
+    l1.placeholder = "admissionId (ADM...) OR studentId (STU...)";
+  } else if (currentPage === "batch"){
+    bar.style.display = "flex";
+    l1.placeholder = "batchId (BATCH...)";
+  } else if (currentPage === "allocation"){
+    bar.style.display = "flex";
+    l1.placeholder = "batchId (BATCH...) OR studentId (STU...)";
+  } else if (currentPage === "attendance"){
+    bar.style.display = "flex";
+    l1.placeholder = "studentId (STU...)";
+    l2.placeholder = "batchId (BATCH...)";
+  } else if (currentPage === "exam" || currentPage === "completion"){
+    bar.style.display = "flex";
+    l1.placeholder = "studentId (STU...)";
+    l2.placeholder = "courseId (COURSE...) OR admissionId (ADM...)";
+  } else if (currentPage === "cert_app" || currentPage === "cert_issued"){
+    bar.style.display = "flex";
+    l1.placeholder = "studentId (STU...) OR admissionId (ADM...)";
+    l2.placeholder = "courseId (COURSE...)";
+  } else if (currentPage === "verify"){
+    bar.style.display = "flex";
+    l1.placeholder = "certificateId (CERT...) OR verifyToken";
+    l2.placeholder = "certificateSerial (SGM-...)";
+  } else if (currentPage === "admission"){
+    bar.style.display = "flex";
+    l1.placeholder = "enquiryId (ENQ...) OR studentId (STU...) OR admissionId (ADM...)";
+  }
+}
+
+/* ===========================
+   Results table
+   =========================== */
+function renderTable(rows){
+  lastResults = safeArr(rows);
+
+  const thead = $("theadRow");
+  const tbody = $("tbody");
+
+  thead.innerHTML = "";
+  tbody.innerHTML = "";
+
+  const mod = MODULES[currentPage];
+  const pk = mod && mod.pk ? mod.pk : null;
+
+  // Choose columns: PK + first 6 headers that exist
+  let cols = [];
+  if (currentHeaders && currentHeaders.length){
+    cols = currentHeaders.filter(Boolean);
+  } else if (rows && rows.length){
+    cols = Object.keys(rows[0] || {});
+  }
+
+  const prefer = [];
+  if (pk) prefer.push(pk);
+  ["name","studentId","admissionId","enquiryId","courseId","batchId","receiptId","certificateId","verifyToken","status","createdAt","updatedAt","receiptDate","issueDate","examDate","completedOn"].forEach(x=>prefer.push(x));
+
+  const finalCols = [];
+  prefer.forEach(c=>{
+    if (cols.includes(c) && !finalCols.includes(c)) finalCols.push(c);
+  });
+  cols.forEach(c=>{
+    if (finalCols.length >= 10) return;
+    if (!finalCols.includes(c)) finalCols.push(c);
+  });
+
+  if (!finalCols.length){
+    thead.innerHTML = `<th>No columns</th>`;
+    $("resultCount").textContent = "0 rows";
+    return;
+  }
+
+  finalCols.forEach(c=>{
+    const th = document.createElement("th");
+    th.textContent = c;
+    thead.appendChild(th);
+  });
+
+  lastResults.forEach((r, idx)=>{
+    const tr = document.createElement("tr");
+    tr.addEventListener("click", ()=> loadRowIntoForm(r));
+    finalCols.forEach(c=>{
+      const td = document.createElement("td");
+      let v = (r && r[c] != null) ? r[c] : "";
+      v = String(v);
+      if (v.length > 70) v = v.slice(0,70) + "…";
+      td.textContent = v;
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+
+  $("resultCount").textContent = `${lastResults.length} rows`;
+}
+function loadRowIntoForm(row){
+  currentRow = Object.assign({}, row || {});
+  currentMode = "update";
+  renderForm();
+  toast("Loaded", "Row loaded into form. Click Save to update, or PDF to generate.");
+}
+
+/* ===========================
+   API calls by module
+   =========================== */
+function apiUrl(module, action, params){
+  return API_BASE + "?" + qs(Object.assign({ module, action }, params || {}));
+}
+async function apiGet(module, action, params){
+  const url = apiUrl(module, action, params);
+  return await jsonp(url);
+}
+async function apiSave(mod, payload){
+  // Determine create vs update
+  const isUpdate = currentMode === "update";
+  const action = isUpdate ? mod.updateAction : mod.createAction;
+  if (!action) throw new Error("Save action not available");
+
+  if (mod.supportsGetSave){
+    // JSONP GET save
+    const res = await apiGet(mod.module, action, payload);
+    return res;
+  } else {
+    // POST-only: submit form then refresh
+    await postToApi(Object.assign({ module: mod.module, action: action }, payload));
+    return { ok:true, submitted:true };
+  }
+}
+async function apiDelete(mod, payload){
+  if (!mod.deleteAction) throw new Error("Delete not available");
+  // delete is POST in your modules; use hidden form
+  await postToApi(Object.assign({ module: mod.module, action: mod.deleteAction }, payload));
+  return { ok:true, submitted:true };
+}
+
+/* ===========================
+   Module behaviors
+   =========================== */
+async function refreshCurrent(){
+  const mod = MODULES[currentPage];
+  $("modeBadge").textContent = "Mode: List";
+  setFeeBadge(null);
+
+  if (currentPage === "dashboard"){
+    await loadDashboard();
+    return;
+  }
+  if (currentPage === "schema"){
+    await loadSchemaViewer();
+    return;
+  }
+  if (currentPage === "search"){
+    await runGlobalSearch();
+    return;
+  }
+  if (currentPage === "verify"){
+    renderVerifyResults(null);
+    renderForm();
+    renderTable([]);
+    $("resultsHint").textContent = "Use Lookup to verify certificate.";
+    return;
+  }
+
+  if (!mod || !mod.module || !mod.listAction){
+    renderTable([]);
+    $("resultsHint").textContent = "No list endpoint for this module.";
+    return;
+  }
+
+  const q = $("filterQ").value.trim();
+  const a = $("filterA").value.trim();
+  const b = $("filterB").value.trim();
+
+  // build list params by module
+  const params = {};
+  if (q) params.q = q;
+
+  if (currentPage === "attendance"){
+    if (a) params.studentId = a;
+    if (b) params.batchId = b;
+  } else if (currentPage === "allocation"){
+    // allocations&batchId=... OR &studentId=...
+    if (a && a.toUpperCase().startsWith("BATCH")) params.batchId = a;
+    else if (a) params.studentId = a;
+  } else if (currentPage === "receipt" || currentPage === "emi" || currentPage === "completion" || currentPage === "exam"){
+    if (a && a.toUpperCase().startsWith("ADM")) params.admissionId = a;
+    else if (a) params.studentId = a;
+    if (b) params.courseId = b;
+  } else if (currentPage === "cert_app" || currentPage === "cert_issued"){
+    if (a && a.toUpperCase().startsWith("ADM")) params.admissionId = a;
+    else if (a) params.studentId = a;
+    if (b) params.courseId = b;
+  } else if (currentPage === "batch"){
+    if (a) params.courseId = a;
+    if (b) params.status = b;
+  } else {
+    // enquiry/student/admission generic
+    if (a) params.status = a;
+    if (b) params.courseId = b;
+  }
+
+  try{
+    const res = await apiGet(mod.module, mod.listAction, params);
+    if (!res || res.ok === false){
+      renderTable([]);
+      $("resultsHint").textContent = res && res.error ? res.error : "List failed";
+      toast("List Error", $("resultsHint").textContent);
+      return;
+    }
+    const data = res.data && Array.isArray(res.data) ? res.data : (res.data && res.data.applications ? (res.data.applications.concat(res.data.issued||[])) : (res.data || []));
+    renderTable(data);
+    $("resultsHint").textContent = "Tip: click a row to load into form.";
+  }catch(err){
+    renderTable([]);
+    $("resultsHint").textContent = "API Error: " + String(err && err.message ? err.message : err);
+    toast("API Error", $("resultsHint").textContent);
+  }
+}
+async function loadById(){
+  const mod = MODULES[currentPage];
+  if (!mod || !mod.getAction) return toast("Not supported", "Get by ID is not supported for this module.");
+
+  const pk = mod.pk;
+  if (!pk){
+    // special cases: receiptId, examId, completionId, certificateId etc are pk anyway in our map
+  }
+
+  const id = (pk && currentRow[pk]) ? String(currentRow[pk]).trim() : "";
+  if (!id){
+    return toast("Missing ID", "Enter the primary key in the form and then click Load.");
+  }
+
+  const p = {};
+  if (currentPage === "receipt") p.receiptId = id;
+  else if (currentPage === "exam") p.id = id;
+  else if (currentPage === "completion") p.id = id;
+  else if (currentPage === "cert_app") p.applicationId = id;
+  else if (currentPage === "cert_issued") p.certificateId = id;
+  else p.id = id;
+
+  try{
+    const res = await apiGet(mod.module, mod.getAction, p);
+    if (!res || res.ok === false){
+      toast("Not found", res && res.error ? res.error : "Record not found");
+      return;
+    }
+    const data = res.data || res.student || res.enquiry || res.admission || res;
+    if (data && data.data) loadRowIntoForm(data.data);
+    else if (data && typeof data === "object") loadRowIntoForm(data);
+    else toast("Loaded", "Loaded, but data format was unexpected.");
+    if (res.fee) setFeeBadge(res.fee);
+  }catch(err){
+    toast("API Error", String(err && err.message ? err.message : err));
+  }
+}
+async function runSearchInModule(){
+  const mod = MODULES[currentPage];
+  const q = $("filterQ").value.trim() || $("filterA").value.trim() || $("filterB").value.trim();
+  if (!q) return toast("Search", "Type something in Search box first.");
+  if (!mod || !mod.searchAction) return toast("Not supported", "Search endpoint not available for this module.");
+  $("modeBadge").textContent = "Mode: Search";
+
+  try{
+    const res = await apiGet(mod.module, mod.searchAction, { q });
+    if (!res || res.ok === false){
+      renderTable([]);
+      toast("Search Error", res && res.error ? res.error : "Search failed");
+      return;
+    }
+    // Some searches return {data:{applications,issued}}
+    let data = [];
+    if (Array.isArray(res.data)) data = res.data;
+    else if (res.data && res.data.applications) data = safeArr(res.data.applications).concat(safeArr(res.data.issued));
+    else if (res.data && Array.isArray(res.data.results)) data = res.data.results;
+    else data = [];
+
+    renderTable(data);
+    $("resultsHint").textContent = "Search results loaded.";
+  }catch(err){
+    toast("API Error", String(err && err.message ? err.message : err));
+  }
+}
+async function doLookup(){
+  const mod = MODULES[currentPage];
+  const v1 = $("lookup1").value.trim();
+  const v2 = $("lookup2").value.trim();
+
+  if (currentPage === "verify"){
+    if (!v1 && !v2) return toast("Verify", "Enter certificateId OR verifyToken OR certificateSerial.");
+    const params = {};
+    if (v1){
+      if (v1.toUpperCase().startsWith("CERT")) params.certificateId = v1;
+      else params.verifyToken = v1;
+    }
+    if (v2) params.certificateSerial = v2;
+    try{
+      const res = await apiGet("verify", "certificate", params);
+      renderVerifyResults(res);
+      toast("Verify", "Verification complete.");
+    }catch(err){
+      toast("API Error", String(err && err.message ? err.message : err));
+    }
+    return;
+  }
+
+  if (!mod || !mod.lookupAction) return toast("Lookup", "Lookup not supported for this module.");
+  if (!v1 && !v2) return toast("Lookup", "Enter lookup values first.");
+
+  // module-specific lookup params
+  let params = {};
+  if (currentPage === "enquiry"){
+    params = { enquiryId: v1 };
+  } else if (currentPage === "student"){
+    if (v1.toUpperCase().startsWith("ENQ")) params = { enquiryId: v1 };
+    else params = { studentId: v1 };
+  } else if (currentPage === "receipt" || currentPage === "emi"){
+    if (v1.toUpperCase().startsWith("ADM")) params = { admissionId: v1 };
+    else params = { studentId: v1 };
+  } else if (currentPage === "exam" || currentPage === "completion"){
+    if (v2 && v2.toUpperCase().startsWith("ADM")) params = { admissionId: v2 };
+    else params = { studentId: v1, courseId: v2 };
+  } else if (currentPage === "cert_app" || currentPage === "cert_issued"){
+    if (v1.toUpperCase().startsWith("ADM")) params = { admissionId: v1, courseId: v2 };
+    else params = { studentId: v1, courseId: v2 };
+  } else if (currentPage === "admission"){
+    // best effort
+    if (v1.toUpperCase().startsWith("ADM")) params = { admissionId: v1 };
+    else if (v1.toUpperCase().startsWith("ENQ")) params = { enquiryId: v1 };
+    else params = { studentId: v1 };
+  } else {
+    params = { id: v1 };
+  }
+
+  try{
+    const res = await apiGet(mod.module, mod.lookupAction, params);
+    if (!res || res.ok === false){
+      toast("Lookup Error", res && res.error ? res.error : "Lookup failed");
+      return;
+    }
+
+    // Fill form intelligently
+    if (res.suggestedStudent){
+      // Enquiry->Student mapping style
+      currentRow = Object.assign({}, currentRow, res.suggestedStudent);
+      currentMode = "create";
+      renderForm();
+      toast("Lookup", "Auto-filled from enquiry.");
+      return;
+    }
+    if (res.enquiry){
+      currentRow = Object.assign({}, currentRow, res.enquiry);
+      currentMode = "update";
+      renderForm();
+      toast("Lookup", "Enquiry loaded.");
+      return;
+    }
+    if (res.student && !res.admission){
+      currentRow = Object.assign({}, currentRow, res.student);
+      currentMode = "update";
+      renderForm();
+    }
+
+    // For fee-aware lookups
+    if (res.fee) setFeeBadge(res.fee);
+
+    // If lookup returns admission + student: fill some common fields into current row (not destructive)
+    if (res.admission){
+      const adm = res.admission;
+      const common = pick(adm, ["admissionId","studentId","courseId","courseNameSnapshot","paymentType","paymentPlanType","status","admissionStatus"]);
+      currentRow = Object.assign({}, common, currentRow);
+      renderForm();
+    }
+    if (res.student){
+      const stu = res.student;
+      const common = pick(stu, ["studentId","name","phone","whatsappNumber","email"]);
+      currentRow = Object.assign({}, common, currentRow);
+      renderForm();
+    }
+
+    // If list data exists (exams, emis, etc) show it
+    if (res.emis) renderTable(res.emis);
+    if (res.exams) renderTable(res.exams);
+    if (res.completion) renderTable([res.completion]);
+    if (res.issued) renderTable(res.issued);
+    if (res.applications) renderTable(res.applications);
+
+    toast("Lookup", "Lookup completed.");
+  }catch(err){
+    toast("API Error", String(err && err.message ? err.message : err));
+  }
+}
+async function saveCurrent(){
+  const mod = MODULES[currentPage];
+  if (!mod || !mod.module) return toast("Save", "Nothing to save on this page.");
+  if (!mod.createAction && !mod.updateAction) return toast("Save", "Save not supported for this module.");
+
+  // Build payload from current form schema fields
+  const payload = {};
+  (currentHeaders||[]).forEach(h=>{
+    if (!h) return;
+    payload[h] = (currentRow && currentRow[h] != null) ? currentRow[h] : "";
+  });
+
+  // For modules that need special minimum requirements, best-effort validation:
+  if (currentPage === "attendance"){
+    if (!payload.studentId || !payload.batchId || !payload.sessionDate){
+      return toast("Attendance", "Required: studentId, batchId, sessionDate.");
+    }
+  }
+  if (currentPage === "allocation"){
+    if (!payload.studentId || !payload.batchId){
+      return toast("Allocation", "Required: studentId and batchId.");
+    }
+  }
+  if (currentPage === "receipt"){
+    if ((!payload.admissionId && !payload.studentId) || !payload.amountPaid){
+      return toast("Receipt", "Required: admissionId or studentId, and amountPaid.");
+    }
+  }
+  if (currentPage === "exam"){
+    if ((!payload.admissionId && !payload.studentId) || (!payload.courseId && !payload.admissionId) || !payload.examDate){
+      return toast("Exam", "Required: admissionId or studentId, courseId (or admissionId), and examDate.");
+    }
+  }
+
+  try{
+    $("saveBtn").disabled = true;
+    const res = await apiSave(mod, payload);
+
+    // If fee was blocked by backend (POST endpoints often return JSON; but we can't read for POST form),
+    // we handle only GET-save modules here. For POST-only, we refresh list after submit.
+    if (res && res.ok === false){
+      const err = String(res.error || "Save failed");
+      if (err === "FEE_DUE"){
+        setFeeBadge({ feeStatus:"DUE", paid:"", balance:"" });
+        toast("Blocked (Fee Due)", res.message || "Fee not fully paid.");
+      } else {
+        toast("Save Error", err + (res.message ? (" — " + res.message) : ""));
+      }
+      return;
+    }
+
+    // If GET-save returns new id, set it into form
+    if (res && res.ok){
+      const idKey = mod.pk;
+      if (idKey && res[idKey]) currentRow[idKey] = res[idKey];
+      // Known id return keys:
+      if (currentPage === "enquiry" && res.enquiryId) currentRow.enquiryId = res.enquiryId;
+      if (currentPage === "student" && res.studentId) currentRow.studentId = res.studentId;
+      if (currentPage === "batch" && res.batchId) currentRow.batchId = res.batchId;
+      if (currentPage === "attendance" && res.attendanceId) currentRow.attendanceId = res.attendanceId;
+      if (currentPage === "allocation" && res.allocationId) currentRow.allocationId = res.allocationId;
+
+      // Fee summary returns on some GET-save endpoints
+      if (res.fee) setFeeBadge(res.fee);
+
+      currentMode = "update";
+      renderForm();
+
+      // Auto-PDF (optional): if module supports pdf and record has id
+      // For POST-only endpoints, we do not auto-pdf (no id reliable). User can click PDF after list+load.
+      toast("Saved", mod.supportsGetSave ? "Saved successfully (GET/JSONP)." : "Submitted (POST). Refreshing list…");
+    } else {
+      toast("Submitted", "Submitted via POST. Refreshing list…");
+    }
+
+    // Refresh list after save
+    await refreshCurrent();
+
+  }catch(err){
+    toast("API Error", String(err && err.message ? err.message : err));
+  }finally{
+    $("saveBtn").disabled = false;
+  }
+}
+async function deleteCurrent(){
+  const mod = MODULES[currentPage];
+  if (!mod || !mod.deleteAction) return toast("Delete", "Delete not available for this module.");
+
+  const pk = mod.pk;
+  const id = pk ? String(currentRow[pk]||"").trim() : "";
+  if (!id) return toast("Delete", "Load a record first (click a row or load by ID).");
+
+  if (!confirm(`Delete (soft) ${pk} = ${id} ?`)) return;
+
+  try{
+    await apiDelete(mod, { id, [pk]: id });
+    toast("Delete", "Delete submitted. Refreshing list…");
+    clearForm();
+    await refreshCurrent();
+  }catch(err){
+    toast("API Error", String(err && err.message ? err.message : err));
+  }
+}
+async function pdfCurrent(){
+  const mod = MODULES[currentPage];
+  if (!mod || !mod.pdfAction) return toast("PDF", "PDF not available for this module.");
+
+  // Determine id param
+  let params = {};
+  if (currentPage === "receipt"){
+    const rid = String(currentRow.receiptId || "").trim();
+    if (!rid) return toast("PDF", "Load a receipt first.");
+    params = { receiptId: rid };
+  } else if (currentPage === "cert_issued"){
+    const cid = String(currentRow.certificateId || "").trim();
+    if (!cid) return toast("PDF", "Load an issued certificate first.");
+    params = { certificateId: cid };
+  } else if (currentPage === "allocation"){
+    const aid = String(currentRow.allocationId || "").trim();
+    if (!aid) return toast("PDF", "Load an allocation first.");
+    params = { allocationId: aid };
+  } else {
+    const pk = mod.pk;
+    const id = pk ? String(currentRow[pk]||"").trim() : String(currentRow.id||"").trim();
+    if (!id) return toast("PDF", "Load a record first.");
+    params = { id };
+    // some endpoints accept pk name too
+    if (pk) params[pk] = id;
+  }
+
+  try{
+    const res = await apiGet(mod.module, mod.pdfAction, params);
+    if (!res || res.ok === false){
+      toast("PDF Error", res && res.error ? res.error : "PDF failed");
+      return;
+    }
+    // pdf object: {fileId,pdfUrl}
+    const pdf = res.pdf || res.data || res;
+    const url = (pdf && pdf.pdfUrl) ? pdf.pdfUrl : (res.pdf && res.pdf.pdfUrl ? res.pdf.pdfUrl : "");
+    if (url){
+      window.open(url, "_blank");
+      toast("PDF", "PDF generated. Opening…");
+    } else {
+      toast("PDF", "PDF generated but pdfUrl not returned. Check backend createPdfFile_() return object.");
+    }
+  }catch(err){
+    toast("API Error", String(err && err.message ? err.message : err));
+  }
+}
+
+/* ===========================
+   Special pages
+   =========================== */
+async function loadDashboard(){
+  $("pageH").textContent = "Dashboard";
+  $("pageS").textContent = "Quick stats (Dashboard.gs)";
+  $("formTitle").textContent = "Dashboard";
+  $("formSub").textContent = "Read-only stats";
+  $("lookupBar").style.display = "none";
+  setFeeBadge(null);
+
+  try{
+    const res = await apiGet("dashboard", "stats", {});
+    if (!res || res.ok === false){
+      renderTable([]);
+      $("resultsHint").textContent = res && res.error ? res.error : "Dashboard failed";
+      toast("Dashboard Error", $("resultsHint").textContent);
+      return;
+    }
+    const d = res.data || {};
+    const rows = Object.keys(d).map(k=>({ metric:k, value:d[k] }));
+    currentHeaders = ["metric","value"];
+    renderTable(rows);
+    $("resultsHint").textContent = "Dashboard loaded.";
+  }catch(err){
+    toast("API Error", String(err && err.message ? err.message : err));
+  }
+}
+function renderDashboard(grid){
+  grid.innerHTML = `
+    <div class="hint">
+      Dashboard loads from <span class="mono">?module=dashboard&action=stats</span>.<br>
+      Click <b>Refresh</b> to load the latest counters.
+    </div>
+  `;
+}
+async function runGlobalSearch(){
+  $("pageH").textContent = "Global Search";
+  $("pageS").textContent = "Search across multiple sheets (Search.gs globalSearch_)";
+  $("formTitle").textContent = "Global Search";
+  $("formSub").textContent = "module=search&action=global&q=...";
+  $("lookupBar").style.display = "none";
+  setFeeBadge(null);
+
+  const q = ($("globalQ").value || "").trim();
+  if (!q){
+    renderTable([]);
+    $("resultsHint").textContent = "Type in Global Search box (top) and press Enter.";
+    return;
+  }
+  try{
+    const res = await apiGet("search", "global", { q, limit: 80 });
+    const data = (res && res.data && res.data.results) ? res.data.results : [];
+    // Flatten to view
+    const rows = data.map(x=>{
+      const sheet = x.sheet || "";
+      const d = x.data || {};
+      const keys = Object.keys(d);
+      const first = keys.slice(0,6).map(k=>`${k}=${d[k]}`).join(" | ");
+      return { sheet, preview:first };
+    });
+    currentHeaders = ["sheet","preview"];
+    renderTable(rows);
+    $("resultsHint").textContent = `${rows.length} matches. Use module menus for full details.`;
+  }catch(err){
+    toast("API Error", String(err && err.message ? err.message : err));
+  }
+}
+function renderGlobalSearch(grid){
+  grid.innerHTML = `
+    <div class="hint">
+      Use the <b>Global Search</b> input in the top bar and press <b>Enter</b>.<br>
+      It calls <span class="mono">?module=search&action=global&q=...</span>.
+    </div>
+  `;
+}
+async function loadSchemaViewer(){
+  $("pageH").textContent = "Schema Viewer";
+  $("pageS").textContent = "Auto blueprints from sheet headers (Schema.gs)";
+  $("formTitle").textContent = "Schema Viewer";
+  $("formSub").textContent = "module=schema&action=all";
+  $("lookupBar").style.display = "none";
+  setFeeBadge(null);
+
+  // Show a simple list of sheets
+  const rows = Object.keys(schemaAll || {}).map(name=>{
+    const h = (schemaAll[name].headers||[]).filter(Boolean).length;
+    const dup = (schemaAll[name].duplicates||[]).length;
+    return { sheet:name, headers:h, duplicates:dup };
+  });
+  currentHeaders = ["sheet","headers","duplicates"];
+  renderTable(rows);
+  $("resultsHint").textContent = "Click Refresh after adding/removing columns in your spreadsheet.";
+}
+function renderSchemaViewer(grid){
+  grid.innerHTML = `
+    <div class="hint">
+      Schema is read directly from your Google Sheet header row (Row 1).<br>
+      If a module shows “No headers”, confirm that tab exists and row 1 contains headers.
+    </div>
+  `;
+}
+function renderVerifyForm(grid){
+  grid.innerHTML = `
+    <div class="hint">
+      Enter any one of:<br>
+      • <b>certificateId</b> (CERT...)<br>
+      • <b>verifyToken</b> (12 chars)<br>
+      • <b>certificateSerial</b> (SGM-...)<br><br>
+      Click <b>Lookup</b> to verify. The result is logged in <span class="mono">CertificateVerifyLog</span>.
+    </div>
+  `;
+}
+function renderVerifyResults(res){
+  if (!res){
+    currentHeaders = [];
+    return;
+  }
+  const status = String(res.resultStatus || "NOT_FOUND");
+  const d = res.data || null;
+  const rows = d ? [Object.assign({ resultStatus: status, verifyLogId: res.verifyLogId }, d)] : [{ resultStatus: status, verifyLogId: res.verifyLogId || "" }];
+  currentHeaders = Object.keys(rows[0]||{});
+  renderTable(rows);
+  $("resultsHint").textContent = `Result: ${status}`;
+}
+
+/* ===========================
+   Navigation & boot
+   =========================== */
+function setActiveNav(page){
+  currentPage = page;
+  document.querySelectorAll(".navbtn").forEach(b=>{
+    b.classList.toggle("active", b.dataset.page === page);
+  });
+
+  const mod = MODULES[page];
+  $("pageH").textContent = mod ? mod.title : "ERP";
+  $("pageS").textContent = mod && !mod.kind ? `Module: ${mod.module || "-"} • Sheet: ${mod.sheet || "-"}` : (mod ? mod.title : "");
+
+  $("filterQ").value = "";
+  $("filterA").value = "";
+  $("filterB").value = "";
+  $("modeBadge").textContent = "Mode: List";
+  $("resultsHint").textContent = "";
+
+  clearForm();
+
+  // For special pages, render immediately
+  if (page === "dashboard" || page === "schema" || page === "search" || page === "verify"){
+    renderForm();
+  }
+  refreshCurrent();
+}
+function applyTheme(){
+  const t = localStorage.getItem("sgm_theme") || "light";
+  document.documentElement.setAttribute("data-theme", t);
+  $("themeBtn").textContent = (t === "dark") ? "☀️ Theme" : "🌙 Theme";
+}
+function toggleTheme(){
+  const t = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  localStorage.setItem("sgm_theme", t);
+  applyTheme();
+}
+
+/* ===========================
+   Events
+   =========================== */
+$("themeBtn").addEventListener("click", toggleTheme);
+$("logoutBtn").addEventListener("click", ()=>toast("Logout", "This UI demo has no auth UI. RBAC is enforced in backend if you enabled it."));
+$("refreshBtn").addEventListener("click", refreshCurrent);
+$("newBtn").addEventListener("click", ()=>{ clearForm(); toast("New", "Form cleared for new entry."); });
+$("saveBtn").addEventListener("click", saveCurrent);
+$("pdfBtn").addEventListener("click", pdfCurrent);
+$("loadBtn").addEventListener("click", loadById);
+$("searchBtn").addEventListener("click", runSearchInModule);
+$("deleteBtn").addEventListener("click", deleteCurrent);
+$("listBtn").addEventListener("click", refreshCurrent);
+$("lookupBtn").addEventListener("click", doLookup);
+
+$("globalQ").addEventListener("keydown", (e)=>{
+  if (e.key === "Enter"){
+    e.preventDefault();
+    // jump to global search page and run
+    setActiveNav("search");
+    runGlobalSearch();
+  }
+});
+
+/* ===========================
+   Boot
+   =========================== */
+(async function boot(){
+  try{
+    applyTheme();
+    $("apiBadge").textContent = "API: JSONP";
+    $("schemaBadge").textContent = "Schema: loading…";
+    toast("Connecting", "Loading schema from your spreadsheet…");
+
+    await loadSchemaAll();
+    $("schemaBadge").textContent = "Schema: ready";
+    hideToast();
+
+    // Wire nav clicks
+    document.querySelectorAll(".navbtn").forEach(btn=>{
+      btn.addEventListener("click", ()=> setActiveNav(btn.dataset.page));
+    });
+
+    // Default page
+    setActiveNav("enquiry");
+  }catch(err){
+    $("schemaBadge").textContent = "Schema: error";
+    toast("API Error", "Could not load schema. Check your web app deployment and DB_SPREADSHEET_ID. Error: " + String(err && err.message ? err.message : err));
+  }
+})();
+</script>
+</body>
+</html>
