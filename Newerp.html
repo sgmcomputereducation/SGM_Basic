@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>SGM ERP • Corporate</title>
-  <meta name="description" content="SGM Computer Education ERP"/>
+  <meta name="description" content="SGM Computer Education ERP - Schema Driven"/>
   <link rel="icon" href="https://www.sgmcomputereducation.com/favicon.ico">
   <style>
     :root{
@@ -16,48 +16,68 @@
     }
     body{margin:0;background:linear-gradient(120deg,#050914,#0b1220);color:var(--text);}
     .topbar{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-    .topinner{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:14px 18px;max-width:1200px;margin:0 auto;}
+    .topinner{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:14px 18px;max-width:1250px;margin:0 auto;}
     .brand{display:flex;gap:12px;align-items:center;}
     .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#60a5fa,#a78bfa);box-shadow:var(--shadow);}
     .brand h1{font-size:14px;margin:0;letter-spacing:.8px;}
-    .brand .sub{font-size:12px;color:var(--muted);margin-top:2px}
-    .right{display:flex;gap:10px;align-items:center;}
+    .brand .sub{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.35}
+    .right{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
     .pill{border:1px solid var(--line);background:rgba(255,255,255,.04);padding:8px 10px;border-radius:999px;font-size:12px;color:var(--muted);}
-    .wrap{max-width:1200px;margin:18px auto;padding:0 18px;display:grid;grid-template-columns:260px 1fr;gap:16px;}
+    .pill.bad{border-color:rgba(239,68,68,.35);color:#fecaca;background:rgba(239,68,68,.08)}
+    .pill.ok{border-color:rgba(34,197,94,.35);color:#bbf7d0;background:rgba(34,197,94,.08)}
+    .wrap{max-width:1250px;margin:18px auto;padding:0 18px;display:grid;grid-template-columns:270px 1fr;gap:16px;}
     .sidebar,.main{border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.03);box-shadow:var(--shadow);}
     .sidebar{padding:12px;}
+    .navTitle{color:var(--muted);font-size:12px;margin:8px 10px 10px}
     .navbtn{width:100%;text-align:left;border:1px solid transparent;background:transparent;color:var(--text);
       padding:10px 10px;border-radius:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
     .navbtn:hover{background:rgba(255,255,255,.05);border-color:var(--line);}
     .navbtn.active{background:rgba(96,165,250,.12);border-color:rgba(96,165,250,.35);}
     .main{padding:14px;}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    .pageHead{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    #pageTitle{font-size:18px;font-weight:800;}
+    #pageHint{color:var(--muted);font-size:12px;margin-top:4px}
+    .hr{height:1px;background:var(--line);margin:12px 0;}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
     .card{border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.03);padding:12px;}
     .card .k{font-size:12px;color:var(--muted)}
     .card .v{font-size:24px;margin-top:6px}
-    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0;}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0;}
+    .fieldGrid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px;}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .label{font-size:12px;color:var(--muted)}
     input,select,textarea{
       background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--text);
-      padding:10px 10px;border-radius:12px;outline:none;min-width:220px;
+      padding:10px 10px;border-radius:12px;outline:none;min-width:0;
     }
-    textarea{min-height:90px;min-width:min(720px,100%);}
+    textarea{min-height:88px;resize:vertical}
+    input[readonly], textarea[readonly] {opacity:.75}
     .btn{
       border:1px solid rgba(96,165,250,.45);background:rgba(96,165,250,.18);color:var(--text);
       padding:10px 12px;border-radius:12px;cursor:pointer;
     }
     .btn:hover{background:rgba(96,165,250,.25);}
+    .btn.ghost{border-color:var(--line);background:rgba(255,255,255,.04)}
     .btn.danger{border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.16);}
     .muted{color:var(--muted);font-size:12px;}
-    .hr{height:1px;background:var(--line);margin:12px 0;}
-    .tbl{width:100%;border-collapse:separate;border-spacing:0;margin-top:8px;overflow:hidden;border-radius:14px;border:1px solid var(--line);}
-    .tbl th,.tbl td{padding:10px;border-bottom:1px solid var(--line);font-size:13px;}
-    .tbl th{background:rgba(255,255,255,.04);text-align:left;color:var(--muted);font-weight:600;}
-    .tbl tr:last-child td{border-bottom:none;}
-    .status{padding:3px 8px;border-radius:999px;border:1px solid var(--line);font-size:12px;}
     .ok{color:var(--ok);}
     .bad{color:var(--bad);}
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-    @media (max-width:980px){.wrap{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
+    .status{padding:3px 8px;border-radius:999px;border:1px solid var(--line);font-size:12px;display:inline-block}
+    .tblWrap{overflow:auto;border-radius:14px;border:1px solid var(--line);}
+    table{width:100%;border-collapse:separate;border-spacing:0;}
+    th,td{padding:10px;border-bottom:1px solid var(--line);font-size:13px;white-space:nowrap}
+    th{background:rgba(255,255,255,.04);text-align:left;color:var(--muted);font-weight:700;}
+    tr:last-child td{border-bottom:none;}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tab{padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);cursor:pointer;font-size:12px;color:var(--muted)}
+    .tab.active{border-color:rgba(96,165,250,.35);background:rgba(96,165,250,.12);color:var(--text)}
+    @media (max-width:980px){
+      .wrap{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
+      .fieldGrid{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
@@ -67,69 +87,99 @@
         <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>SGM COMPUTER EDUCATION</h1>
-          <div class="sub">Registered Under MSME | ISO 9001-2015 Certified Center • 9742266359 • info@sgmcomputereducation.com • sgmcomputereducation.com</div>
+          <div class="sub">Registered Under MSME | ISO 9001-2015 Certified Center • Contact: 9742266359 • Email: info@sgmcomputereducation.com • Website: https://www.sgmcomputereducation.com</div>
         </div>
       </div>
       <div class="right">
         <span class="pill" id="apiStatus">API: checking…</span>
+        <span class="pill" id="schemaStatus">Schema: loading…</span>
         <span class="pill" id="roleBadge">Role: Admin</span>
       </div>
     </div>
   </div>
 
   <div class="wrap">
-    <div class="sidebar" id="sidebar"></div>
+    <div class="sidebar">
+      <div class="navTitle">Modules</div>
+      <div id="sidebar"></div>
+      <div class="hr"></div>
+      <div class="muted" id="envHint"></div>
+    </div>
 
     <div class="main">
-      <div id="pageTitle" style="font-size:18px;font-weight:700;">Dashboard</div>
-      <div class="muted" id="pageHint">Corporate ERP • Schema-driven modules • Auto PDF</div>
+      <div class="pageHead">
+        <div>
+          <div id="pageTitle">Loading…</div>
+          <div id="pageHint">Preparing schema-driven UI</div>
+        </div>
+        <div class="tabs" id="pageTabs" style="display:none"></div>
+      </div>
 
       <div class="hr"></div>
-
       <div id="page"></div>
     </div>
   </div>
 
 <script>
-/** =========================
- * CONFIG (EDIT THIS)
- * ========================= */
-// Your Apps Script Web App EXEC URL:
+/* ==========================================================
+  CONFIG — EDIT ONLY THIS (your Web App URL)
+========================================================== */
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxy8Hsg63xBnyd1l43YPfRHaUiS-KwoMvocD3v33ALZh6un8im797QOqxh5CMvwNs4f/exec";
 
-// If hosting on GitHub: set "jsonp" AND add the json_() backend change shown above.
+/* Mode:
+   - If this HTML is served by Apps Script as UI (?ui=1), fetch same-origin usually works.
+   - If hosted on GitHub Pages, you MUST use JSONP (or a proxy). Set API_MODE="jsonp".
+*/
 const API_MODE = "same-origin"; // "same-origin" | "jsonp"
 
-/** =========================
- * API CLIENT
- * ========================= */
+/* Known module display labels (your backend module ids are usually these) */
+const LABELS = {
+  dashboard: "Dashboard",
+  enquiry: "Enquiry Form",
+  admission: "Admission Form",
+  receipt: "Receipt Form",
+  batch: "Batch",
+  attendance: "Attendance",
+  exam: "Exam",
+  certificate: "Certificate",
+  verify: "Verify Certificate",
+  student: "Student",
+  courses: "Courses",
+  emi: "EMI",
+  completion: "Completion",
+  users: "Users",
+  roles: "Roles",
+  search: "Global Search"
+};
+
+/* ==========================================================
+  SMALL UTILITIES
+========================================================== */
+const $ = (id)=>document.getElementById(id);
+const esc = (s)=>String(s??"").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 function qs(params){ return Object.keys(params).map(k=>encodeURIComponent(k)+"="+encodeURIComponent(params[k]??"")).join("&"); }
-
-function apiGet(params){
-  if(API_MODE === "jsonp") return apiJsonp(params);
-  // same-origin / normal JSON
-  const url = WEB_APP_URL + "?" + qs(params);
-  return fetch(url, { method:"GET", redirect:"follow" }).then(r => r.json());
+function isGoogleScriptRunAvailable(){ return !!(window.google && google.script && google.script.run); }
+function detectEnv(){
+  const inAppsScriptIframe = isGoogleScriptRunAvailable();
+  const isGithub = /github\.io$/i.test(location.hostname);
+  return { inAppsScriptIframe, isGithub };
 }
+const ENV = detectEnv();
+$("envHint").textContent = ENV.inAppsScriptIframe
+  ? "Environment: Apps Script UI (recommended for Google Sites embed)"
+  : (ENV.isGithub ? "Environment: GitHub Pages (JSONP required for Apps Script API)" : "Environment: Web");
 
-function apiPost(params, bodyObj){
-  // Apps Script accepts POST; if you only implemented GET, keep using GET.
-  const url = WEB_APP_URL + "?" + qs(params);
-  return fetch(url, {
-    method:"POST",
-    headers: { "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8" },
-    body: qs(bodyObj || {})
-  }).then(r => r.json());
-}
-
+/* ==========================================================
+  API CLIENT (same-origin JSON or JSONP)
+========================================================== */
 function apiJsonp(params){
   return new Promise((resolve, reject)=>{
     const cb = "cb_" + Math.random().toString(36).slice(2);
-    const timeout = setTimeout(()=>{ cleanup(); reject(new Error("JSONP timeout")); }, 15000);
+    const timeout = setTimeout(()=>{ cleanup(); reject(new Error("JSONP timeout")); }, 20000);
     function cleanup(){
       clearTimeout(timeout);
-      delete window[cb];
-      script.remove();
+      try{ delete window[cb]; }catch(_){}
+      if(script && script.parentNode) script.parentNode.removeChild(script);
     }
     window[cb] = (data)=>{ cleanup(); resolve(data); };
     const script = document.createElement("script");
@@ -139,205 +189,769 @@ function apiJsonp(params){
   });
 }
 
-/** =========================
- * UI (MODULES)
- * ========================= */
-const state = {
-  schema: null,
-  active: "dashboard",
-  moduleList: [
-    {id:"dashboard", label:"Dashboard"},
-    {id:"enquiry", label:"Enquiry Form"},
-    {id:"admission", label:"Admission Form"},
-    {id:"receipt", label:"Receipt Form"},
-    {id:"batch", label:"Batch"},
-    {id:"attendance", label:"Attendance"},
-    {id:"exam", label:"Exam"},
-    {id:"certificate", label:"Certificate"},
-    {id:"verify", label:"Verify Certificate"}
-  ]
-};
-
-function el(html){ const d=document.createElement("div"); d.innerHTML=html.trim(); return d.firstChild; }
-function setActive(id){
-  state.active = id;
-  renderSidebar();
-  renderPage();
-}
-
-function renderSidebar(){
-  const sb = document.getElementById("sidebar");
-  sb.innerHTML = "";
-  state.moduleList.forEach(m=>{
-    const b = el(`<button class="navbtn ${m.id===state.active?"active":""}">
-      <span>${m.label}</span><span style="color:var(--muted)">›</span>
-    </button>`);
-    b.onclick=()=>setActive(m.id);
-    sb.appendChild(b);
+function apiGet(params){
+  if(API_MODE === "jsonp") return apiJsonp(params);
+  const url = WEB_APP_URL + "?" + qs(params);
+  return fetch(url, { method:"GET", redirect:"follow" }).then(async r=>{
+    const txt = await r.text();
+    try{ return JSON.parse(txt); }catch(e){
+      // In case backend returns HTML (error/login)
+      throw new Error("Non-JSON response from API. Check deployment access or URL.");
+    }
   });
 }
 
-function card(k,v){
-  return `<div class="card"><div class="k">${k}</div><div class="v">${v}</div></div>`;
-}
-
-async function renderPage(){
-  const page = document.getElementById("page");
-  const title = document.getElementById("pageTitle");
-  const hint = document.getElementById("pageHint");
-
-  if(state.active==="dashboard"){
-    title.textContent="Dashboard";
-    hint.textContent="Quick overview (live from backend)";
-    page.innerHTML = `<div class="grid" id="dashCards">${card("Total Enquiries","—")}${card("Admissions","—")}${card("Today Collection","—")}</div>
-      <div class="hr"></div>
-      <div class="muted">Tip: If this stays blank, your API is not reachable or CORS is blocking GitHub calls.</div>`;
-    try{
-      const r = await apiGet({module:"dashboard", action:"summary"});
-      // If you don’t have dashboard module, it’s OK — shows error
-      if(r && r.ok && r.data){
-        const c = document.getElementById("dashCards");
-        c.innerHTML =
-          card("Total Enquiries", r.data.totalEnquiries ?? 0) +
-          card("Admissions", r.data.totalAdmissions ?? 0) +
-          card("Today Collection", r.data.todayCollection ?? 0);
-      }
-    }catch(e){}
-    return;
+function apiPost(params, bodyObj){
+  if(API_MODE === "jsonp"){
+    // JSONP cannot POST. Fallback to GET-with-payload (Apps Script common pattern).
+    return apiJsonp({...params, ...bodyObj});
   }
-
-  if(state.active==="verify"){
-    title.textContent="Verify Certificate";
-    hint.textContent="Public verification by Certificate ID / Serial / Token";
-    page.innerHTML = `
-      <div class="row">
-        <input id="vInput" placeholder="CERT00001 or SGM-CERT-... or token">
-        <button class="btn" id="vBtn">Verify</button>
-      </div>
-      <div id="vOut" class="card muted">Enter a certificate value and click Verify.</div>`;
-    document.getElementById("vBtn").onclick = async ()=>{
-      const val = document.getElementById("vInput").value.trim();
-      if(!val) return;
-      const out = document.getElementById("vOut");
-      out.textContent="Checking…";
-      try{
-        const r = await apiGet({module:"verify", action:"certificate", certificateId: val});
-        out.innerHTML = `<div style="font-weight:700;margin-bottom:6px">${r.ok?"✅ Verified":"❌ Not Found"}</div>
-          <pre style="white-space:pre-wrap;margin:0;color:var(--muted)">${JSON.stringify(r,null,2)}</pre>`;
-      }catch(e){
-        out.innerHTML = `<div class="bad" style="font-weight:700">Error</div><div class="muted">${e.message}</div>`;
-      }
-    };
-    return;
-  }
-
-  // Generic module form (basic template)
-  title.textContent = state.moduleList.find(x=>x.id===state.active)?.label || "Module";
-  hint.textContent = "Schema-driven save + auto-PDF (requires backend support)";
-  page.innerHTML = `
-    <div class="two">
-      <div class="card">
-        <div style="font-weight:700;margin-bottom:8px">Create / Update</div>
-        <div class="muted">This template sends fields as key=value pairs. Your backend must map & save.</div>
-        <div class="hr"></div>
-        <div class="row">
-          <input id="f1" placeholder="Student / Enquiry Name">
-          <input id="f2" placeholder="Phone">
-        </div>
-        <div class="row">
-          <textarea id="f3" placeholder="Notes"></textarea>
-        </div>
-        <div class="row">
-          <button class="btn" id="saveBtn">Save</button>
-          <button class="btn danger" id="resetBtn">Reset</button>
-          <span class="muted" id="saveMsg"></span>
-        </div>
-        <div class="hr"></div>
-        <div class="muted">After save, if backend returns <b>pdfUrl</b>, it will open automatically.</div>
-      </div>
-
-      <div class="card">
-        <div style="font-weight:700;margin-bottom:8px">Recent Records</div>
-        <div class="muted">Loads list view if your backend supports action=list</div>
-        <table class="tbl">
-          <thead><tr><th>ID</th><th>Name</th><th>Status</th></tr></thead>
-          <tbody id="listBody"><tr><td colspan="3" class="muted">Loading…</td></tr></tbody>
-        </table>
-      </div>
-    </div>`;
-
-  document.getElementById("resetBtn").onclick=()=>{
-    ["f1","f2","f3"].forEach(id=>document.getElementById(id).value="");
-    document.getElementById("saveMsg").textContent="";
-  };
-
-  document.getElementById("saveBtn").onclick = async ()=>{
-    const saveMsg = document.getElementById("saveMsg");
-    saveMsg.textContent="Saving…";
-    const payload = {
-      name: document.getElementById("f1").value.trim(),
-      phone: document.getElementById("f2").value.trim(),
-      notes: document.getElementById("f3").value.trim()
-    };
-    try{
-      // Adjust these params to match your backend router
-      const r = await apiPost({module: state.active, action:"save"}, payload);
-      if(!r || !r.ok) throw new Error(r?.error || "Save failed");
-
-      saveMsg.textContent = "Saved ✅";
-
-      const pdfUrl = r.pdfUrl || r.data?.pdfUrl;
-      if(pdfUrl) window.open(pdfUrl, "_blank");
-
-      await loadListForActive();
-    }catch(e){
-      saveMsg.textContent = "Error: " + e.message;
+  const url = WEB_APP_URL + "?" + qs(params);
+  return fetch(url, {
+    method:"POST",
+    headers: { "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8" },
+    body: qs(bodyObj || {})
+  }).then(async r=>{
+    const txt = await r.text();
+    try{ return JSON.parse(txt); }catch(e){
+      throw new Error("Non-JSON response from API. Check deployment access or URL.");
     }
-  };
-
-  await loadListForActive();
+  });
 }
 
-async function loadListForActive(){
-  const body = document.getElementById("listBody");
-  if(!body) return;
-  try{
-    const r = await apiGet({module: state.active, action:"list", limit: 10});
-    if(!r || !r.ok) { body.innerHTML = `<tr><td colspan="3" class="muted">${r?.error || "List not available"}</td></tr>`; return; }
-    const rows = r.data || r.rows || [];
-    if(!rows.length){ body.innerHTML = `<tr><td colspan="3" class="muted">No records</td></tr>`; return; }
-    body.innerHTML = rows.slice(0,10).map(x=>`
-      <tr>
-        <td>${escapeHtml(x.id || x.enquiryId || x.admissionId || x.receiptId || x.certificateId || "—")}</td>
-        <td>${escapeHtml(x.name || x.studentName || x.enquiryName || "—")}</td>
-        <td><span class="status ${String(x.status||"").toLowerCase().includes("paid")?"ok":"muted"}">${escapeHtml(x.status||"—")}</span></td>
-      </tr>`).join("");
-  }catch(e){
-    body.innerHTML = `<tr><td colspan="3" class="muted">List error: ${escapeHtml(e.message)}</td></tr>`;
+/* ==========================================================
+  SCHEMA LOADING (tries multiple common endpoints)
+========================================================== */
+let APP_SCHEMA = null;
+
+/*
+  We try schema endpoints in this order:
+  1) ?module=dashboard&action=schema
+  2) ?module=schema&action=get
+  3) ?module=meta&action=schema
+  4) ?module=health&action=schema
+  5) ?module=search&action=schema
+*/
+async function loadSchema(){
+  const tries = [
+    {module:"dashboard", action:"schema"},
+    {module:"schema", action:"get"},
+    {module:"meta", action:"schema"},
+    {module:"health", action:"schema"},
+    {module:"search", action:"schema"}
+  ];
+
+  let lastErr = null;
+  for(const t of tries){
+    try{
+      const r = await apiGet(t);
+      if(r && r.ok){
+        const norm = normalizeSchema(r);
+        if(norm && norm.modules && Object.keys(norm.modules).length){
+          return norm;
+        }
+      }
+      lastErr = new Error(r?.error || "Schema not found on this endpoint");
+    }catch(e){ lastErr = e; }
+  }
+  throw lastErr || new Error("Schema not found");
+}
+
+/*
+  Normalizes many possible backend shapes into:
+  {
+    modules: {
+      enquiry: { sheet:"Enquiries", pk:"enquiryId", columns:[{key,label,type,required,readonly,options}] },
+      ...
+    }
+  }
+*/
+function normalizeSchema(resp){
+  const root = resp.schema || resp.data || resp;
+  // Case A: already in modules format
+  if(root && root.modules && typeof root.modules === "object"){
+    const out = { modules:{} };
+    for(const [mid, m] of Object.entries(root.modules)){
+      out.modules[mid.toLowerCase()] = normalizeModule(mid, m);
+    }
+    return out;
+  }
+
+  // Case B: sheets array: [{name, columns:[...]}]
+  if(root && Array.isArray(root.sheets)){
+    const out = { modules:{} };
+    for(const s of root.sheets){
+      const mid = guessModuleIdFromSheetName(s.name);
+      out.modules[mid] = normalizeModule(mid, { sheet:s.name, columns:s.columns });
+    }
+    return out;
+  }
+
+  // Case C: map of sheets: {Enquiries:[col...], Admissions:[col...]}
+  if(root && root.sheets && typeof root.sheets === "object" && !Array.isArray(root.sheets)){
+    const out = { modules:{} };
+    for(const [sheetName, cols] of Object.entries(root.sheets)){
+      const mid = guessModuleIdFromSheetName(sheetName);
+      out.modules[mid] = normalizeModule(mid, { sheet:sheetName, columns: cols });
+    }
+    return out;
+  }
+
+  // Case D: direct "columns" for a single module (rare) — we still keep it
+  if(root && Array.isArray(root.columns)){
+    const mid = (resp.module || root.module || "enquiry").toLowerCase();
+    return { modules: { [mid]: normalizeModule(mid, root) } };
+  }
+
+  return null;
+}
+
+function guessModuleIdFromSheetName(name){
+  const n = String(name||"").toLowerCase();
+  if(n.includes("enquir")) return "enquiry";
+  if(n.includes("admiss")) return "admission";
+  if(n.includes("receipt")) return "receipt";
+  if(n.includes("batch")) return "batch";
+  if(n.includes("attend")) return "attendance";
+  if(n.includes("exam")) return "exam";
+  if(n.includes("cert")) return "certificate";
+  if(n.includes("verify")) return "verify";
+  if(n.includes("course")) return "courses";
+  if(n.includes("student")) return "student";
+  if(n.includes("user")) return "users";
+  if(n.includes("role")) return "roles";
+  if(n.includes("emi")) return "emi";
+  if(n.includes("completion")) return "completion";
+  return n.replace(/\s+/g,"_").replace(/[^a-z0-9_]/g,"").slice(0,24) || "module";
+}
+
+function normalizeModule(mid, m){
+  const mod = { sheet: m.sheet || m.name || m.sheetName || mid, pk: m.pk || m.primaryKey || m.idKey || null, columns: [] };
+
+  let cols = m.columns || m.fields || m.headers || m.cols || [];
+  // Sometimes columns are strings
+  if(Array.isArray(cols) && cols.length && typeof cols[0] === "string"){
+    cols = cols.map(k => ({ key:k, label: prettyLabel(k) }));
+  }
+
+  if(Array.isArray(cols)){
+    mod.columns = cols.map(c=>{
+      const key = (c.key || c.name || c.col || c.header || "").trim();
+      const label = c.label || c.title || prettyLabel(key);
+      const type = c.type || inferType(key);
+      const required = !!c.required;
+      const readonly = !!c.readonly || !!c.readOnly;
+      const options = c.options || c.enum || null;
+      return { key, label, type, required, readonly, options };
+    }).filter(x=>x.key);
+  }
+
+  if(!mod.pk){
+    // auto pk guess: first column that ends with "Id" or contains "id"
+    const guess = mod.columns.find(c=>/id$/i.test(c.key)) || mod.columns.find(c=>/id/i.test(c.key));
+    mod.pk = guess ? guess.key : null;
+  }
+
+  return mod;
+}
+
+function prettyLabel(key){
+  return String(key||"")
+    .replace(/_/g," ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/\b\w/g, ch=>ch.toUpperCase())
+    .trim() || "Field";
+}
+
+function inferType(key){
+  const k = String(key||"").toLowerCase();
+  if(k.includes("date")) return "date";
+  if(k.includes("dob")) return "date";
+  if(k.includes("time")) return "time";
+  if(k.includes("email")) return "email";
+  if(k.includes("phone") || k.includes("mobile") || k.includes("whatsapp")) return "tel";
+  if(k.includes("amount") || k.includes("fee") || k.includes("paid") || k.includes("balance") || k.includes("total")) return "number";
+  if(k.includes("status")) return "select";
+  if(k.includes("gender")) return "select";
+  if(k.includes("address") || k.includes("remark") || k.includes("note") || k.includes("description")) return "textarea";
+  return "text";
+}
+
+/* ==========================================================
+  ACTION CALLER (tries multiple action names so it works with your backend)
+========================================================== */
+async function callWithFallback({module, actions, method, payload}){
+  let last = null;
+  for(const act of actions){
+    try{
+      const r = (method==="POST") ? await apiPost({module, action:act}, payload) : await apiGet({module, action:act, ...payload});
+      if(r && r.ok) return r;
+      last = r;
+    }catch(e){
+      last = { ok:false, error: e.message };
+    }
+  }
+  return last || { ok:false, error:"No action succeeded" };
+}
+
+/* ==========================================================
+  UI STATE
+========================================================== */
+const state = {
+  active: "dashboard",
+  modules: [],         // [{id,label}]
+  activeTab: "form"    // "form" | "list" | "fieldmap"
+};
+
+/* ==========================================================
+  RENDER SIDEBAR
+========================================================== */
+function renderSidebar(){
+  const sb = $("sidebar");
+  sb.innerHTML = "";
+
+  for(const m of state.modules){
+    const b = document.createElement("button");
+    b.className = "navbtn" + (m.id===state.active ? " active" : "");
+    b.innerHTML = `<span>${esc(m.label)}</span><span style="color:var(--muted)">›</span>`;
+    b.onclick = ()=>{ state.active = m.id; state.activeTab = (m.id==="dashboard" ? "form" : "form"); render(); };
+    sb.appendChild(b);
   }
 }
 
-function escapeHtml(s){
-  return String(s??"").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+/* ==========================================================
+  TABS (Form / List / Field Map)
+========================================================== */
+function renderTabs(visible){
+  const tabs = $("pageTabs");
+  if(!visible){ tabs.style.display="none"; return; }
+  tabs.style.display="flex";
+  tabs.innerHTML = "";
+  const items = [
+    {id:"form", label:"Form"},
+    {id:"list", label:"Records"},
+    {id:"fieldmap", label:"Field Map"}
+  ];
+  for(const t of items){
+    const d = document.createElement("div");
+    d.className = "tab" + (state.activeTab===t.id ? " active" : "");
+    d.textContent = t.label;
+    d.onclick = ()=>{ state.activeTab = t.id; render(); };
+    tabs.appendChild(d);
+  }
 }
 
-/** =========================
- * BOOT
- * ========================= */
-(async function boot(){
+/* ==========================================================
+  MAIN RENDER
+========================================================== */
+async function render(){
   renderSidebar();
 
-  // Health check
-  try{
-    const r = await apiGet({module:"health", action:"ping"});
-    document.getElementById("apiStatus").textContent = "API: online";
-  }catch(e){
-    document.getElementById("apiStatus").textContent = "API: error";
-    document.getElementById("apiStatus").style.borderColor = "rgba(239,68,68,.4)";
+  const page = $("page");
+  const title = $("pageTitle");
+  const hint  = $("pageHint");
+
+  const mid = state.active;
+
+  if(mid === "dashboard"){
+    renderTabs(false);
+    title.textContent = "Dashboard";
+    hint.textContent = "Schema-driven ERP • Live status";
+    page.innerHTML = `
+      <div class="grid3">
+        <div class="card"><div class="k">Total Enquiries</div><div class="v" id="dEnq">—</div></div>
+        <div class="card"><div class="k">Admissions</div><div class="v" id="dAdm">—</div></div>
+        <div class="card"><div class="k">Today Collection</div><div class="v" id="dCol">—</div></div>
+      </div>
+      <div class="hr"></div>
+      <div class="card">
+        <div style="font-weight:800;margin-bottom:6px">System</div>
+        <div class="muted">If you see “API online” + “Schema loaded”, the UI is correctly connected.</div>
+      </div>
+    `;
+    // Dashboard summary is optional; ignore failures
+    try{
+      const r = await callWithFallback({ module:"dashboard", actions:["summary","stats","home","overview"], method:"GET", payload:{} });
+      if(r && r.ok && r.data){
+        $("dEnq").textContent = r.data.totalEnquiries ?? r.data.enquiries ?? 0;
+        $("dAdm").textContent = r.data.totalAdmissions ?? r.data.admissions ?? 0;
+        $("dCol").textContent = r.data.todayCollection ?? r.data.collection ?? 0;
+      }
+    }catch(_){}
+    return;
   }
 
-  renderPage();
-})();
+  // Verify certificate page (special)
+  if(mid === "verify"){
+    renderTabs(false);
+    title.textContent = LABELS.verify || "Verify Certificate";
+    hint.textContent = "Public verification by Certificate ID / Serial / Token";
+    page.innerHTML = `
+      <div class="card">
+        <div style="font-weight:800;margin-bottom:6px">Verify Certificate</div>
+        <div class="muted">Enter Certificate ID (CERT00001), Serial (SGM-CERT-…), or Verify Token.</div>
+        <div class="row">
+          <input id="vInput" placeholder="CERT00001 or SGM-CERT-... or token" style="flex:1;min-width:260px">
+          <button class="btn" id="vBtn">Verify</button>
+        </div>
+        <div class="hr"></div>
+        <div id="vOut" class="muted">Waiting…</div>
+      </div>
+    `;
+    $("vBtn").onclick = async ()=>{
+      const val = $("vInput").value.trim();
+      if(!val) return;
+      $("vOut").textContent = "Checking…";
+
+      // Try different parameter names your verify.gs supports
+      const payloads = [
+        { certificateId: val },
+        { certificateSerial: val },
+        { verifyToken: val }
+      ];
+
+      let best = null;
+      for(const p of payloads){
+        const r = await callWithFallback({
+          module:"verify",
+          actions:["certificate","verify","check"],
+          method:"GET",
+          payload:p
+        });
+        if(r && r.ok){ best = r; break; }
+        best = r;
+      }
+
+      $("vOut").innerHTML = best && best.ok
+        ? `<div class="ok" style="font-weight:800">✅ Verified</div><pre style="white-space:pre-wrap;margin:8px 0 0;color:var(--muted)">${esc(JSON.stringify(best,null,2))}</pre>`
+        : `<div class="bad" style="font-weight:800">❌ Not Found / Error</div><pre style="white-space:pre-wrap;margin:8px 0 0;color:var(--muted)">${esc(JSON.stringify(best,null,2))}</pre>`;
+    };
+    return;
+  }
+
+  // Generic schema-driven module pages
+  renderTabs(true);
+  const mod = APP_SCHEMA?.modules?.[mid];
+  const label = LABELS[mid] || prettyLabel(mid);
+  title.textContent = label;
+  hint.textContent  = mod ? `Sheet: ${mod.sheet} • Primary Key: ${mod.pk || "—"} • Schema-driven fields` : "Schema missing for this module";
+
+  if(!mod){
+    page.innerHTML = `<div class="card"><div class="bad" style="font-weight:800">Module schema not found</div>
+      <div class="muted">This module is not present in backend schema response.</div></div>`;
+    return;
+  }
+
+  if(state.activeTab === "fieldmap"){
+    page.innerHTML = renderFieldMap(mod);
+    return;
+  }
+
+  if(state.activeTab === "list"){
+    page.innerHTML = renderListShell(label);
+    await loadList(mid, mod);
+    return;
+  }
+
+  // Form tab
+  page.innerHTML = renderFormShell(label, mod);
+  wireFormActions(mid, mod);
+}
+
+/* ==========================================================
+  FIELD MAP
+========================================================== */
+function renderFieldMap(mod){
+  const rows = mod.columns.map(c=>`
+    <tr>
+      <td>${esc(c.key)}</td>
+      <td>${esc(c.type||"")}</td>
+      <td>${c.required ? `<span class="status ok">Yes</span>` : `<span class="status">No</span>`}</td>
+      <td>${c.readonly ? `<span class="status">Readonly</span>` : `<span class="status ok">Editable</span>`}</td>
+    </tr>
+  `).join("");
+
+  return `
+    <div class="card">
+      <div style="font-weight:800;margin-bottom:6px">Field Map</div>
+      <div class="muted">This table is generated from backend schema. These keys are what we send while saving.</div>
+      <div class="hr"></div>
+      <div class="tblWrap">
+        <table>
+          <thead><tr><th>Column (Key)</th><th>Type</th><th>Required</th><th>Readonly</th></tr></thead>
+          <tbody>${rows || `<tr><td colspan="4" class="muted">No columns</td></tr>`}</tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+/* ==========================================================
+  FORM RENDER
+========================================================== */
+function renderFormShell(label, mod){
+  // Build fields from schema columns
+  const pk = mod.pk;
+  const fields = mod.columns.filter(c=>{
+    // show pk field too (readonly) if exists
+    return true;
+  });
+
+  const fieldHtml = fields.map(c=>renderField(c, pk)).join("");
+
+  return `
+    <div class="grid2">
+      <div class="card">
+        <div style="font-weight:800;margin-bottom:6px">${esc(label)} • Create / Update</div>
+        <div class="muted">All fields are generated from your Google Sheet column names (DB v3). No hardcoding.</div>
+        <div class="hr"></div>
+
+        <form id="modForm">
+          <div class="fieldGrid">
+            ${fieldHtml || `<div class="muted">No fields found in schema.</div>`}
+          </div>
+
+          <div class="row" style="margin-top:12px">
+            <button type="button" class="btn" id="saveBtn">Save</button>
+            <button type="button" class="btn ghost" id="resetBtn">Reset</button>
+            <button type="button" class="btn ghost" id="reloadBtn">Reload Records</button>
+            <span class="muted" id="saveMsg"></span>
+          </div>
+          <div class="muted">After save, if backend returns <b>pdfUrl</b>, it will open automatically.</div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:800;margin-bottom:6px">Recent Records</div>
+        <div class="row" style="margin-top:0">
+          <input id="q" placeholder="Search…" style="flex:1;min-width:220px">
+          <button class="btn ghost" id="searchBtn">Search</button>
+        </div>
+        <div class="tblWrap">
+          <table>
+            <thead><tr id="listHead"><th>Loading…</th></tr></thead>
+            <tbody id="listBody"><tr><td class="muted">Loading…</td></tr></tbody>
+          </table>
+        </div>
+        <div class="muted" style="margin-top:8px">Tip: Click a row to load it into the form (if backend provides full fields in list response).</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderField(c, pk){
+  const key = c.key;
+  const label = c.label || prettyLabel(key);
+  const required = c.required ? "required" : "";
+  const ro = (c.readonly || (pk && key===pk)) ? "readonly" : "";
+  const type = c.type || inferType(key);
+
+  // Make textarea for long-text types
+  if(type === "textarea"){
+    return `
+      <div class="field" style="grid-column:1/-1">
+        <div class="label">${esc(label)}${c.required ? ' <span class="bad">*</span>' : ""}</div>
+        <textarea name="${esc(key)}" ${required} ${ro} placeholder="${esc(label)}"></textarea>
+      </div>
+    `;
+  }
+
+  // Select (if options provided or inferred)
+  if(type === "select"){
+    const opts = Array.isArray(c.options) ? c.options : inferOptions(key);
+    if(opts && opts.length){
+      const optionsHtml = ['<option value="">Select…</option>']
+        .concat(opts.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`)).join("");
+      return `
+        <div class="field">
+          <div class="label">${esc(label)}${c.required ? ' <span class="bad">*</span>' : ""}</div>
+          <select name="${esc(key)}" ${required} ${ro}>${optionsHtml}</select>
+        </div>
+      `;
+    }
+  }
+
+  // Default input
+  const inputType = (type==="number") ? "number" : (type==="date") ? "date" : (type==="time") ? "time" : (type==="email") ? "email" : (type==="tel") ? "tel" : "text";
+  return `
+    <div class="field">
+      <div class="label">${esc(label)}${c.required ? ' <span class="bad">*</span>' : ""}</div>
+      <input type="${inputType}" name="${esc(key)}" ${required} ${ro} placeholder="${esc(label)}"/>
+    </div>
+  `;
+}
+
+function inferOptions(key){
+  const k = String(key||"").toLowerCase();
+  if(k.includes("gender")) return ["Male","Female","Other"];
+  if(k.includes("status")) return ["Active","Inactive","Pending","Completed","Cancelled"];
+  if(k.includes("fee") && k.includes("status")) return ["Paid","Unpaid","Partial","Overdue"];
+  return null;
+}
+
+/* ==========================================================
+  LIST VIEW
+========================================================== */
+function renderListShell(label){
+  return `
+    <div class="card">
+      <div style="font-weight:800;margin-bottom:6px">${esc(label)} • Records</div>
+      <div class="row" style="margin-top:0">
+        <input id="q" placeholder="Search…" style="flex:1;min-width:220px">
+        <button class="btn ghost" id="searchBtn">Search</button>
+      </div>
+      <div class="tblWrap">
+        <table>
+          <thead><tr id="listHead"><th>Loading…</th></tr></thead>
+          <tbody id="listBody"><tr><td class="muted">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+async function loadList(moduleId, mod){
+  const head = $("listHead");
+  const body = $("listBody");
+  const qEl = $("q");
+
+  const colsForTable = pickListColumns(mod);
+  head.innerHTML = colsForTable.map(c=>`<th>${esc(c.label||prettyLabel(c.key))}</th>`).join("");
+
+  const doSearch = async ()=>{
+    body.innerHTML = `<tr><td class="muted" colspan="${colsForTable.length}">Loading…</td></tr>`;
+    const q = (qEl && qEl.value) ? qEl.value.trim() : "";
+
+    const r = await callWithFallback({
+      module: moduleId,
+      actions: ["list","readall","getall","all","index"],
+      method: "GET",
+      payload: q ? { q } : {}
+    });
+
+    if(!r || !r.ok){
+      body.innerHTML = `<tr><td class="muted" colspan="${colsForTable.length}">${esc(r?.error || "List action not available in backend")}</td></tr>`;
+      return;
+    }
+
+    const rows = r.data || r.rows || r.items || [];
+    if(!Array.isArray(rows) || !rows.length){
+      body.innerHTML = `<tr><td class="muted" colspan="${colsForTable.length}">No records</td></tr>`;
+      return;
+    }
+
+    body.innerHTML = rows.slice(0, 50).map(row=>{
+      const tds = colsForTable.map(c=>`<td>${esc(readAny(row,c.key))}</td>`).join("");
+      return `<tr class="rowPick" style="cursor:pointer" data-json="${esc(JSON.stringify(row))}">${tds}</tr>`;
+    }).join("");
+
+    // Click row => fill form if exists
+    document.querySelectorAll(".rowPick").forEach(tr=>{
+      tr.onclick = ()=>{
+        const form = $("modForm");
+        if(!form) return;
+        let row = {};
+        try{ row = JSON.parse(tr.getAttribute("data-json")||"{}"); }catch(_){}
+        fillFormFromRow(form, mod, row);
+        $("saveMsg").textContent = "Loaded from list. Edit then Save.";
+      };
+    });
+  };
+
+  if($("searchBtn")) $("searchBtn").onclick = doSearch;
+  if(qEl) qEl.onkeydown = (e)=>{ if(e.key==="Enter"){ e.preventDefault(); doSearch(); } };
+  await doSearch();
+}
+
+function pickListColumns(mod){
+  // Prefer pk + a couple meaningful fields
+  const cols = [];
+  const pk = mod.pk;
+
+  const byKey = (k)=>mod.columns.find(c=>c.key===k);
+
+  if(pk && byKey(pk)) cols.push(byKey(pk));
+
+  const prefer = ["studentName","enquiryName","name","mobile","phone","course","batch","receiptNo","amount","feeStatus","status","createdAt","date"];
+  for(const k of prefer){
+    const c = mod.columns.find(x=>String(x.key).toLowerCase()===k.toLowerCase());
+    if(c && !cols.some(z=>z.key===c.key)) cols.push(c);
+    if(cols.length>=5) break;
+  }
+
+  // Fill remaining from schema (max 6 cols)
+  for(const c of mod.columns){
+    if(cols.length>=6) break;
+    if(!cols.some(z=>z.key===c.key)) cols.push(c);
+  }
+  return cols.slice(0,6);
+}
+
+function readAny(obj, key){
+  if(obj == null) return "";
+  if(Object.prototype.hasOwnProperty.call(obj, key)) return obj[key];
+  // Case-insensitive fallback
+  const k = String(key).toLowerCase();
+  for(const [kk,v] of Object.entries(obj)){
+    if(String(kk).toLowerCase() === k) return v;
+  }
+  return "";
+}
+
+function fillFormFromRow(form, mod, row){
+  for(const c of mod.columns){
+    const el = form.querySelector(`[name="${cssEscape(c.key)}"]`);
+    if(!el) continue;
+    const v = readAny(row, c.key);
+    el.value = (v==null) ? "" : String(v);
+  }
+}
+
+// CSS.escape fallback
+function cssEscape(s){
+  if(window.CSS && CSS.escape) return CSS.escape(s);
+  return String(s).replace(/["\\]/g, "\\$&");
+}
+
+/* ==========================================================
+  FORM SAVE + PDF
+========================================================== */
+function wireFormActions(moduleId, mod){
+  const form = $("modForm");
+  const saveBtn = $("saveBtn");
+  const resetBtn = $("resetBtn");
+  const reloadBtn = $("reloadBtn");
+  const saveMsg = $("saveMsg");
+
+  const reloadList = async ()=>{
+    try{ await loadList(moduleId, mod); }catch(_){}
+  };
+
+  if(resetBtn) resetBtn.onclick = ()=>{
+    if(!form) return;
+    form.reset();
+    saveMsg.textContent = "";
+  };
+
+  if(reloadBtn) reloadBtn.onclick = reloadList;
+
+  if($("searchBtn")){
+    $("searchBtn").onclick = reloadList;
+  }
+
+  if(saveBtn) saveBtn.onclick = async ()=>{
+    saveMsg.textContent = "Saving…";
+
+    // Build payload: EXACT sheet column keys
+    const payload = {};
+    form.querySelectorAll("[name]").forEach(el=>{
+      payload[el.name] = el.value;
+    });
+
+    // Try save actions used in your backend
+    const r = await callWithFallback({
+      module: moduleId,
+      actions: ["save","create","upsert","add","insert","submit"],
+      method: (API_MODE==="jsonp" ? "GET" : "POST"),
+      payload
+    });
+
+    if(!r || !r.ok){
+      saveMsg.textContent = "Error: " + (r?.error || "Save failed");
+      return;
+    }
+
+    // Show ID if returned
+    const id = r.id || r.data?.id || r.data?.[mod.pk] || r[mod.pk] || null;
+    saveMsg.innerHTML = `Saved ✅ ${id ? `• <span class="ok">${esc(id)}</span>` : ""}`;
+
+    // PDF auto open
+    let pdfUrl = r.pdfUrl || r.data?.pdfUrl || r.data?.pdf || r.data?.url || null;
+
+    // If backend does not return pdfUrl but supports a pdf action, try it
+    if(!pdfUrl){
+      const pkVal = payload[mod.pk] || id;
+      if(pkVal){
+        const pr = await callWithFallback({
+          module: moduleId,
+          actions: ["pdf","printpdf","generatepdf","makepdf"],
+          method: "GET",
+          payload: { [mod.pk]: pkVal, id: pkVal }
+        });
+        if(pr && pr.ok){
+          pdfUrl = pr.pdfUrl || pr.data?.pdfUrl || pr.data?.url || null;
+        }
+      }
+    }
+
+    if(pdfUrl){
+      window.open(pdfUrl, "_blank");
+    }
+
+    await reloadList();
+  };
+
+  // Initial list
+  loadList(moduleId, mod).catch(()=>{});
+}
+
+/* ==========================================================
+  BOOT
+========================================================== */
+async function boot(){
+  // Health check first
+  try{
+    const r = await apiGet({module:"health", action:"ping"});
+    $("apiStatus").textContent = "API: online";
+    $("apiStatus").classList.add("ok");
+  }catch(e){
+    $("apiStatus").textContent = "API: error";
+    $("apiStatus").classList.add("bad");
+  }
+
+  // Load schema
+  try{
+    APP_SCHEMA = await loadSchema();
+    $("schemaStatus").textContent = "Schema: loaded";
+    $("schemaStatus").classList.add("ok");
+  }catch(e){
+    $("schemaStatus").textContent = "Schema: NOT found";
+    $("schemaStatus").classList.add("bad");
+    // Still show basic modules so user can see error pages
+    APP_SCHEMA = { modules:{} };
+  }
+
+  // Build modules list from schema (ONLY show modules that exist)
+  const schemaModules = Object.keys(APP_SCHEMA.modules || {});
+  const preferredOrder = ["dashboard","enquiry","admission","receipt","batch","attendance","exam","certificate","verify","student","courses","emi","completion","users","roles","search"];
+
+  const finalModules = [{id:"dashboard", label: LABELS.dashboard || "Dashboard"}];
+
+  for(const mid of preferredOrder){
+    if(mid==="dashboard") continue;
+    if(APP_SCHEMA.modules[mid]){
+      finalModules.push({ id: mid, label: LABELS[mid] || prettyLabel(mid) });
+    }
+  }
+
+  // Add any other schema modules not in preferred list
+  for(const mid of schemaModules){
+    if(preferredOrder.includes(mid)) continue;
+    if(mid==="dashboard") continue;
+    finalModules.push({ id: mid, label: LABELS[mid] || prettyLabel(mid) });
+  }
+
+  // Always include verify if backend has it (even if schema missing)
+  if(!finalModules.some(m=>m.id==="verify")) finalModules.push({id:"verify", label: LABELS.verify || "Verify Certificate"});
+
+  state.modules = finalModules;
+  state.active = finalModules[0]?.id || "dashboard";
+
+  render();
+}
+
+// Start
+boot();
 </script>
 </body>
 </html>
