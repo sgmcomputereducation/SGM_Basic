@@ -2,420 +2,1140 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>SGM ERP</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SGM ERP • Corporate</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- React (CDN) -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
 
   <style>
     :root{
-      --sgm-navy:#0b3a6a;
-      --sgm-navy-2:#124c8c;
-      --sgm-bg:#f4f6f9;
-      --sgm-card:#ffffff;
-      --sgm-text:#0f172a;
-      --sgm-muted:#64748b;
-      --sgm-border:#e2e8f0;
+      --brand:#0b3a6a;
+      --bg:#f4f6f9;
+      --card:#fff;
+      --muted:#6b7280;
+      --shadow: 0 10px 25px rgba(16,24,40,.08);
+      --radius: 16px;
     }
-    body{ margin:0; background:var(--sgm-bg); font-family: Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--sgm-text); }
-    .layout{ display:flex; min-height:100vh; }
+    body{background:var(--bg); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    .app{display:flex; min-height:100vh;}
     .sidebar{
-      width:260px; background:var(--sgm-navy); color:#fff; padding:16px;
-      position:fixed; top:0; bottom:0; left:0; overflow:auto;
+      width:300px; position:sticky; top:0; height:100vh; overflow:auto;
+      background: linear-gradient(180deg, var(--brand), #062645);
+      color:#fff; padding:18px 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.2);
+      flex-shrink:0;
     }
-    .brand{ font-weight:700; letter-spacing:.3px; margin-bottom:12px; }
-    .navlink{
+    .brandbox{
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      padding:14px;
+      margin-bottom: 12px;
+    }
+    .brandbox .title{font-weight:900;}
+    .brandbox .sub{font-size:12px; opacity:.92; line-height:1.35;}
+    .navbtn{
       display:flex; align-items:center; gap:10px;
-      color:#fff; text-decoration:none; padding:10px 10px; border-radius:8px;
-      cursor:pointer; user-select:none;
+      width:100%;
+      padding:10px 10px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      margin-bottom: 8px;
+      cursor:pointer;
+      transition:.15s ease;
+      user-select:none;
     }
-    .navlink:hover{ background:var(--sgm-navy-2); }
-    .navlink.active{ background:rgba(255,255,255,.12); }
-    .navsmall{ font-size:12px; opacity:.8; margin:4px 0 12px; }
+    .navbtn:hover{transform:translateY(-1px); background: rgba(255,255,255,.10);}
+    .navbtn.active{background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.24);}
+    .navbtn .label{font-weight:800; font-size:14px;}
+    .navbtn .meta{font-size:12px; opacity:.85; margin-top:-2px;}
+    .main{flex:1; padding:18px; min-width:0;}
+    .topbar{
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      position: sticky; top: 10px; z-index: 5;
+    }
+    .topbar h5{margin:0; font-weight:900; color:var(--brand);}
+    .meta{font-size:12px; color:var(--muted);}
+    .panel{
+      margin-top:14px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
 
-    .main{ margin-left:260px; padding:20px; width:calc(100% - 260px); }
-    .header{
-      background:var(--sgm-card); border:1px solid var(--sgm-border);
-      padding:16px 18px; border-radius:12px; margin-bottom:14px;
+    .btnrow{
+      display:flex; flex-wrap:wrap; gap:10px;
+      align-items:center;
+      margin-bottom:10px;
     }
-    .header h4{ margin:0; }
-    .header small{ color:var(--sgm-muted); }
+    .btn3d{
+      border:0;
+      border-radius: 12px;
+      padding: 8px 12px;
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:900;
+      box-shadow: 0 10px 18px rgba(0,0,0,.12);
+      transition:.15s ease;
+      color:#fff;
+      user-select:none;
+    }
+    .btn3d:hover{transform:translateY(-1px);}
+    .btn3d:active{transform:translateY(0) scale(.99);}
+    .b-new{background: linear-gradient(135deg,#2563eb,#0ea5e9);}
+    .b-edit{background: linear-gradient(135deg,#a855f7,#ec4899);}
+    .b-save{background: linear-gradient(135deg,#16a34a,#22c55e);}
+    .b-search{background: linear-gradient(135deg,#111827,#334155);}
+    .b-print{background: linear-gradient(135deg,#0f172a,#475569);}
+    .b-wa{background: linear-gradient(135deg,#16a34a,#10b981);}
+    .b-mail{background: linear-gradient(135deg,#f97316,#ef4444);}
+    .disabled{opacity:.55; cursor:not-allowed; filter:saturate(.7); pointer-events:none;}
 
-    .card-box{
-      background:var(--sgm-card); border:1px solid var(--sgm-border);
-      padding:16px; border-radius:12px;
+    .searchbox{
+      min-width:260px;
+      border-radius:12px;
+      border:1px solid #e5e7eb;
+      padding:10px 12px;
+      outline:none;
+      box-shadow: 0 8px 14px rgba(16,24,40,.06);
     }
 
-    .toolbar{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      margin-bottom:12px;
+    .table-wrap{border:1px solid #e5e7eb; border-radius: 14px; overflow:hidden;}
+    thead th{
+      background:#0b3a6a; color:#fff;
+      font-size:12px; white-space:nowrap;
+      position: sticky; top: 0; z-index: 1;
     }
-    .toolbar .title{ font-weight:700; }
-    .table-wrap{ overflow:auto; border:1px solid var(--sgm-border); border-radius:10px; }
-    table.table{ margin:0; }
-    .muted{ color:var(--sgm-muted); }
-    .pill{
-      display:inline-block; padding:2px 8px; border-radius:999px;
-      font-size:12px; background:#eef2ff; color:#1e3a8a; border:1px solid #c7d2fe;
+    tbody td{font-size:13px; white-space:nowrap;}
+    tbody tr{cursor:pointer;}
+    tbody tr.selected{outline:2px solid #60a5fa; outline-offset:-2px; background:#eff6ff;}
+    .hint{color:var(--muted); font-size:12px;}
+
+    .badge-fee{font-weight:900; border-radius:999px; padding:6px 10px; font-size:12px;}
+    .fee-paid{background:#dcfce7; color:#166534; border:1px solid #86efac;}
+    .fee-due{background:#fee2e2; color:#7f1d1d; border:1px solid #fca5a5;}
+    .fee-unk{background:#f3f4f6; color:#374151; border:1px solid #e5e7eb;}
+
+    .errorbox{
+      border-left:4px solid #ef4444;
+      background:#fff1f2;
+      border-radius:12px;
+      padding:10px 12px;
+      display:none;
+      margin-bottom:10px;
     }
-    .btn-sgm{ background:var(--sgm-navy); color:#fff; }
-    .btn-sgm:hover{ background:var(--sgm-navy-2); color:#fff; }
-    .form-grid{ display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; }
-    @media (max-width: 992px){
-      .sidebar{ position:static; width:100%; }
-      .main{ margin-left:0; width:100%; }
-      .layout{ display:block; }
-      .form-grid{ grid-template-columns: 1fr; }
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;}
+
+    .form-grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:10px;}
+    .fg{grid-column: span 6;}
+    @media (max-width: 992px){ .fg{grid-column: span 12;} .sidebar{display:none;} .main{padding:12px;} }
+    .form-control, .form-select{border-radius: 12px;}
+    .modal-content{border-radius: 18px;}
+
+    .overlay{
+      position:fixed; inset:0;
+      background: rgba(244,246,249,.85);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index: 9999;
+      backdrop-filter: blur(3px);
     }
-    .required-dot{ color:#ef4444; margin-left:4px; }
-    .kv{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; }
+    .overlay .box{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(16,24,40,.18);
+      padding: 18px 18px;
+      width: min(520px, calc(100vw - 28px));
+    }
+    .mini-card{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius: 14px;
+      box-shadow: 0 10px 18px rgba(16,24,40,.08);
+      padding:12px;
+    }
+    .kpi{font-weight:900; color:#0b3a6a; font-size:20px;}
   </style>
 </head>
 
 <body>
-<div id="root"></div>
 
-<script type="text/babel">
-/** ================= CONFIG ================= */
-const API_BASE = "https://script.google.com/macros/s/AKfycbzK6xzjZg6SA5b4Br83HQiznQHCwuPvhGlM1PoP7xbQGUK0AbxYU1E4NXqtNry9lg3e/exec";
+<div class="overlay" id="overlay">
+  <div class="box">
+    <div class="d-flex align-items-center gap-3">
+      <div class="spinner-border" role="status"></div>
+      <div>
+        <div class="fw-bold" id="overlayTitle">Loading…</div>
+        <div class="hint" id="overlayMsg">Please wait</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-/** Sheet → module mapping (MATCHES YOUR BACKEND) */
-const MODULE_MAP = {
-  "Enquiries":"enquiry",
-  "Courses":"courses",
-  "Admissions":"admission",
-  "Students":"student",
-  "Receipts":"receipt",
-  "Batches":"batch",
-  "Attendance":"attendance",
-  "Exams":"exam",
-  "CourseCompletion":"completion",
-  "Certificate_Applications":"certificate",
-  "Certificates_Issued":"certificate"
+<div class="app">
+  <aside class="sidebar">
+    <div class="brandbox">
+      <div class="title">SGM COMPUTER EDUCATION</div>
+      <div class="sub">Registered Under MSME | ISO 9001-2015 Certified Center</div>
+      <div class="sub mt-2">
+        <i class="bi bi-telephone"></i> 9742266359<br>
+        <i class="bi bi-envelope"></i> info@sgmcomputereducation.com<br>
+        <i class="bi bi-globe"></i> https://www.sgmcomputereducation.com
+      </div>
+    </div>
+
+    <div class="hint text-white-50 px-2 mb-2">MODULES</div>
+    <div id="nav"></div>
+
+    <div class="mt-3 px-2">
+      <div class="hint text-white-50">API BASE</div>
+      <div id="apiBaseView" class="mono" style="font-size:11px; opacity:.9; word-break:break-all"></div>
+    </div>
+    <div class="mt-2 px-2">
+      <div id="schemaStatus" class="hint text-white-50">Schema: loading…</div>
+      <div id="dashStatus" class="hint text-white-50 mt-1">Dashboard: loading…</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h5 id="pageTitle">SGM ERP</h5>
+        <div class="meta" id="pageMeta">Ready</div>
+      </div>
+      <div class="d-flex gap-2 align-items-center flex-wrap">
+        <span class="badge text-bg-light border"><i class="bi bi-shield-check"></i> Corporate ERP</span>
+        <span class="badge text-bg-light border"><i class="bi bi-cloud-check"></i> Connected</span>
+        <span id="feeBadge" class="badge-fee fee-unk d-none"></span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="row g-2 mb-2" id="kpiRow" style="display:none;">
+        <div class="col-md-4">
+          <div class="mini-card">
+            <div class="hint">Total Enquiries</div>
+            <div class="kpi" id="kpiEnq">—</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mini-card">
+            <div class="hint">Total Admissions</div>
+            <div class="kpi" id="kpiAdm">—</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mini-card">
+            <div class="hint">Today Collection</div>
+            <div class="kpi" id="kpiCol">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="errBox" class="errorbox">
+        <div class="fw-bold">UI Error</div>
+        <div id="errMsg" class="small"></div>
+        <details class="mt-2">
+          <summary class="hint">Show raw response</summary>
+          <pre id="errRaw" class="mono p-2 bg-light border rounded-3" style="max-height:220px; overflow:auto;"></pre>
+        </details>
+      </div>
+
+      <div class="btnrow">
+        <button class="btn3d b-new" id="btnNew" onclick="openNew()">
+          <i class="bi bi-plus-lg"></i> New
+        </button>
+
+        <button class="btn3d b-edit disabled" id="btnEdit" onclick="openEdit()">
+          <i class="bi bi-pencil-square"></i> Edit
+        </button>
+
+        <!-- ✅ FIXED: Update now opens modal (if needed) and saves FORM values -->
+        <button class="btn3d b-save disabled" id="btnUpdate" onclick="updateRecord()">
+          <i class="bi bi-check2-circle"></i> Update
+        </button>
+
+        <input id="searchQ" class="searchbox" placeholder="Search record… (Enter)" />
+        <button class="btn3d b-search" id="btnSearch" onclick="searchInModule()">
+          <i class="bi bi-search"></i> Search
+        </button>
+
+        <button class="btn3d b-print disabled" id="btnPrint" onclick="printPdf()">
+          <i class="bi bi-printer"></i> Print
+        </button>
+
+        <button class="btn3d b-wa disabled" id="btnWA" onclick="shareWhatsApp()">
+          <i class="bi bi-whatsapp"></i> WhatsApp
+        </button>
+
+        <button class="btn3d b-mail disabled" id="btnMail" onclick="shareEmail()">
+          <i class="bi bi-envelope"></i> Email
+        </button>
+
+        <button class="btn btn-outline-secondary ms-auto" style="border-radius:12px" onclick="reloadList(true)">
+          <i class="bi bi-arrow-clockwise"></i>
+        </button>
+      </div>
+
+      <div class="hint mb-2">Click a row to enable Edit / Update / Print / WhatsApp / Email.</div>
+
+      <div class="table-wrap">
+        <div class="table-responsive" style="max-height:62vh;">
+          <table class="table table-hover table-sm mb-0">
+            <thead id="thead"></thead>
+            <tbody id="tbody">
+              <tr><td class="p-3">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-2 d-flex justify-content-between align-items-center flex-wrap">
+        <div class="hint" id="listInfo">—</div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-outline-secondary" style="border-radius:12px" onclick="prevPage()"><i class="bi bi-chevron-left"></i></button>
+          <button class="btn btn-sm btn-outline-secondary" style="border-radius:12px" onclick="nextPage()"><i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title" id="modalTitle">Form</h5>
+          <div class="hint">Fields auto-load from your sheet headers (schema).</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid" id="formGrid"></div>
+      </div>
+      <div class="modal-footer">
+        <div class="hint me-auto" id="modalFoot">—</div>
+        <button class="btn btn-outline-secondary" style="border-radius:12px" data-bs-dismiss="modal">Close</button>
+        <!-- ✅ Always saves FORM values -->
+        <button class="btn btn-primary" style="border-radius:12px" onclick="saveFromModal()"><i class="bi bi-check2-circle"></i> Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/**
+ * FIXED SAVE FLOW:
+ * - Update button no longer sends stale selectedRow.
+ * - Save always uses collectForm().
+ * - EMI PK fixed to emiId.
+ * - Adds _ts cache-bust on every request.
+ */
+
+const FALLBACK_WEBAPP =
+  "https://script.google.com/macros/s/AKfycbzK6xzjZg6SA5b4Br83HQiznQHCwuPvhGlM1PoP7xbQGUK0AbxYU1E4NXqtNry9lg3e/exec";
+
+function cleanExecUrl(url){
+  try{
+    const u = new URL(url);
+    return u.origin + u.pathname;
+  }catch(e){
+    return String(url || "").split("?")[0];
+  }
+}
+
+const API_BASE = cleanExecUrl(
+  location.hostname.includes("script.google.com")
+    ? (location.origin + location.pathname)
+    : FALLBACK_WEBAPP
+);
+
+document.getElementById("apiBaseView").textContent = API_BASE;
+
+const WHATSAPP_NUMBER = "9742266349";
+const ACTION_PDF = "pdf";
+
+const page = { limit: 30, offset: 0 };
+
+const MODULES = [
+  { key:"dashboard", label:"Dashboard", sheet:null, icon:"https://cdn.lordicon.com/ajkxzzfb.json", dashboard:true },
+
+  { key:"enquiry", label:"Enquiries", sheet:"Enquiries", icon:"https://cdn.lordicon.com/ppyvfomi.json" },
+  { key:"student", label:"Students", sheet:"Students", icon:"https://cdn.lordicon.com/hrjifpbq.json" },
+  { key:"admission", label:"Admissions", sheet:"Admissions", icon:"https://cdn.lordicon.com/rsbokaso.json" },
+  { key:"receipt", label:"Receipts", sheet:"Receipts", icon:"https://cdn.lordicon.com/oqdmuxru.json" },
+  { key:"batch", label:"Batches", sheet:"Batches", icon:"https://cdn.lordicon.com/jjjmlddk.json" },
+
+  { key:"attendance", label:"Attendance", sheet:"Attendance", icon:"https://cdn.lordicon.com/fdxqrdfe.json" },
+  { key:"courses", label:"Courses", sheet:"Courses", icon:"https://cdn.lordicon.com/hqxiapdh.json" },
+
+  { key:"emi", label:"EMI Plan", sheet:"EMI_Plan", icon:"https://cdn.lordicon.com/iawrhwdo.json" },
+  { key:"exam", label:"Exams", sheet:"Exams", icon:"https://cdn.lordicon.com/wzwygmng.json" },
+  { key:"completion", label:"Course Completion", sheet:"CourseCompletion", icon:"https://cdn.lordicon.com/nhqwexdn.json" },
+
+  { key:"certificate", label:"Certificate Apply", sheet:"Certificate_Applications", sub:"", icon:"https://cdn.lordicon.com/ivayzoru.json" },
+  { key:"certificate", label:"Certificate Issued", sheet:"Certificates_Issued", sub:"issue", icon:"https://cdn.lordicon.com/ivayzoru.json" },
+
+  { key:"verify", label:"Verify Certificate", public:true, icon:"https://cdn.lordicon.com/bhenfmcm.json" }
+];
+
+// State
+let SCHEMA = null;
+let schemaReady = false;
+
+let currentModule = MODULES[0];
+let currentHeaders = [];
+let currentRows = [];
+let selectedRow = null;
+let editModal = null;
+let lastOpenedMode = "new"; // "new" | "edit"
+
+const cache = {
+  schema: null,
+  list: new Map(),
+  dash: null
 };
 
-function safeJson(v){ try { return JSON.stringify(v, null, 2); } catch { return String(v); } }
+const feeCache = new Map();
+let ctrlGet = null;
+let ctrlPost = null;
+
+const $ = (id)=>document.getElementById(id);
+
+// ---------- UI helpers ----------
+function showOverlay(title, msg){
+  $("overlayTitle").textContent = title || "Loading…";
+  $("overlayMsg").textContent = msg || "Please wait";
+  $("overlay").style.display = "flex";
+}
+function hideOverlay(){ $("overlay").style.display = "none"; }
+
+function showError(msg, raw){
+  $("errBox").style.display = "block";
+  $("errMsg").textContent = msg || "Unknown error";
+  $("errRaw").textContent = raw || "";
+}
+function clearError(){
+  $("errBox").style.display = "none";
+  $("errMsg").textContent = "";
+  $("errRaw").textContent = "";
+}
+
+function setStatus(title, meta){
+  $("pageTitle").textContent = title || "SGM ERP";
+  $("pageMeta").textContent = meta || "";
+}
+
+function setBtnEnabled(id, enabled){
+  const el=$(id);
+  if (!el) return;
+  if (enabled) el.classList.remove("disabled");
+  else el.classList.add("disabled");
+}
+function enableRowActions(on){
+  ["btnEdit","btnUpdate","btnPrint","btnWA","btnMail"].forEach(id=>setBtnEnabled(id,on));
+}
+
+// ---------- Networking ----------
+function apiUrl(params){
+  const u = new URL(API_BASE);
+  Object.entries(params||{}).forEach(([k,v])=>{
+    if (v!==undefined && v!==null && v!=="") u.searchParams.set(k,v);
+  });
+  u.searchParams.set("_ts", Date.now()); // ✅ ALWAYS cache-bust
+  return u.toString();
+}
+
+function abortController(which){
+  if (which === "GET"){
+    if (ctrlGet) try{ ctrlGet.abort(); }catch(e){}
+    ctrlGet = new AbortController();
+    return ctrlGet;
+  }
+  if (which === "POST"){
+    if (ctrlPost) try{ ctrlPost.abort(); }catch(e){}
+    ctrlPost = new AbortController();
+    return ctrlPost;
+  }
+  return null;
+}
 
 async function apiGet(params){
-  const url = API_BASE + "?" + new URLSearchParams(params).toString();
-  const r = await fetch(url, { method:"GET" });
-  return await r.json();
+  const controller = abortController("GET");
+  const res = await fetch(apiUrl(params), { method:"GET", signal: controller.signal, cache:"no-store" });
+  const txt = await res.text();
+  try { return JSON.parse(txt); }
+  catch(e){ return { ok:false, error:"Non-JSON response (UI/HTML returned).", raw: txt, url: apiUrl(params) }; }
 }
+
 async function apiPost(params, bodyObj){
-  const url = API_BASE + "?" + new URLSearchParams(params).toString();
-  const r = await fetch(url, { method:"POST", body: JSON.stringify(bodyObj || {}) });
-  return await r.json();
+  const controller = abortController("POST");
+  const res = await fetch(apiUrl(params), {
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify(bodyObj||{}),
+    signal: controller.signal,
+    cache:"no-store"
+  });
+  const txt = await res.text();
+  try { return JSON.parse(txt); }
+  catch(e){ return { ok:false, error:"Non-JSON response (UI/HTML returned).", raw: txt, url: apiUrl(params) }; }
 }
 
-function App(){
-  const [schema, setSchema] = React.useState({});
-  const [loadingSchema, setLoadingSchema] = React.useState(true);
-  const [schemaError, setSchemaError] = React.useState("");
+// ---------- Schema ----------
+const LS_SCHEMA_KEY = "SGM_SCHEMA_CACHE_V2";
+const LS_SCHEMA_TS  = "SGM_SCHEMA_CACHE_TS";
 
-  const [activeSheet, setActiveSheet] = React.useState("");
-  const [view, setView] = React.useState("home"); // home | list | form | verify
-  const [rows, setRows] = React.useState([]);
-  const [listLoading, setListLoading] = React.useState(false);
-  const [listError, setListError] = React.useState("");
+function loadSchemaFromLocal(){
+  try{
+    const raw = localStorage.getItem(LS_SCHEMA_KEY);
+    const ts  = Number(localStorage.getItem(LS_SCHEMA_TS) || "0");
+    if (!raw) return null;
+    if (Date.now() - ts > 6*60*60*1000) return null;
+    return JSON.parse(raw);
+  } catch(e){ return null; }
+}
+function saveSchemaToLocal(schema){
+  try{
+    localStorage.setItem(LS_SCHEMA_KEY, JSON.stringify(schema||{}));
+    localStorage.setItem(LS_SCHEMA_TS, String(Date.now()));
+  } catch(e){}
+}
 
-  const [searchQ, setSearchQ] = React.useState("");
+async function loadSchemaFast(){
+  $("schemaStatus").textContent = "Schema: loading…";
 
-  const [formData, setFormData] = React.useState({});
-  const [formSaving, setFormSaving] = React.useState(false);
-  const [formMsg, setFormMsg] = React.useState("");
+  if (cache.schema){
+    SCHEMA = cache.schema;
+    schemaReady = true;
+    $("schemaStatus").textContent = "Schema: ready ✅";
+    return;
+  }
 
-  const [verifyInput, setVerifyInput] = React.useState("");
-  const [verifyOut, setVerifyOut] = React.useState("");
+  const local = loadSchemaFromLocal();
+  if (local){
+    cache.schema = local;
+    SCHEMA = local;
+    schemaReady = true;
+    $("schemaStatus").textContent = "Schema: ready ✅ (local)";
+    refreshSchemaBackground();
+    return;
+  }
 
-  const availableSheets = React.useMemo(()=>{
-    return Object.keys(schema || {})
-      .filter(sh => sh !== "Counters" && MODULE_MAP[sh])
-      .sort((a,b)=>a.localeCompare(b));
-  }, [schema]);
+  const s = await apiGet({ module:"schema", action:"get" });
+  if (!s.ok){
+    $("schemaStatus").textContent = "Schema: error";
+    showError(s.error || "Schema failed", s.raw || "");
+    return;
+  }
+  SCHEMA = s.schema || {};
+  cache.schema = SCHEMA;
+  saveSchemaToLocal(SCHEMA);
+  schemaReady = true;
+  $("schemaStatus").textContent = "Schema: ready ✅";
+}
 
-  React.useEffect(()=>{
-    (async()=>{
-      setLoadingSchema(true);
-      setSchemaError("");
-      try{
-        const j = await apiGet({ module:"schema", action:"get" });
-        if(!j.ok) throw new Error("Schema not ok");
-        setSchema(j.schema || {});
-        setView("home");
-      }catch(err){
-        setSchemaError(String(err && err.message ? err.message : err));
-      }finally{
-        setLoadingSchema(false);
+async function refreshSchemaBackground(){
+  try{
+    const s = await apiGet({ module:"schema", action:"get" });
+    if (s && s.ok && s.schema){
+      SCHEMA = s.schema;
+      cache.schema = SCHEMA;
+      saveSchemaToLocal(SCHEMA);
+      $("schemaStatus").textContent = "Schema: ready ✅";
+    }
+  } catch(e){}
+}
+
+// ---------- Dashboard KPIs ----------
+function showKpis(show){ $("kpiRow").style.display = show ? "" : "none"; }
+function formatINR(n){
+  const x = Number(n||0);
+  return isFinite(x) ? x.toLocaleString("en-IN") : "0";
+}
+async function loadDashboard(){
+  $("dashStatus").textContent = "Dashboard: loading…";
+  showKpis(false);
+
+  if (cache.dash && (Date.now()-cache.dash.ts)<120000){
+    applyDashboard(cache.dash.data);
+    $("dashStatus").textContent = "Dashboard: ready ✅ (cached)";
+    return;
+  }
+
+  const d = await apiGet({ module:"dashboard", action:"summary" });
+  if (!d.ok){
+    $("dashStatus").textContent = "Dashboard: error";
+    return;
+  }
+  cache.dash = { ts: Date.now(), data: d };
+  applyDashboard(d);
+  $("dashStatus").textContent = "Dashboard: ready ✅";
+}
+function applyDashboard(d){
+  const cards = (d && d.cards) ? d.cards : {};
+  $("kpiEnq").textContent = cards.totalEnquiries ?? "0";
+  $("kpiAdm").textContent = cards.totalAdmissions ?? "0";
+  $("kpiCol").textContent = "₹ " + formatINR(cards.todayCollection ?? 0);
+  showKpis(true);
+}
+
+// ---------- Navigation ----------
+function renderNav(){
+  const nav = $("nav");
+  nav.innerHTML="";
+  MODULES.forEach(m=>{
+    const el=document.createElement("div");
+    el.className="navbtn"+(m===currentModule?" active":"");
+    el.innerHTML = `
+      <div>
+        <lord-icon src="${m.icon}" trigger="hover" style="width:26px;height:26px"></lord-icon>
+      </div>
+      <div>
+        <div class="label">${esc(m.label)}</div>
+        <div class="meta">${esc(m.key)}${m.sub ? " • "+esc(m.sub) : ""}</div>
+      </div>
+    `;
+    el.onclick=()=>selectModule(m);
+    nav.appendChild(el);
+  });
+}
+
+// ---------- PK mapping (✅ EMI fixed) ----------
+function pkForModule(m){
+  const map = {
+    enquiry:"enquiryId",
+    student:"studentId",
+    admission:"admissionId",
+    receipt:"receiptId",
+    batch:"batchId",
+    attendance:"attendanceId",
+    courses:"courseId",
+    emi:"emiId",              // ✅ FIXED (was emiPlanId)
+    exam:"examId",
+    completion:"completionId",
+    certificate: (m.sub==="issue" ? "certificateId" : "applicationId")
+  };
+  return map[m.key] || "id";
+}
+function idFromRow(m,row){
+  const pk = pkForModule(m);
+  return row ? (row[pk] || row.id || "") : "";
+}
+function studentIdFromRow(row){
+  if (!row) return "";
+  return row.studentId || row.StudentId || row.studentID || "";
+}
+
+// ---------- Fee badge ----------
+function showFeeBadge(kind, text){
+  const b=$("feeBadge");
+  if (!text){ b.classList.add("d-none"); return; }
+  b.classList.remove("d-none","fee-paid","fee-due","fee-unk");
+  b.classList.add(kind==="paid"?"fee-paid":kind==="due"?"fee-due":"fee-unk");
+  b.textContent=text;
+}
+async function loadFeeStatus(studentId){
+  if (!studentId) return showFeeBadge("unk","");
+
+  const hit = feeCache.get(studentId);
+  if (hit && (Date.now()-hit.ts)<60000) return applyFee(hit.data);
+
+  const r = await apiGet({ module:"emi", action:"feesummary", studentId });
+  feeCache.set(studentId, { ts: Date.now(), data: r });
+  return applyFee(r);
+}
+function applyFee(r){
+  if (!r || !r.ok){ showFeeBadge("unk","Fee: Unknown"); return; }
+  if (r.isFullyPaid === true || (r.fee && r.fee.isFullyPaid===true)) showFeeBadge("paid","Fee: PAID");
+  else if (r.isFullyPaid === false || (r.fee && r.fee.isFullyPaid===false) || r.statusText==="DUE"){
+    const due = (r.dueAmount!=null) ? ` • Due ₹${r.dueAmount}` : "";
+    showFeeBadge("due","Fee: DUE"+due);
+  } else showFeeBadge("unk","Fee: Unknown");
+}
+
+// ---------- Table ----------
+function renderTable(headers, rows){
+  const DISPLAY = Math.min(headers.length, 12);
+  const headCols = headers.slice(0, DISPLAY);
+
+  $("thead").innerHTML = `<tr>${headCols.map(h=>`<th>${esc(h)}</th>`).join("")}</tr>`;
+
+  if (!rows || !rows.length){
+    $("tbody").innerHTML = `<tr><td class="p-3" colspan="${DISPLAY}">No records</td></tr>`;
+    return;
+  }
+
+  let html = "";
+  for (let idx=0; idx<rows.length; idx++){
+    const row = rows[idx];
+    html += `<tr data-idx="${idx}">`;
+    for (const h of headCols){
+      html += `<td>${esc(row[h] ?? "")}</td>`;
+    }
+    html += `</tr>`;
+  }
+  $("tbody").innerHTML = html;
+}
+
+$("tbody").addEventListener("click", (e)=>{
+  const tr = e.target.closest("tr[data-idx]");
+  if (!tr) return;
+  document.querySelectorAll("#tbody tr").forEach(x=>x.classList.remove("selected"));
+  tr.classList.add("selected");
+  selectedRow = currentRows[Number(tr.dataset.idx)];
+  enableRowActions(true);
+
+  const sid = studentIdFromRow(selectedRow);
+  if (sid) loadFeeStatus(sid); else showFeeBadge("unk","");
+});
+
+// ---------- Module switching ----------
+function listCacheKey(){
+  const sub = (currentModule.key==="certificate" && currentModule.sub) ? currentModule.sub : "";
+  return `${currentModule.key}|${sub}|${page.limit}|${page.offset}`;
+}
+
+async function applySchemaForCurrentModuleAndLoad(){
+  clearError();
+  selectedRow=null;
+  enableRowActions(false);
+  showFeeBadge("unk","");
+
+  if (currentModule.dashboard){
+    setStatus("Dashboard", "Summary");
+    await loadDashboard();
+    $("thead").innerHTML = "";
+    $("tbody").innerHTML = `<tr><td class="p-3">
+      <b>Dashboard loaded.</b><div class="hint mt-1">KPIs updated above.</div>
+    </td></tr>`;
+    return;
+  }
+
+  if (currentModule.public){
+    setStatus(currentModule.label, "Public endpoint");
+    $("thead").innerHTML = "";
+    $("tbody").innerHTML = `<tr><td class="p-3">
+      <b>Verify Certificate</b>
+      <div class="hint mt-1">Use URL:</div>
+      <div class="mono small mt-2 p-2 bg-light border rounded-3">
+        ?module=verify&action=certificate&certificateId=CERT00001<br>
+        ?module=verify&action=certificate&verifyToken=XXXX<br>
+        ?module=verify&action=certificate&certificateSerial=SGM-CERT-...
+      </div>
+    </td></tr>`;
+    return;
+  }
+
+  if (!schemaReady){
+    setStatus(currentModule.label, "Loading schema…");
+    $("thead").innerHTML = "";
+    $("tbody").innerHTML = `<tr><td class="p-3">Loading schema…</td></tr>`;
+    return;
+  }
+
+  const sch = SCHEMA && SCHEMA[currentModule.sheet];
+  if (!sch || !sch.headers || !sch.headers.length){
+    setStatus(currentModule.label, "Sheet not found in schema: " + currentModule.sheet);
+    $("thead").innerHTML = "";
+    $("tbody").innerHTML = `<tr><td class="p-3">
+      <b>Sheet missing:</b> ${esc(currentModule.sheet)}
+      <div class="hint mt-1">Check your Google Sheet tab name matches exactly.</div>
+    </td></tr>`;
+    return;
+  }
+
+  currentHeaders = sch.headers;
+  await reloadList(false);
+}
+
+async function reloadList(force){
+  if (currentModule.public || currentModule.dashboard) return;
+
+  clearError();
+  selectedRow=null;
+  enableRowActions(false);
+  showFeeBadge("unk","");
+
+  page.limit = 30;
+
+  const key = listCacheKey();
+  if (!force && cache.list.has(key)){
+    const c = cache.list.get(key);
+    currentRows = c.rows || [];
+    renderTable(currentHeaders, currentRows);
+    $("listInfo").textContent = `Showing ${currentRows.length} / Total ${c.total ?? "?"} • Offset ${c.offset ?? page.offset} • (cached)`;
+    setStatus(currentModule.label, "Loaded ✅");
+    return;
+  }
+
+  showOverlay("Loading data…", currentModule.label + " list is loading");
+  const params = { module: currentModule.key, action:"list", limit: 30, offset: page.offset };
+  if (currentModule.key==="certificate" && currentModule.sub) params.sub=currentModule.sub;
+
+  let r;
+  try{ r = await apiGet(params); }
+  catch(err){
+    hideOverlay();
+    if (String(err).includes("AbortError")) return;
+    showError("Network error", String(err));
+    return;
+  }
+  hideOverlay();
+
+  if (!r.ok){
+    setStatus(currentModule.label, "List failed");
+    showError(r.error || "List failed", r.raw || "");
+    $("tbody").innerHTML = "";
+    return;
+  }
+
+  currentRows = (r.rows || []).slice(0, 30);
+  cache.list.set(key, { rows: currentRows, total: r.total, offset: r.offset ?? page.offset, ts: Date.now() });
+
+  renderTable(currentHeaders, currentRows);
+  $("listInfo").textContent = `Showing ${currentRows.length} / Total ${r.total ?? "?"} • Offset ${r.offset ?? page.offset}`;
+  setStatus(currentModule.label, "Loaded ✅");
+}
+
+// ---------- Forms ----------
+function openNew(){
+  if (currentModule.public || currentModule.dashboard) return;
+  if (!schemaReady){ alert("Schema is still loading. Please wait 2–5 seconds."); return; }
+  if (!currentHeaders.length){ alert("Headers not loaded for this module."); return; }
+
+  const empty={};
+  currentHeaders.forEach(h=>empty[h]="");
+  lastOpenedMode = "new";
+  showForm(empty, "New " + currentModule.label);
+}
+
+function openEdit(){
+  if (!selectedRow){ alert("Please select a row first."); return; }
+  if (!schemaReady){ alert("Schema is still loading. Please wait."); return; }
+  lastOpenedMode = "edit";
+  showForm(selectedRow, "Edit " + currentModule.label);
+}
+
+function showForm(row, title){
+  $("modalTitle").textContent = title;
+  $("modalFoot").textContent = "Save will call module=...&action=save";
+  const grid=$("formGrid");
+  grid.innerHTML="";
+
+  const frag = document.createDocumentFragment();
+  for (const h of currentHeaders){
+    const v = row[h] ?? "";
+    const id = "f_" + h.replace(/[^a-z0-9_]/gi,"_");
+    const hn = String(h).toLowerCase();
+    const isLong = hn.includes("address") || hn.includes("remark") || hn.includes("note") || hn.includes("description");
+
+    const div=document.createElement("div");
+    div.className="fg";
+    div.innerHTML = `
+      <label class="form-label fw-semibold">${esc(h)}</label>
+      ${isLong
+        ? `<textarea class="form-control" rows="2" id="${id}">${esc(v)}</textarea>`
+        : `<input class="form-control" id="${id}" value="${esc(v)}" />`
+      }`;
+    frag.appendChild(div);
+  }
+  grid.appendChild(frag);
+  editModal.show();
+}
+
+function collectForm(){
+  const obj={};
+  for (const h of currentHeaders){
+    const id = "f_" + h.replace(/[^a-z0-9_]/gi,"_");
+    const el=document.getElementById(id);
+    obj[h] = el ? el.value : "";
+  }
+  return obj;
+}
+
+/** ✅ New: always save from modal */
+async function saveFromModal(){
+  return saveRecord(true);
+}
+
+/** ✅ New: Update button fixed */
+async function updateRecord(){
+  if (!selectedRow){ alert("Please select a row first."); return; }
+  // If modal not open, open it with selected row.
+  // Then user can edit and click Save.
+  openEdit();
+}
+
+async function saveRecord(fromModal){
+  if (currentModule.public || currentModule.dashboard) return;
+  if (!schemaReady){ alert("Schema is still loading. Please wait."); return; }
+
+  // ✅ FIXED: always use collectForm when saving/updating
+  const payload = collectForm();
+  if (!payload){ alert("No data to save."); return; }
+
+  showOverlay("Saving…", "Please wait");
+
+  const params = { module: currentModule.key, action:"save" };
+  if (currentModule.key==="certificate" && currentModule.sub) params.sub=currentModule.sub;
+
+  let r;
+  try{ r = await apiPost(params, payload); }
+  catch(err){
+    hideOverlay();
+    if (String(err).includes("AbortError")) return;
+    alert("Network error");
+    return;
+  }
+  hideOverlay();
+
+  if (!r.ok){
+    alert(r.error || "Save failed");
+    if (r.raw) showError(r.error, r.raw);
+    return;
+  }
+
+  // bust list cache for this module
+  [...cache.list.keys()].forEach(k=>{
+    if (k.startsWith(currentModule.key+"|")) cache.list.delete(k);
+  });
+
+  if (fromModal) editModal.hide();
+
+  await reloadList(true);
+
+  // best-effort: auto-select saved row by returned id
+  try{
+    const savedId = r.id || (r.row ? (r.row[pkForModule(currentModule)] || r.row.id) : "");
+    if (savedId){
+      const pk = pkForModule(currentModule);
+      const idx = currentRows.findIndex(x => String(x[pk]||x.id||"") === String(savedId));
+      if (idx >= 0){
+        selectedRow = currentRows[idx];
+        enableRowActions(true);
+        document.querySelectorAll("#tbody tr").forEach(x=>x.classList.remove("selected"));
+        const tr = document.querySelector(`#tbody tr[data-idx="${idx}"]`);
+        if (tr) tr.classList.add("selected");
       }
-    })();
-  }, []);
-
-  async function loadList(sheet, q=""){
-    const module = MODULE_MAP[sheet];
-    if(!module) return;
-
-    setActiveSheet(sheet);
-    setView("list");
-    setListLoading(true);
-    setListError("");
-    setRows([]);
-    setSearchQ(q);
-
-    try{
-      const j = q
-        ? await apiGet({ module, action:"search", q })
-        : await apiGet({ module, action:"list", limit: 200, offset: 0 });
-
-      if(!j.ok) throw new Error(j.error || "Failed to load list");
-      setRows(j.rows || []);
-    }catch(err){
-      setListError(String(err && err.message ? err.message : err));
-    }finally{
-      setListLoading(false);
     }
-  }
-
-  function openNewForm(sheet){
-    setActiveSheet(sheet);
-    setView("form");
-    setFormMsg("");
-    const headers = (schema?.[sheet]?.headers) || [];
-    const empty = {};
-    headers.forEach(h => empty[h] = "");
-    setFormData(empty);
-  }
-
-  async function saveForm(){
-    const sheet = activeSheet;
-    const module = MODULE_MAP[sheet];
-    if(!module) return;
-
-    setFormSaving(true);
-    setFormMsg("");
-    try{
-      const j = await apiPost({ module, action:"save" }, formData);
-      if(!j.ok) throw new Error(j.error || "Save failed");
-      setFormMsg("✅ Saved successfully");
-      await loadList(sheet, "");
-    }catch(err){
-      setFormMsg("❌ " + String(err && err.message ? err.message : err));
-    }finally{
-      setFormSaving(false);
-    }
-  }
-
-  function printPdfForRow(sheet, row){
-    const module = MODULE_MAP[sheet];
-    const headers = schema?.[sheet]?.headers || [];
-    const pk = headers[0]; // assumes first header is PK like enquiryId, courseId, etc.
-    const id = row?.[pk] || "";
-    if(!id) return alert("Missing ID/PK for PDF.");
-    window.open(`${API_BASE}?module=${encodeURIComponent(module)}&action=pdf&id=${encodeURIComponent(id)}`, "_blank");
-  }
-
-  function openVerify(){
-    setActiveSheet("");
-    setView("verify");
-    setVerifyOut("");
-    setVerifyInput("");
-  }
-
-  async function verifyCertificate(){
-    setVerifyOut("Verifying...");
-    try{
-      const j = await apiGet({ module:"verify", action:"certificate", certificateId: verifyInput });
-      setVerifyOut(safeJson(j));
-    }catch(err){
-      setVerifyOut("❌ " + String(err && err.message ? err.message : err));
-    }
-  }
-
-  return (
-    <div className="layout">
-      <aside className="sidebar">
-        <div className="brand">SGM ERP</div>
-        <div className="navsmall">Corporate ERP • Web App</div>
-
-        {loadingSchema && <div className="muted">Loading…</div>}
-
-        {!loadingSchema && schemaError && (
-          <div className="alert alert-warning p-2">
-            <div className="fw-bold">Schema load failed</div>
-            <div className="kv">{schemaError}</div>
-          </div>
-        )}
-
-        {!loadingSchema && !schemaError && (
-          <>
-            {availableSheets.map(sh => (
-              <div
-                key={sh}
-                className={"navlink " + (view !== "verify" && activeSheet === sh ? "active" : "")}
-                onClick={()=>loadList(sh)}
-                title={MODULE_MAP[sh]}
-              >
-                <span className="pill">{MODULE_MAP[sh]}</span>
-                <span>{sh.replace(/_/g," ")}</span>
-              </div>
-            ))}
-
-            <hr style={{borderColor:"rgba(255,255,255,.15)"}} />
-
-            <div className={"navlink " + (view === "verify" ? "active" : "")} onClick={openVerify}>
-              <span className="pill">public</span>
-              <span>Verify Certificate</span>
-            </div>
-          </>
-        )}
-      </aside>
-
-      <main className="main">
-        <div className="header">
-          <h4>SGM COMPUTER EDUCATION</h4>
-          <small>Registered Under MSME | ISO 9001-2015 Certified Center</small>
-        </div>
-
-        <div className="card-box">
-          {view === "home" && (
-            <>
-              <div className="d-flex align-items-center gap-2">
-                <span className="fs-5">✅ ERP loaded.</span>
-                <span className="muted">Select a module from the left menu.</span>
-              </div>
-              <div className="mt-3 muted">
-                Tip: Click any module → list view → New → Save → PDF.
-              </div>
-            </>
-          )}
-
-          {view === "list" && (
-            <>
-              <div className="toolbar">
-                <div className="title">{activeSheet.replace(/_/g," ")}</div>
-                <div className="ms-auto d-flex gap-2 flex-wrap">
-                  <input
-                    className="form-control form-control-sm"
-                    style={{width:240}}
-                    placeholder="Search..."
-                    value={searchQ}
-                    onChange={(e)=>setSearchQ(e.target.value)}
-                    onKeyDown={(e)=>{ if(e.key==="Enter") loadList(activeSheet, searchQ); }}
-                  />
-                  <button className="btn btn-outline-secondary btn-sm" onClick={()=>loadList(activeSheet, searchQ)}>Search</button>
-                  <button className="btn btn-sgm btn-sm" onClick={()=>openNewForm(activeSheet)}>➕ New</button>
-                  <button className="btn btn-outline-secondary btn-sm" onClick={()=>loadList(activeSheet, "")}>Refresh</button>
-                </div>
-              </div>
-
-              {listLoading && <div className="muted">Loading list…</div>}
-              {listError && <div className="alert alert-warning">{listError}</div>}
-
-              {!listLoading && !listError && (
-                <div className="table-wrap">
-                  <table className="table table-sm table-bordered align-middle">
-                    <thead className="table-light">
-                      <tr>
-                        {(schema?.[activeSheet]?.headers || []).map(h => <th key={h}>{h}</th>)}
-                        <th style={{width:120}}>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {(rows || []).map((r, idx)=>(
-                        <tr key={idx}>
-                          {(schema?.[activeSheet]?.headers || []).map(h => <td key={h}>{String(r?.[h] ?? "")}</td>)}
-                          <td>
-                            <button className="btn btn-success btn-sm" onClick={()=>printPdfForRow(activeSheet, r)}>PDF</button>
-                          </td>
-                        </tr>
-                      ))}
-                      {(!rows || rows.length===0) && (
-                        <tr>
-                          <td colSpan={(schema?.[activeSheet]?.headers || []).length + 1} className="muted">
-                            No records found.
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </>
-          )}
-
-          {view === "form" && (
-            <>
-              <div className="toolbar">
-                <div className="title">{activeSheet.replace(/_/g," ")} Form</div>
-                <div className="ms-auto d-flex gap-2">
-                  <button className="btn btn-outline-secondary btn-sm" onClick={()=>loadList(activeSheet, "")}>Back</button>
-                  <button className="btn btn-sgm btn-sm" disabled={formSaving} onClick={saveForm}>
-                    {formSaving ? "Saving…" : "Save"}
-                  </button>
-                </div>
-              </div>
-
-              {formMsg && <div className={"alert " + (formMsg.startsWith("✅") ? "alert-success" : "alert-warning")}>{formMsg}</div>}
-
-              <div className="form-grid">
-                {(schema?.[activeSheet]?.headers || []).map((h)=>(
-                  <div key={h}>
-                    <label className="form-label">{h}</label>
-                    <input
-                      className="form-control"
-                      value={formData?.[h] ?? ""}
-                      onChange={(e)=>setFormData(prev => ({...prev, [h]: e.target.value}))}
-                    />
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-
-          {view === "verify" && (
-            <>
-              <div className="toolbar">
-                <div className="title">Verify Certificate</div>
-                <div className="ms-auto">
-                  <span className="pill">public</span>
-                </div>
-              </div>
-
-              <div className="row g-2">
-                <div className="col-lg-6">
-                  <label className="form-label">Certificate ID / Token</label>
-                  <input
-                    className="form-control"
-                    value={verifyInput}
-                    onChange={(e)=>setVerifyInput(e.target.value)}
-                    placeholder="CERT00001 or verifyToken…"
-                  />
-                </div>
-                <div className="col-lg-6 d-flex align-items-end gap-2">
-                  <button className="btn btn-sgm" onClick={verifyCertificate}>Verify</button>
-                </div>
-              </div>
-
-              <div className="mt-3">
-                <label className="form-label">Result</label>
-                <pre className="p-3" style={{background:"#0b1220", color:"#d1d5db", borderRadius:10, overflow:"auto"}}>
-{verifyOut || "Enter Certificate ID and click Verify."}
-                </pre>
-              </div>
-            </>
-          )}
-        </div>
-      </main>
-    </div>
-  );
+  }catch(e){}
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+// ---------- PDF / share ----------
+async function printPdf(){
+  if (!selectedRow) return alert("Select a row first.");
+  const id = idFromRow(currentModule, selectedRow);
+  if (!id) return alert("Missing ID");
+  const pk = pkForModule(currentModule);
+
+  showOverlay("Generating PDF…", "Please wait");
+
+  const params = { module: currentModule.key, action: ACTION_PDF };
+  params[pk] = id;
+  if (currentModule.key==="certificate" && currentModule.sub) params.sub=currentModule.sub;
+
+  let r;
+  try{ r = await apiGet(params); }
+  catch(err){
+    hideOverlay();
+    if (String(err).includes("AbortError")) return;
+    alert("Network error");
+    return;
+  }
+  hideOverlay();
+
+  if (!r.ok) return alert(r.error || "PDF failed");
+  if (r.pdfUrl) window.open(r.pdfUrl, "_blank");
+  else alert("No pdfUrl returned");
+}
+
+async function ensurePdfUrl(){
+  const id = idFromRow(currentModule, selectedRow);
+  const pk = pkForModule(currentModule);
+  const params = { module: currentModule.key, action: ACTION_PDF };
+  params[pk] = id;
+  if (currentModule.key==="certificate" && currentModule.sub) params.sub=currentModule.sub;
+
+  const r = await apiGet(params);
+  if (!r.ok) throw new Error(r.error || "PDF failed");
+  if (!r.pdfUrl) throw new Error("No pdfUrl");
+  return r.pdfUrl;
+}
+
+async function shareWhatsApp(){
+  if (!selectedRow) return alert("Select a row first.");
+  showOverlay("Preparing WhatsApp…", "Creating PDF link");
+  try{
+    const url = await ensurePdfUrl();
+    hideOverlay();
+    const msg = encodeURIComponent(`SGM COMPUTER EDUCATION\nPDF Link:\n${url}`);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+  } catch(e){
+    hideOverlay();
+    if (String(e).includes("AbortError")) return;
+    alert(e.message || "WhatsApp failed");
+  }
+}
+
+async function shareEmail(){
+  if (!selectedRow) return alert("Select a row first.");
+  showOverlay("Preparing Email…", "Creating PDF link");
+  try{
+    const url = await ensurePdfUrl();
+    hideOverlay();
+    const subject = encodeURIComponent("SGM ERP PDF");
+    const body = encodeURIComponent(`SGM COMPUTER EDUCATION\n\nPDF Link:\n${url}\n\nContact: 9742266359`);
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  } catch(e){
+    hideOverlay();
+    if (String(e).includes("AbortError")) return;
+    alert(e.message || "Email failed");
+  }
+}
+
+// ---------- Search ----------
+function localFilterRows(q){
+  if (!q) return currentRows;
+  const qq = q.toLowerCase();
+  return currentRows.filter(r=>{
+    const cols = currentHeaders.slice(0, 12);
+    for (const h of cols){
+      const v = String(r[h] ?? "").toLowerCase();
+      if (v.includes(qq)) return true;
+    }
+    return false;
+  }).slice(0, 30);
+}
+
+async function searchInModule(){
+  if (currentModule.public || currentModule.dashboard) return;
+  if (!schemaReady) return alert("Schema is still loading. Please wait.");
+
+  clearError();
+  const q = $("searchQ").value.trim();
+
+  const filtered = localFilterRows(q);
+  if (q && filtered.length){
+    selectedRow=null;
+    enableRowActions(false);
+    showFeeBadge("unk","");
+    renderTable(currentHeaders, filtered);
+    $("listInfo").textContent = `Local filter "${q}" • ${filtered.length} / ${currentRows.length} (loaded page)`;
+    return;
+  }
+
+  showOverlay("Searching…", `Searching in ${currentModule.label}`);
+  const params = { module: currentModule.key, action:"search", q, limit: 30, offset: 0 };
+  if (currentModule.key==="certificate" && currentModule.sub) params.sub=currentModule.sub;
+
+  let r;
+  try{ r = await apiGet(params); }
+  catch(err){
+    hideOverlay();
+    if (String(err).includes("AbortError")) return;
+    showError("Network error", String(err));
+    return;
+  }
+  hideOverlay();
+
+  if (!r.ok){
+    showError(r.error || "Search failed", r.raw || "");
+    return;
+  }
+
+  currentRows = (r.rows || []).slice(0, 30);
+  renderTable(currentHeaders, currentRows);
+  $("listInfo").textContent = `Search "${q || "(all)"}" • ${currentRows.length} results (max 30)`;
+  selectedRow=null;
+  enableRowActions(false);
+  showFeeBadge("unk","");
+}
+
+// ---------- Paging ----------
+function prevPage(){
+  if (page.offset<=0) return;
+  page.offset=Math.max(0,page.offset-page.limit);
+  applySchemaForCurrentModuleAndLoad();
+}
+function nextPage(){
+  page.offset=page.offset+page.limit;
+  applySchemaForCurrentModuleAndLoad();
+}
+
+// ---------- Module select ----------
+async function selectModule(m){
+  currentModule=m;
+  renderNav();
+  page.offset=0;
+  $("searchQ").value="";
+  clearError();
+  selectedRow=null;
+  enableRowActions(false);
+  showFeeBadge("unk","");
+
+  if (ctrlGet) try{ ctrlGet.abort(); }catch(e){}
+  if (ctrlPost) try{ ctrlPost.abort(); }catch(e){}
+
+  await applySchemaForCurrentModuleAndLoad();
+}
+
+// ---------- Escape ----------
+function esc(s){
+  return String(s ?? "")
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+// ---------- Init ----------
+let searchTimer=null;
+
+async function init(){
+  editModal = new bootstrap.Modal(document.querySelector("#editModal"));
+
+  renderNav();
+  setStatus(currentModule.label, "Loading schema…");
+
+  $("searchQ").addEventListener("keydown", (e)=>{
+    if (e.key !== "Enter") return;
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(()=>searchInModule(), 120);
+  });
+
+  $("searchQ").addEventListener("input", ()=>{
+    if (!schemaReady || currentModule.public || currentModule.dashboard) return;
+    const q = $("searchQ").value.trim();
+    const filtered = localFilterRows(q);
+    renderTable(currentHeaders, filtered);
+    $("listInfo").textContent = q
+      ? `Local filter "${q}" • ${filtered.length} / ${currentRows.length} (loaded page)`
+      : `Loaded page • ${currentRows.length} rows (max 30)`;
+    selectedRow=null;
+    enableRowActions(false);
+    showFeeBadge("unk","");
+  });
+
+  await loadSchemaFast();
+  await applySchemaForCurrentModuleAndLoad();
+  loadDashboard();
+}
+
+init();
 </script>
 </body>
 </html>
